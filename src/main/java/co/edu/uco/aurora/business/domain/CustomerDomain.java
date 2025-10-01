@@ -5,6 +5,7 @@ import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 
 import java.time.LocalDate;
+import java.util.UUID;
 
 public class CustomerDomain extends Domain{
 
@@ -23,6 +24,24 @@ public class CustomerDomain extends Domain{
         setPhoneNumber(TextHelper.getDefault());
         setConfirmedPhoneNumber(false);
         setBirthDate(LocalDate.now());
+    }
+    public CustomerDomain (final UUID id) {
+        super(id);
+        setIdentificationTypeDomain(IdentificationTypeDomain.createDefault());
+        setIdentificationNumber(TextHelper.getDefault());
+        setFullName(TextHelper.getDefault());
+        setPhoneNumber(TextHelper.getDefault());
+        setConfirmedPhoneNumber(false);
+        setBirthDate(LocalDate.now());
+    }
+    public CustomerDomain (final UUID id, final IdentificationTypeDomain identificationTypeDomain, final String identificationNumber, final String fullName, final String phoneNumber, final boolean confirmedPhoneNumber, final LocalDate birthDate) {
+        super(id);
+        setIdentificationTypeDomain(this.identificationTypeDomain);
+        setIdentificationNumber(this.identificationNumber);
+        setFullName(this.fullName);
+        setPhoneNumber(this.phoneNumber);
+        setConfirmedPhoneNumber(this.confirmedPhoneNumber);
+        setBirthDate(this.birthDate);
     }
 
     public IdentificationTypeDomain getIdentificationTypeDomain() {
@@ -70,7 +89,6 @@ public class CustomerDomain extends Domain{
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthDate(LocalDate birthDate) { this.birthDate = DateHelper.getDefaultWithTrim(birthDate);
     }
 }
