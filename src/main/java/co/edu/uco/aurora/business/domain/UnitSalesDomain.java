@@ -31,4 +31,8 @@ public final class UnitSalesDomain extends Domain{
     public void setName(String name) {
         this.name = TextHelper.getDefaultWithTrim(name);
     }
+
+    public static UnitSalesDomain createDefault() {
+        return new UnitSalesDomain();
+    }
 }

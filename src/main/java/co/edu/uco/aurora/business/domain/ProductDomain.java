@@ -41,4 +41,7 @@ public class ProductDomain extends Domain {
     public void setCategory(CategoryDomain category) {
         this.category = ObjectHelper.getDefault(category, CategoryDomain.createDefault());
     }
+    public static ProductDomain createDefault() {
+        return new ProductDomain();
+    }
 }

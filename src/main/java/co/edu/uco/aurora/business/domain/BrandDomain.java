@@ -31,4 +31,8 @@ public final class BrandDomain extends Domain{
     public void setName(String name) {
         this.name = TextHelper.getDefaultWithTrim(name);
     }
+
+    public static BrandDomain createDefault() {
+        return new BrandDomain();
+    }
 }
