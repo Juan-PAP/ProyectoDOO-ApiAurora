@@ -11,7 +11,7 @@ import java.util.UUID;
 
 public final class CustomerDomain extends Domain{
 
-    private IdentificationTypeDomain identificationTypeDomain;
+    private IdentificationTypeDomain identificationType;
     private String identificationNumber;
     private String fullName;
     private String phoneNumber;
@@ -20,7 +20,7 @@ public final class CustomerDomain extends Domain{
 
     public CustomerDomain () {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setIdentificationTypeDomain(IdentificationTypeDomain.createDefault());
+        setIdentificationType(IdentificationTypeDomain.createDefault());
         setIdentificationNumber(TextHelper.getDefault());
         setFullName(TextHelper.getDefault());
         setPhoneNumber(TextHelper.getDefault());
@@ -30,7 +30,7 @@ public final class CustomerDomain extends Domain{
 
     public CustomerDomain (final UUID id) {
         super(id);
-        setIdentificationTypeDomain(IdentificationTypeDomain.createDefault());
+        setIdentificationType(IdentificationTypeDomain.createDefault());
         setIdentificationNumber(TextHelper.getDefault());
         setFullName(TextHelper.getDefault());
         setPhoneNumber(TextHelper.getDefault());
@@ -39,7 +39,7 @@ public final class CustomerDomain extends Domain{
     }
     public CustomerDomain (final UUID id, final IdentificationTypeDomain identificationTypeDomain, final String identificationNumber, final String fullName, final String phoneNumber, final boolean confirmedPhoneNumber, final LocalDate birthDate) {
         super(id);
-        setIdentificationTypeDomain(identificationTypeDomain);
+        setIdentificationType(identificationTypeDomain);
         setIdentificationNumber(identificationNumber);
         setFullName(fullName);
         setPhoneNumber(phoneNumber);
@@ -47,13 +47,13 @@ public final class CustomerDomain extends Domain{
         setBirthDate(birthDate);
     }
 
-    public IdentificationTypeDomain getIdentificationTypeDomain() {
-        return identificationTypeDomain;
+    public IdentificationTypeDomain getIdentificationType() {
+        return identificationType;
     }
 
-    public void setIdentificationTypeDomain(IdentificationTypeDomain identificationTypeDomain) {
-        this.identificationTypeDomain =
-                ObjectHelper.getDefault(identificationTypeDomain, IdentificationTypeDomain.createDefault());
+    public void setIdentificationType(IdentificationTypeDomain identificationType) {
+        this.identificationType =
+                ObjectHelper.getDefault(identificationType, IdentificationTypeDomain.createDefault());
     }
 
     public String getIdentificationNumber() {
