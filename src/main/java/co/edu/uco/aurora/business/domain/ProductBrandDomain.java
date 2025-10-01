@@ -118,4 +118,7 @@ public final class ProductBrandDomain extends Domain{
     public void setAgeRestriction(Boolean ageRestriction) {
         this.ageRestriction = BooleanHelper.getDefault(ageRestriction);
     }
+    public static ProductBrandDomain createDefault() {
+        return new ProductBrandDomain();
+    }
 }
