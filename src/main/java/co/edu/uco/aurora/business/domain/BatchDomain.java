@@ -2,6 +2,7 @@ package co.edu.uco.aurora.business.domain;
 
 import co.edu.uco.aurora.crosscuting.helper.BooleanHelper;
 import co.edu.uco.aurora.crosscuting.helper.LocalDateHelper;
+import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 
 import java.time.LocalDate;
@@ -9,12 +10,14 @@ import java.util.UUID;
 
 public final class BatchDomain extends Domain {
 
+    private ProductBrandDomain product;
     private Boolean isPerishable;
     private LocalDate expirationDate;
     private int amount;
 
     public BatchDomain () {
         super(UUIDHelper.getUUIDHelper().getDefault());
+        setProduct(ProductBrandDomain.createDefault());
         setPerishable(BooleanHelper.getDefault());
         setExpirationDate(LocalDateHelper.getDefault());
         setAmount(0);
@@ -22,23 +25,26 @@ public final class BatchDomain extends Domain {
 
     public BatchDomain (final UUID id) {
         super(id);
+        setProduct(ProductBrandDomain.createDefault());
         setPerishable(BooleanHelper.getDefault());
         setExpirationDate(LocalDateHelper.getDefault());
         setAmount(0);
     }
 
-    public BatchDomain (final UUID id, final Boolean isPerishable, final int amount) {
+    public BatchDomain (final UUID id,final ProductBrandDomain product ,final Boolean isPerishable, final LocalDate expirationDate, final int amount) {
         super(id);
-        setPerishable(isPerishable);
-        setExpirationDate(LocalDateHelper.getDefault());
-        setAmount(amount);
-    }
-
-    public BatchDomain (final UUID id, final Boolean isPerishable, final LocalDate expirationDate, final int amount) {
-        super(id);
+        setProduct(product);
         setPerishable(isPerishable);
         setExpirationDate(expirationDate);
         setAmount(amount);
+    }
+
+    public ProductBrandDomain getProduct() {
+        return product;
+    }
+
+    public void setProduct(ProductBrandDomain product) {
+        this.product = ObjectHelper.getDefault(product, ProductBrandDomain.createDefault());
     }
 
     public Boolean getPerishable() {
@@ -46,7 +52,7 @@ public final class BatchDomain extends Domain {
     }
 
     public void setPerishable(Boolean perishable) {
-        isPerishable = BooleanHelper.getDefault(perishable);
+        this.isPerishable = BooleanHelper.getDefault(perishable);
     }
 
     public LocalDate getExpirationDate() {

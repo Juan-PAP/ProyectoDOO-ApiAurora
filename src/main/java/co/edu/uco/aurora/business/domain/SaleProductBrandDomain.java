@@ -38,7 +38,7 @@ public class SaleProductBrandDomain extends Domain {
     }
 
     public void setUnitPrice(float unitPrice) {
-        UnitPrice = FloatHelper.getDefault(unitPrice);
+        this.UnitPrice = FloatHelper.getDefault(unitPrice);
     }
 
     public Integer getCantidad() {
@@ -54,7 +54,7 @@ public class SaleProductBrandDomain extends Domain {
     }
 
     public void setProductBrand(ProductBrandDomain productBrand) {
-        ProductBrand = ObjectHelper.getDefault(productBrand, ProductBrandDomain.createDefault()) ;
+        this.ProductBrand = ObjectHelper.getDefault(productBrand, ProductBrandDomain.createDefault()) ;
     }
 
     public SaleDomain getSale() {
@@ -62,7 +62,7 @@ public class SaleProductBrandDomain extends Domain {
     }
 
     public void setSale(SaleDomain sale) {
-        Sale = ObjectHelper.getDefault(sale, SaleDomain.getDefault());
+        this.Sale = ObjectHelper.getDefault(sale, SaleDomain.getDefault());
     }
 
     public static SaleProductBrandDomain createDefault() {

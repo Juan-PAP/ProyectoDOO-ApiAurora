@@ -32,7 +32,7 @@ public final class SaleDomain extends Domain {
         super(id);
         setSalesCode(salesCode);
         setCustomer(customer);
-        setDate(date);
+        setDate();
     }
 
     public String getSalesCode() {
@@ -53,6 +53,10 @@ public final class SaleDomain extends Domain {
 
     public LocalDate getDate() {
         return date;
+    }
+
+    public void setDate() {
+        this.date = LocalDateHelper.getDateToday();
     }
 
     public void setDate(LocalDate date) {
