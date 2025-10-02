@@ -43,7 +43,9 @@ public final class ProductBrandDomain extends Domain{
         setAgeRestriction(BooleanHelper.getDefault());
     }
 
-    public ProductBrandDomain(final UUID id, final String reference, final ProductDomain product, final BrandDomain brand, final String measure, final ProductSizeDomain productSize, final UnitSalesDomain unitSales, final Float price, final Boolean ageRestriction) {
+    public ProductBrandDomain(final UUID id, final String reference, final ProductDomain product, final BrandDomain brand,
+                              final String measure, final ProductSizeDomain productSize, final UnitSalesDomain unitSales,
+                              final Float price, final Boolean ageRestriction) {
         super(id);
         setReference(reference);
         setProduct(product);
