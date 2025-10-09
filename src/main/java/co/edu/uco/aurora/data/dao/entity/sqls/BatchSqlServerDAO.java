@@ -3,10 +3,16 @@ package co.edu.uco.aurora.data.dao.entity.sqls;
 import co.edu.uco.aurora.data.dao.entity.BatchDAO;
 import co.edu.uco.aurora.entity.BatchEntity;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.UUID;
 
-public class BatchSqlServerDAO implements BatchDAO {
+public class BatchSqlServerDAO extends SqlConnection implements BatchDAO {
+
+    protected BatchSqlServerDAO(Connection connection) {
+        super(connection);
+    }
+
     @Override
     public void crate(BatchEntity entity) {
 

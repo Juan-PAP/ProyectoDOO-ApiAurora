@@ -3,10 +3,16 @@ package co.edu.uco.aurora.data.dao.entity.sqls;
 import co.edu.uco.aurora.data.dao.entity.SaleDAO;
 import co.edu.uco.aurora.entity.SaleEntity;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.UUID;
 
-public class SaleSqlServerDAO implements SaleDAO {
+public class SaleSqlServerDAO extends SqlConnection implements SaleDAO {
+
+    protected SaleSqlServerDAO(Connection connection) {
+        super(connection);
+    }
+
     @Override
     public void crate(SaleEntity entity) {
 

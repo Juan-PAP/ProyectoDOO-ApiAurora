@@ -3,10 +3,16 @@ package co.edu.uco.aurora.data.dao.entity.sqls;
 import co.edu.uco.aurora.data.dao.entity.AdministratorDAO;
 import co.edu.uco.aurora.entity.AdministratorEntity;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.UUID;
 
-public class AdministratorSqlServerDAO implements AdministratorDAO {
+public class AdministratorSqlServerDAO extends SqlConnection implements AdministratorDAO {
+
+    protected AdministratorSqlServerDAO(Connection connection) {
+        super(connection);
+    }
+
     @Override
     public void crate(AdministratorEntity entity) {
         

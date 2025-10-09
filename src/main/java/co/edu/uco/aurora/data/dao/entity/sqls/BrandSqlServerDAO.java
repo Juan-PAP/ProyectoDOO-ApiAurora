@@ -3,10 +3,16 @@ package co.edu.uco.aurora.data.dao.entity.sqls;
 import co.edu.uco.aurora.data.dao.entity.BrandDAO;
 import co.edu.uco.aurora.entity.BrandEntity;
 
+import java.sql.Connection;
 import java.util.List;
 import java.util.UUID;
 
-public class BrandSqlServerDAO implements BrandDAO {
+public class BrandSqlServerDAO extends SqlConnection implements BrandDAO {
+
+    protected BrandSqlServerDAO(Connection connection) {
+        super(connection);
+    }
+
     @Override
     public void crate(BrandEntity entity) {
 
