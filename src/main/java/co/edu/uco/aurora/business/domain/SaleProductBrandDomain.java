@@ -4,7 +4,8 @@ import co.edu.uco.aurora.crosscuting.helper.*;
 
 import java.util.UUID;
 
-public class SaleProductBrandDomain extends Domain {
+public final class SaleProductBrandDomain extends Domain {
+
     private SaleDomain Sale;
     private ProductBrandDomain ProductBrand;
     private float UnitPrice;
@@ -25,7 +26,8 @@ public class SaleProductBrandDomain extends Domain {
         setAmount(IntegerHelper.getDefault());
     }
 
-    public SaleProductBrandDomain (final UUID id,final SaleDomain sale,final ProductBrandDomain productBrand, float unitPrice,  final Integer cantidad) {
+    public SaleProductBrandDomain (final UUID id,final SaleDomain sale,final ProductBrandDomain productBrand,
+                                   float unitPrice,  final Integer cantidad) {
         super(id);
         setSale(Sale);
         setProductBrand(ProductBrand);

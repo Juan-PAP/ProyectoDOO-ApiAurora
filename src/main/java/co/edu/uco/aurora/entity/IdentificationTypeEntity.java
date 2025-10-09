@@ -5,7 +5,7 @@ import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 
 import java.util.UUID;
 
-public class IdentificationTypeEntity extends Entity {
+public final class IdentificationTypeEntity extends Entity {
 
     private String name;
 

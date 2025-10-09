@@ -5,21 +5,23 @@ import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 
 import java.util.UUID;
 
-public final class CategoryEntity extends Entity {
+public final class UnitSalesEntity extends Entity{
 
     private String name;
 
-    public CategoryEntity() {
+    public UnitSalesEntity() {
         super(UUIDHelper.getUUIDHelper().getDefault());
         setName(TextHelper.getDefault());
     }
-    public CategoryEntity(final UUID id) {
+
+    public UnitSalesEntity(final UUID id) {
         super(id);
         setName(TextHelper.getDefault());
     }
-    public CategoryEntity(final UUID id, final String name) {
-        super(id);
-        setName(this.name);
+
+    public UnitSalesEntity (final UUID id, final String name) {
+        super (id);
+        setName(name);
     }
 
     public String getName() {
@@ -30,7 +32,7 @@ public final class CategoryEntity extends Entity {
         this.name = TextHelper.getDefaultWithTrim(name);
     }
 
-    public static CategoryEntity createDefault() {
-        return new CategoryEntity();
+    public static UnitSalesEntity createDefault() {
+        return new UnitSalesEntity();
     }
 }

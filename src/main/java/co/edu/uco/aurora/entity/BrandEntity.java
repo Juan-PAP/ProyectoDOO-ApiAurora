@@ -5,7 +5,7 @@ import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 
 import java.util.UUID;
 
-public class BrandEntity extends Entity {
+public final class BrandEntity extends Entity {
     private String name;
 
     public BrandEntity() {

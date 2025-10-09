@@ -1,24 +1,25 @@
-package co.edu.uco.aurora.business.domain;
+package co.edu.uco.aurora.entity;
 
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 
 import java.util.UUID;
 
-public final class ProductSizeDomain extends Domain{
+public final class ProductSizeEntity extends Entity {
 
     private String unitMeasurement;
 
-    public ProductSizeDomain() {
+    public ProductSizeEntity() {
         super(UUIDHelper.getUUIDHelper().getDefault());
         setUnitMeasurement(TextHelper.getDefault());
     }
-    public ProductSizeDomain(UUID id) {
+
+    public ProductSizeEntity(UUID id) {
         super(id);
         setUnitMeasurement(TextHelper.getDefault());
     }
 
-    public ProductSizeDomain(final UUID id, final String unitMeasurement) {
+    public ProductSizeEntity(final UUID id, final String unitMeasurement) {
         super(id);
         setUnitMeasurement(this.unitMeasurement);
     }
@@ -31,7 +32,7 @@ public final class ProductSizeDomain extends Domain{
         this.unitMeasurement = TextHelper.getDefaultWithTrim(unitMeasurement);
     }
 
-    public static ProductSizeDomain createDefault() {
-        return new ProductSizeDomain();
+    public static ProductSizeEntity createDefault() {
+        return new ProductSizeEntity();
     }
 }
