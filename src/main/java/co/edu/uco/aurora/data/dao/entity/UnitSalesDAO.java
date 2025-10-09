@@ -5,5 +5,5 @@ import co.edu.uco.aurora.entity.UnitSalesEntity;
 
 import java.util.UUID;
 
-public interface UnitSalesDTO extends RetrieveDAO<UnitSalesEntity, UUID> {
+public interface UnitSalesDAO extends RetrieveDAO<UnitSalesEntity, UUID> {
 }
