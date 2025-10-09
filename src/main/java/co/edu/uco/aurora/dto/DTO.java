@@ -1,14 +1,14 @@
-package co.edu.uco.aurora.entity;
+package co.edu.uco.aurora.dto;
 
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 
 import java.util.UUID;
 
-public class Entity {
+public class DTO {
 
     private UUID id;
 
-    protected Entity(final UUID id) {
+    protected DTO(final UUID id) {
         setId(id);
     }
 

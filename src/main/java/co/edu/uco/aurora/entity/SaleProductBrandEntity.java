@@ -21,6 +21,7 @@ public final class SaleProductBrandEntity extends Entity {
         setUnitPrice(FloatHelper.getDefault());
         setAmount(IntegerHelper.getDefault());
     }
+
     public SaleProductBrandEntity(UUID id) {
         super(id);
         setSale(SaleEntity.getDefault());

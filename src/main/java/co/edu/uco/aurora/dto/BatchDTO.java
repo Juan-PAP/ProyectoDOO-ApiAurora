@@ -1,4 +1,4 @@
-package co.edu.uco.aurora.entity;
+package co.edu.uco.aurora.dto;
 
 import co.edu.uco.aurora.crosscuting.helper.BooleanHelper;
 import co.edu.uco.aurora.crosscuting.helper.LocalDateHelper;
@@ -8,31 +8,31 @@ import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public final class BatchEntity extends Entity {
+public final class BatchDTO extends DTO {
 
-    private ProductBrandEntity product;
+    private ProductBrandDTO product;
     private Boolean isPerishable;
     private LocalDate expirationDate;
     private int amount;
 
-    public BatchEntity() {
+    public BatchDTO() {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setProduct(ProductBrandEntity.createDefault());
+        setProduct(ProductBrandDTO.createDefault());
         setPerishable(BooleanHelper.getDefault());
         setExpirationDate(LocalDateHelper.getDefault());
         setAmount(0);
     }
 
-    public BatchEntity(final UUID id) {
+    public BatchDTO(final UUID id) {
         super(id);
-        setProduct(ProductBrandEntity.createDefault());
+        setProduct(ProductBrandDTO.createDefault());
         setPerishable(BooleanHelper.getDefault());
         setExpirationDate(LocalDateHelper.getDefault());
         setAmount(0);
     }
 
-    public BatchEntity(final UUID id, final ProductBrandEntity product , final Boolean isPerishable,
-                       final LocalDate expirationDate, final int amount) {
+    public BatchDTO(final UUID id, final ProductBrandDTO product , final Boolean isPerishable,
+                    final LocalDate expirationDate, final int amount) {
         super(id);
         setProduct(product);
         setPerishable(isPerishable);
@@ -40,12 +40,12 @@ public final class BatchEntity extends Entity {
         setAmount(amount);
     }
 
-    public ProductBrandEntity getProduct() {
+    public ProductBrandDTO getProduct() {
         return product;
     }
 
-    public void setProduct(ProductBrandEntity product) {
-        this.product = ObjectHelper.getDefault(product, ProductBrandEntity.createDefault());
+    public void setProduct(ProductBrandDTO product) {
+        this.product = ObjectHelper.getDefault(product, ProductBrandDTO.createDefault());
     }
 
     public Boolean getPerishable() {

@@ -1,4 +1,4 @@
-package co.edu.uco.aurora.entity;
+package co.edu.uco.aurora.dto;
 
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
@@ -6,24 +6,24 @@ import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 
 import java.util.UUID;
 
-public final class ProductEntity extends Entity {
+public final class ProductDTO extends DTO {
 
     private String name;
-    private CategoryEntity category;
+    private CategoryDTO category;
 
-    public ProductEntity() {
+    public ProductDTO() {
         super (UUIDHelper.getUUIDHelper().getDefault());
         setName(TextHelper.getDefault());
-        setCategory(CategoryEntity.createDefault());
+        setCategory(CategoryDTO.createDefault());
     }
 
-    public ProductEntity(final UUID id) {
+    public ProductDTO(final UUID id) {
         super (id);
         setName(TextHelper.getDefault());
-        setCategory(CategoryEntity.createDefault());
+        setCategory(CategoryDTO.createDefault());
     }
 
-    public ProductEntity (final UUID id, final String name, final CategoryEntity category) {
+    public ProductDTO(final UUID id, final String name, final CategoryDTO category) {
         super (id);
         setName(name);
         setCategory(category);
@@ -37,14 +37,14 @@ public final class ProductEntity extends Entity {
         this.name = TextHelper.getDefaultWithTrim(name);
     }
 
-    public CategoryEntity getCategory() {
+    public CategoryDTO getCategory() {
         return category;
     }
 
-    public void setCategory(CategoryEntity category) {
-        this.category = ObjectHelper.getDefault(category, CategoryEntity.createDefault());
+    public void setCategory(CategoryDTO category) {
+        this.category = ObjectHelper.getDefault(category, CategoryDTO.createDefault());
     }
-    public static ProductEntity createDefault() {
-        return new ProductEntity();
+    public static ProductDTO createDefault() {
+        return new ProductDTO();
     }
 }

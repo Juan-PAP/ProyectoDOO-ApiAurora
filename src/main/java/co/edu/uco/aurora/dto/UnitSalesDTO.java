@@ -1,26 +1,26 @@
-package co.edu.uco.aurora.entity;
+package co.edu.uco.aurora.dto;
 
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 
 import java.util.UUID;
 
-public final class BrandEntity extends Entity {
+public final class UnitSalesDTO extends DTO {
 
     private String name;
 
-    public BrandEntity() {
+    public UnitSalesDTO() {
         super(UUIDHelper.getUUIDHelper().getDefault());
         setName(TextHelper.getDefault());
     }
 
-    public BrandEntity(final UUID id) {
+    public UnitSalesDTO(final UUID id) {
         super(id);
         setName(TextHelper.getDefault());
     }
 
-    public BrandEntity(final UUID id, final String name) {
-        super(id);
+    public UnitSalesDTO(final UUID id, final String name) {
+        super (id);
         setName(name);
     }
 
@@ -32,7 +32,7 @@ public final class BrandEntity extends Entity {
         this.name = TextHelper.getDefaultWithTrim(name);
     }
 
-    public static BrandEntity createDefault() {
-        return new BrandEntity();
+    public static UnitSalesDTO createDefault() {
+        return new UnitSalesDTO();
     }
 }

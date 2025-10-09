@@ -1,4 +1,4 @@
-package co.edu.uco.aurora.entity;
+package co.edu.uco.aurora.dto;
 
 import co.edu.uco.aurora.crosscuting.helper.BooleanHelper;
 import co.edu.uco.aurora.crosscuting.helper.LocalDateHelper;
@@ -9,18 +9,18 @@ import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public final class CustomerEntity extends Entity{
+public final class CustomerDTO extends DTO {
 
-    private IdentificationTypeEntity identificationType;
+    private IdentificationTypeDTO identificationType;
     private String identificationNumber;
     private String fullName;
     private String phoneNumber;
     private Boolean confirmedPhoneNumber;
     private LocalDate birthDate;
 
-    public CustomerEntity() {
+    public CustomerDTO() {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setIdentificationType(IdentificationTypeEntity.createDefault());
+        setIdentificationType(IdentificationTypeDTO.createDefault());
         setIdentificationNumber(TextHelper.getDefault());
         setFullName(TextHelper.getDefault());
         setPhoneNumber(TextHelper.getDefault());
@@ -28,9 +28,9 @@ public final class CustomerEntity extends Entity{
         setBirthDate(LocalDateHelper.getDefault());
     }
 
-    public CustomerEntity(final UUID id) {
+    public CustomerDTO(final UUID id) {
         super(id);
-        setIdentificationType(IdentificationTypeEntity.createDefault());
+        setIdentificationType(IdentificationTypeDTO.createDefault());
         setIdentificationNumber(TextHelper.getDefault());
         setFullName(TextHelper.getDefault());
         setPhoneNumber(TextHelper.getDefault());
@@ -38,7 +38,7 @@ public final class CustomerEntity extends Entity{
         setBirthDate(LocalDateHelper.getDefault());
     }
 
-    public CustomerEntity(final UUID id, final IdentificationTypeEntity identificationType, final String identificationNumber,
+    public CustomerDTO(final UUID id, final IdentificationTypeDTO identificationType, final String identificationNumber,
                           final String fullName, final String phoneNumber, final boolean confirmedPhoneNumber,
                           final LocalDate birthDate) {
         super(id);
@@ -50,13 +50,13 @@ public final class CustomerEntity extends Entity{
         setBirthDate(birthDate);
     }
 
-    public IdentificationTypeEntity getIdentificationType() {
+    public IdentificationTypeDTO getIdentificationType() {
         return identificationType;
     }
 
-    public void setIdentificationType(IdentificationTypeEntity identificationType) {
+    public void setIdentificationType(IdentificationTypeDTO identificationType) {
         this.identificationType =
-                ObjectHelper.getDefault(identificationType, IdentificationTypeEntity.createDefault());
+                ObjectHelper.getDefault(identificationType, IdentificationTypeDTO.createDefault());
     }
 
     public String getIdentificationNumber() {
@@ -99,7 +99,7 @@ public final class CustomerEntity extends Entity{
         this.birthDate = LocalDateHelper.getDefault(birthDate);
     }
 
-    public static CustomerEntity getDefault() {
-        return new CustomerEntity();
+    public static CustomerDTO getDefault() {
+        return new CustomerDTO();
     }
 }

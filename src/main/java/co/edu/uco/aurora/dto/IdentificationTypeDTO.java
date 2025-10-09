@@ -1,25 +1,25 @@
-package co.edu.uco.aurora.entity;
+package co.edu.uco.aurora.dto;
 
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 
 import java.util.UUID;
 
-public final class CategoryEntity extends Entity {
+public final class IdentificationTypeDTO extends DTO {
 
     private String name;
 
-    public CategoryEntity() {
+    public IdentificationTypeDTO() {
         super(UUIDHelper.getUUIDHelper().getDefault());
         setName(TextHelper.getDefault());
     }
 
-    public CategoryEntity(final UUID id) {
+    public IdentificationTypeDTO(final UUID id) {
         super(id);
         setName(TextHelper.getDefault());
     }
 
-    public CategoryEntity(final UUID id, final String name) {
+    public IdentificationTypeDTO(final UUID id, final String name) {
         super(id);
         setName(this.name);
     }
@@ -28,11 +28,11 @@ public final class CategoryEntity extends Entity {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = TextHelper.getDefaultWithTrim(name);
+    public void setName(String nombre) {
+        this.name = TextHelper.getDefault(name);
     }
 
-    public static CategoryEntity createDefault() {
-        return new CategoryEntity();
+    public static IdentificationTypeDTO createDefault() {
+        return new IdentificationTypeDTO();
     }
 }
