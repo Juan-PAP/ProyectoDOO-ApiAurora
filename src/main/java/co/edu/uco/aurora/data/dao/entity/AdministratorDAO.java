@@ -7,6 +7,7 @@ import co.edu.uco.aurora.entity.AdministratorEntity;
 
 import java.util.UUID;
 
-public interface AdministratorDAO extends CreateDAO <AdministratorEntity>, UpdateDAO <AdministratorEntity>, RetrieveDAO <AdministratorEntity, UUID>{
+public interface AdministratorDAO extends CreateDAO <AdministratorEntity>, UpdateDAO <AdministratorEntity>,
+        RetrieveDAO <AdministratorEntity, UUID>{
 
 }

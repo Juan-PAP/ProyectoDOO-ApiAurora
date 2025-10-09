@@ -7,6 +7,7 @@ import co.edu.uco.aurora.entity.ProductBrandEntity;
 
 import java.util.UUID;
 
-public interface ProductBrandDAO extends CreateDAO<ProductBrandEntity>, UpdateDAO<ProductBrandEntity>, RetrieveDAO<ProductBrandEntity, UUID> {
+public interface ProductBrandDAO extends CreateDAO<ProductBrandEntity>, UpdateDAO<ProductBrandEntity>,
+        RetrieveDAO<ProductBrandEntity, UUID> {
 
 }
