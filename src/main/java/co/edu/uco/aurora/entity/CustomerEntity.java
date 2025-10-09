@@ -1,4 +1,4 @@
-package co.edu.uco.aurora.business.domain;
+package co.edu.uco.aurora.entity;
 
 import co.edu.uco.aurora.crosscuting.helper.BooleanHelper;
 import co.edu.uco.aurora.crosscuting.helper.LocalDateHelper;
@@ -9,18 +9,18 @@ import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 import java.time.LocalDate;
 import java.util.UUID;
 
-public final class CustomerDomain extends Domain{
+public final class CustomerEntity extends Entity{
 
-    private IdentificationTypeDomain identificationType;
+    private IdentificationTypeEntity identificationType;
     private String identificationNumber;
     private String fullName;
     private String phoneNumber;
     private Boolean confirmedPhoneNumber;
     private LocalDate birthDate;
 
-    public CustomerDomain () {
+    public CustomerEntity() {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setIdentificationType(IdentificationTypeDomain.createDefault());
+        setIdentificationType(IdentificationTypeEntity.createDefault());
         setIdentificationNumber(TextHelper.getDefault());
         setFullName(TextHelper.getDefault());
         setPhoneNumber(TextHelper.getDefault());
@@ -28,16 +28,17 @@ public final class CustomerDomain extends Domain{
         setBirthDate(LocalDateHelper.getDefault());
     }
 
-    public CustomerDomain (final UUID id) {
+    public CustomerEntity(final UUID id) {
         super(id);
-        setIdentificationType(IdentificationTypeDomain.createDefault());
+        setIdentificationType(IdentificationTypeEntity.createDefault());
         setIdentificationNumber(TextHelper.getDefault());
         setFullName(TextHelper.getDefault());
         setPhoneNumber(TextHelper.getDefault());
         setConfirmedPhoneNumber(BooleanHelper.getDefault());
         setBirthDate(LocalDateHelper.getDefault());
     }
-    public CustomerDomain (final UUID id, final IdentificationTypeDomain identificationType, final String identificationNumber, final String fullName, final String phoneNumber, final boolean confirmedPhoneNumber, final LocalDate birthDate) {
+
+    public CustomerEntity(final UUID id, final IdentificationTypeEntity identificationType, final String identificationNumber, final String fullName, final String phoneNumber, final boolean confirmedPhoneNumber, final LocalDate birthDate) {
         super(id);
         setIdentificationType(identificationType);
         setIdentificationNumber(identificationNumber);
@@ -47,13 +48,13 @@ public final class CustomerDomain extends Domain{
         setBirthDate(birthDate);
     }
 
-    public IdentificationTypeDomain getIdentificationType() {
+    public IdentificationTypeEntity getIdentificationType() {
         return identificationType;
     }
 
-    public void setIdentificationType(IdentificationTypeDomain identificationType) {
+    public void setIdentificationType(IdentificationTypeEntity identificationType) {
         this.identificationType =
-                ObjectHelper.getDefault(identificationType, IdentificationTypeDomain.createDefault());
+                ObjectHelper.getDefault(identificationType, IdentificationTypeEntity.createDefault());
     }
 
     public String getIdentificationNumber() {
@@ -96,7 +97,7 @@ public final class CustomerDomain extends Domain{
         this.birthDate = LocalDateHelper.getDefault(birthDate);
     }
 
-    public static CustomerDomain getDefault() {
-        return new CustomerDomain();
+    public static CustomerEntity getDefault() {
+        return new CustomerEntity();
     }
 }
