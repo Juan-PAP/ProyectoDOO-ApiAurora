@@ -10,7 +10,7 @@ public final class AuroraException extends RuntimeException {
     private String userMessage;
     private String technicalMessage;
 
-    public AuroraException(final Throwable rootException, final String userMessage, final String technicalMessage) {
+    private AuroraException(final Throwable rootException, final String userMessage, final String technicalMessage) {
       setRootException(rootException);
       setUserMessage(userMessage);
       setTechnicalMessage(technicalMessage);

@@ -50,7 +50,27 @@ public enum MessagesEnum {
 
     TECHNICAL_ERROR_SQL_CONNECTION_UNEXPECTED_ERROR_VALIDATING_TRANSACTION_IS_STARTED("Error técnico inesperado al validar el inicio de la transacción",
             "Se presentó un error técnico inesperado al intentar validar el estado de la transacción. "
-                    + "Por favor revise los registros del sistema y si el problema persiste, contacte al administrador de la aplicación.");
+                    + "Por favor revise los registros del sistema y si el problema persiste, contacte al administrador de la aplicación."),
+
+    USER_ERROR_TRANSACTION_IS_STARTED("Transacción no iniciada",
+            "La operación no puede completarse porque la transacción ya ha sido iniciada y debe estar finalizada para proceder"
+                    + "Por favor finalice la transacción e intente nuevamente. Si el problema persiste, contacte al administrador de la aplicación."),
+
+    TECHNICAL_ERROR_TRANSACTION_IS_STARTED("Transacción no iniciada en la base de datos",
+            "La operación no puede completarse porque la transacción ya fue iniciada en la base de datos y debe estar finalizada. "
+                    + "Por favor revise la lógica de transacciones y si el problema persiste, contacte al administrador de la aplicación."),
+
+    USER_ERROR_SQL_CONNECTION_UNEXPECTED_ERROR_VALIDATING_TRANSACTION_IS_NOT_STARTED("Error inesperado al validar el inicio de la transacción",
+            "Se presentó un problema inesperado al validar el estado de la transacción. "
+                    + "Por favor intente nuevamente y si el problema persiste, contacte al administrador de la aplicación."),
+
+    TECHNICAL_ERROR_SQL_CONNECTION_SQL_EXCEPTION_VALIDATING_TRANSACTION_IS_NOT_STARTED("Error SQL al validar el inicio de la transacción",
+            "Se produjo una excepción SQL al intentar validar el estado de la transacción. "
+                    + "Por favor revise la conexión con la base de datos y si el problema persiste, contacte al administrador de la aplicación."),
+
+    TECHNICAL_ERROR_SQL_CONNECTION_UNEXPECTED_ERROR_VALIDATING_TRANSACTION_IS_NOT_STARTED("completa las frases de error y dime cuales carecen de sentido, no toques los subtitulos son importantes",
+            "Se presentó un problema inesperado al validar el estado de la transacción. "
+                    + "Por favor intente nuevamente y si el problema persiste, contacte al administrador de la aplicación");
 
     private String title;
     private String content;
