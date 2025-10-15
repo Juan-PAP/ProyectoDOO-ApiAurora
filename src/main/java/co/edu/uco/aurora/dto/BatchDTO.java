@@ -1,6 +1,6 @@
 package co.edu.uco.aurora.dto;
 
-import co.edu.uco.aurora.crosscuting.helper.BooleanHelper;
+import co.edu.uco.aurora.crosscuting.helper.IntegerHelper;
 import co.edu.uco.aurora.crosscuting.helper.LocalDateHelper;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
@@ -11,14 +11,14 @@ import java.util.UUID;
 public final class BatchDTO extends DTO {
 
     private ProductBrandDTO product;
-    private Boolean isPerishable;
+    private boolean isPerishable;
     private LocalDate expirationDate;
     private int amount;
 
-    public BatchDTO() {
+    public BatchDTO () {
         super(UUIDHelper.getUUIDHelper().getDefault());
         setProduct(ProductBrandDTO.createDefault());
-        setPerishable(BooleanHelper.getDefault());
+        setPerishable(false);
         setExpirationDate(LocalDateHelper.getDefault());
         setAmount(0);
     }
@@ -26,13 +26,12 @@ public final class BatchDTO extends DTO {
     public BatchDTO(final UUID id) {
         super(id);
         setProduct(ProductBrandDTO.createDefault());
-        setPerishable(BooleanHelper.getDefault());
+        setPerishable(false);
         setExpirationDate(LocalDateHelper.getDefault());
         setAmount(0);
     }
 
-    public BatchDTO(final UUID id, final ProductBrandDTO product , final Boolean isPerishable,
-                    final LocalDate expirationDate, final int amount) {
+    public BatchDTO(final UUID id, final ProductBrandDTO product , final Boolean isPerishable, final LocalDate expirationDate, final int amount) {
         super(id);
         setProduct(product);
         setPerishable(isPerishable);
@@ -48,12 +47,12 @@ public final class BatchDTO extends DTO {
         this.product = ObjectHelper.getDefault(product, ProductBrandDTO.createDefault());
     }
 
-    public Boolean getPerishable() {
+    public boolean isPerishable() {
         return isPerishable;
     }
 
-    public void setPerishable(Boolean perishable) {
-        this.isPerishable = BooleanHelper.getDefault(perishable);
+    public void setPerishable(boolean perishable) {
+        isPerishable = perishable;
     }
 
     public LocalDate getExpirationDate() {
@@ -69,6 +68,6 @@ public final class BatchDTO extends DTO {
     }
 
     public void setAmount(int amount) {
-        this.amount = amount;
+        this.amount = IntegerHelper.getDefault(amount);
     }
 }

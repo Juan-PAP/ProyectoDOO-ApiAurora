@@ -12,20 +12,22 @@ public class CategoryDomain extends Domain{
         super(UUIDHelper.getUUIDHelper().getDefault());
         setName(TextHelper.getDefault());
     }
+
     public CategoryDomain(final UUID id) {
         super(id);
         setName(TextHelper.getDefault());
     }
+
     public CategoryDomain(final UUID id, final String name) {
         super(id);
-        setName(this.name);
+        setName(name);
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = TextHelper.getDefaultWithTrim(name);
     }
 

@@ -28,7 +28,7 @@ public final class IdentificationTypeEntity extends Entity {
         return name;
     }
 
-    public void setName(String nombre) {
+    public void setName(final String nombre) {
         this.name = TextHelper.getDefault(name);
     }
 

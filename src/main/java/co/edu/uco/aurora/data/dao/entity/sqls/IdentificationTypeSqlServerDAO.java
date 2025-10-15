@@ -22,8 +22,4 @@ public class IdentificationTypeSqlServerDAO extends SqlConnection implements Ide
         return List.of();
     }
 
-    @Override
-    public IdentificationTypeDAO findById(UUID uuid) {
-        return null;
-    }
 }

@@ -22,9 +22,4 @@ public class UnitSalesSqlServerDAO extends SqlConnection implements UnitSalesDAO
     public List<UnitSalesEntity> findByFilter(UnitSalesEntity filterEntity) {
         return List.of();
     }
-
-    @Override
-    public UnitSalesEntity findById(UUID uuid) {
-        return null;
-    }
 }

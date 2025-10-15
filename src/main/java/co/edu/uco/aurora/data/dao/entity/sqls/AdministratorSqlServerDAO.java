@@ -29,11 +29,6 @@ public class AdministratorSqlServerDAO extends SqlConnection implements Administ
     }
 
     @Override
-    public AdministratorEntity findById(UUID uuid) {
-        return null;
-    }
-
-    @Override
     public void update(AdministratorEntity entity) {
 
     }

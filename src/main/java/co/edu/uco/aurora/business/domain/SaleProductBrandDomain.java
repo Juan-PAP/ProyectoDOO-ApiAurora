@@ -9,7 +9,7 @@ public final class SaleProductBrandDomain extends Domain {
     private SaleDomain Sale;
     private ProductBrandDomain ProductBrand;
     private float UnitPrice;
-    private Integer amount;
+    private int amount;
 
     public SaleProductBrandDomain() {
         super(UUIDHelper.getUUIDHelper().getDefault());
@@ -27,7 +27,7 @@ public final class SaleProductBrandDomain extends Domain {
     }
 
     public SaleProductBrandDomain (final UUID id,final SaleDomain sale,final ProductBrandDomain productBrand,
-                                   float unitPrice,  final Integer cantidad) {
+                                   float unitPrice,  final int cantidad) {
         super(id);
         setSale(Sale);
         setProductBrand(ProductBrand);
@@ -39,15 +39,15 @@ public final class SaleProductBrandDomain extends Domain {
         return UnitPrice;
     }
 
-    public void setUnitPrice(float unitPrice) {
+    public void setUnitPrice(final float unitPrice) {
         this.UnitPrice = FloatHelper.getDefault(unitPrice);
     }
 
-    public Integer getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(final int amount) {
         this.amount = IntegerHelper.getDefault(amount);
     }
 
@@ -55,7 +55,7 @@ public final class SaleProductBrandDomain extends Domain {
         return ProductBrand;
     }
 
-    public void setProductBrand(ProductBrandDomain productBrand) {
+    public void setProductBrand(final ProductBrandDomain productBrand) {
         this.ProductBrand = ObjectHelper.getDefault(productBrand, ProductBrandDomain.createDefault()) ;
     }
 
@@ -63,7 +63,7 @@ public final class SaleProductBrandDomain extends Domain {
         return Sale;
     }
 
-    public void setSale(SaleDomain sale) {
+    public void setSale(final SaleDomain sale) {
         this.Sale = ObjectHelper.getDefault(sale, SaleDomain.getDefault());
     }
 

@@ -21,14 +21,14 @@ public final class CategoryDTO extends DTO {
 
     public CategoryDTO(final UUID id, final String name) {
         super(id);
-        setName(this.name);
+        setName(name);
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = TextHelper.getDefaultWithTrim(name);
     }
 

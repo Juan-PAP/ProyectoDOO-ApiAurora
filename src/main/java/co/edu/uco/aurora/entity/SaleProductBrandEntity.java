@@ -12,7 +12,7 @@ public final class SaleProductBrandEntity extends Entity {
     private SaleEntity Sale;
     private ProductBrandEntity ProductBrand;
     private float UnitPrice;
-    private Integer amount;
+    private int amount;
 
     public SaleProductBrandEntity() {
         super(UUIDHelper.getUUIDHelper().getDefault());
@@ -31,7 +31,7 @@ public final class SaleProductBrandEntity extends Entity {
     }
 
     public SaleProductBrandEntity (final UUID id,final SaleEntity sale,final ProductBrandEntity productBrand,
-                                   float unitPrice,  final Integer cantidad) {
+                                   float unitPrice,  final int cantidad) {
         super(id);
         setSale(Sale);
         setProductBrand(ProductBrand);
@@ -43,7 +43,7 @@ public final class SaleProductBrandEntity extends Entity {
         return UnitPrice;
     }
 
-    public void setUnitPrice(float unitPrice) {
+    public void setUnitPrice(final float unitPrice) {
         this.UnitPrice = FloatHelper.getDefault(unitPrice);
     }
 
@@ -51,7 +51,7 @@ public final class SaleProductBrandEntity extends Entity {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(final int amount) {
         this.amount = IntegerHelper.getDefault(amount);
     }
 
@@ -59,7 +59,7 @@ public final class SaleProductBrandEntity extends Entity {
         return ProductBrand;
     }
 
-    public void setProductBrand(ProductBrandEntity productBrand) {
+    public void setProductBrand(final ProductBrandEntity productBrand) {
         this.ProductBrand = ObjectHelper.getDefault(productBrand, ProductBrandEntity.createDefault()) ;
     }
 
@@ -67,7 +67,7 @@ public final class SaleProductBrandEntity extends Entity {
         return Sale;
     }
 
-    public void setSale(SaleEntity sale) {
+    public void setSale(final SaleEntity sale) {
         this.Sale = ObjectHelper.getDefault(sale, SaleEntity.getDefault());
     }
 

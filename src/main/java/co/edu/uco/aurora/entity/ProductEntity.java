@@ -33,7 +33,7 @@ public final class ProductEntity extends Entity {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = TextHelper.getDefaultWithTrim(name);
     }
 
@@ -41,9 +41,10 @@ public final class ProductEntity extends Entity {
         return category;
     }
 
-    public void setCategory(CategoryEntity category) {
+    public void setCategory(final CategoryEntity category) {
         this.category = ObjectHelper.getDefault(category, CategoryEntity.createDefault());
     }
+
     public static ProductEntity createDefault() {
         return new ProductEntity();
     }

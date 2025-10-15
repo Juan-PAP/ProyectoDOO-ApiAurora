@@ -1,6 +1,5 @@
 package co.edu.uco.aurora.business.domain;
 
-import co.edu.uco.aurora.crosscuting.helper.BooleanHelper;
 import co.edu.uco.aurora.crosscuting.helper.FloatHelper;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
@@ -16,8 +15,8 @@ public final class ProductBrandDomain extends Domain{
     private String measure;
     private ProductSizeDomain productSize;
     private UnitSalesDomain unitSales;
-    private Float price;
-    private Boolean ageRestriction;
+    private float price;
+    private boolean ageRestriction;
 
     public ProductBrandDomain() {
         super(UUIDHelper.getUUIDHelper().getDefault());
@@ -28,7 +27,7 @@ public final class ProductBrandDomain extends Domain{
         setProductSize(ProductSizeDomain.createDefault());
         setUnitSales(UnitSalesDomain.createDefault());
         setPrice(FloatHelper.getDefault());
-        setAgeRestriction(BooleanHelper.getDefault());
+        setAgeRestriction(false);
     }
 
     public ProductBrandDomain(final UUID id) {
@@ -40,12 +39,12 @@ public final class ProductBrandDomain extends Domain{
         setProductSize(ProductSizeDomain.createDefault());
         setUnitSales(UnitSalesDomain.createDefault());
         setPrice(FloatHelper.getDefault());
-        setAgeRestriction(BooleanHelper.getDefault());
+        setAgeRestriction(false);
     }
 
     public ProductBrandDomain(final UUID id, final String reference, final ProductDomain product, final BrandDomain brand,
                               final String measure, final ProductSizeDomain productSize, final UnitSalesDomain unitSales,
-                              final Float price, final Boolean ageRestriction) {
+                              final Float price, final boolean ageRestriction) {
         super(id);
         setReference(reference);
         setProduct(product);
@@ -61,7 +60,7 @@ public final class ProductBrandDomain extends Domain{
         return reference;
     }
 
-    public void setReference(String reference) {
+    public void setReference(final String reference) {
         this.reference = TextHelper.getDefaultWithTrim(reference);
     }
 
@@ -69,7 +68,7 @@ public final class ProductBrandDomain extends Domain{
         return product;
     }
 
-    public void setProduct(ProductDomain product) {
+    public void setProduct(final ProductDomain product) {
         this.product = ObjectHelper.getDefault(product, ProductDomain.createDefault());
     }
 
@@ -77,7 +76,7 @@ public final class ProductBrandDomain extends Domain{
         return brand;
     }
 
-    public void setBrand(BrandDomain brand) {
+    public void setBrand(final BrandDomain brand) {
         this.brand = ObjectHelper.getDefault(brand, BrandDomain.createDefault());
     }
 
@@ -85,7 +84,7 @@ public final class ProductBrandDomain extends Domain{
         return measure;
     }
 
-    public void setMeasure(String measure) {
+    public void setMeasure(final String measure) {
         this.measure = TextHelper.getDefaultWithTrim(measure);
     }
 
@@ -93,7 +92,7 @@ public final class ProductBrandDomain extends Domain{
         return productSize;
     }
 
-    public void setProductSize(ProductSizeDomain productSize) {
+    public void setProductSize(final ProductSizeDomain productSize) {
         this.productSize = ObjectHelper.getDefault(productSize, ProductSizeDomain.createDefault());
     }
 
@@ -101,7 +100,7 @@ public final class ProductBrandDomain extends Domain{
         return unitSales;
     }
 
-    public void setUnitSales(UnitSalesDomain unitSales) {
+    public void setUnitSales(final UnitSalesDomain unitSales) {
         this.unitSales = ObjectHelper.getDefault(unitSales, UnitSalesDomain.createDefault());
     }
 
@@ -109,17 +108,18 @@ public final class ProductBrandDomain extends Domain{
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(final Float price) {
         this.price = FloatHelper.getDefault(price);
     }
 
-    public Boolean getAgeRestriction() {
+    public boolean isAgeRestriction() {
         return ageRestriction;
     }
 
-    public void setAgeRestriction(Boolean ageRestriction) {
-        this.ageRestriction = BooleanHelper.getDefault(ageRestriction);
+    public void setAgeRestriction(final boolean ageRestriction) {
+        this.ageRestriction = ageRestriction;
     }
+
     public static ProductBrandDomain createDefault() {
         return new ProductBrandDomain();
     }

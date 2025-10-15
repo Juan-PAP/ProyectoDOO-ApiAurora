@@ -12,7 +12,7 @@ public final class SaleProductBrandDTO extends DTO {
     private SaleDTO Sale;
     private ProductBrandDTO ProductBrand;
     private float unitPrice;
-    private Integer amount;
+    private int amount;
 
     public SaleProductBrandDTO() {
         super(UUIDHelper.getUUIDHelper().getDefault());
@@ -31,7 +31,7 @@ public final class SaleProductBrandDTO extends DTO {
     }
 
     public SaleProductBrandDTO(final UUID id, final SaleDTO sale, final ProductBrandDTO productBrand,
-                               float unitPrice, final Integer cantidad) {
+                               float unitPrice, final int cantidad) {
         super(id);
         setSale(sale);
         setProductBrand(productBrand);
@@ -43,15 +43,15 @@ public final class SaleProductBrandDTO extends DTO {
         return unitPrice;
     }
 
-    public void setUnitPrice(float unitPrice) {
+    public void setUnitPrice(final float unitPrice) {
         this.unitPrice = FloatHelper.getDefault(unitPrice);
     }
 
-    public Integer getAmount() {
+    public int getAmount() {
         return amount;
     }
 
-    public void setAmount(Integer amount) {
+    public void setAmount(final int amount) {
         this.amount = IntegerHelper.getDefault(amount);
     }
 
@@ -59,7 +59,7 @@ public final class SaleProductBrandDTO extends DTO {
         return ProductBrand;
     }
 
-    public void setProductBrand(ProductBrandDTO productBrand) {
+    public void setProductBrand(final ProductBrandDTO productBrand) {
         this.ProductBrand = ObjectHelper.getDefault(productBrand, ProductBrandDTO.createDefault());
     }
 
@@ -67,7 +67,7 @@ public final class SaleProductBrandDTO extends DTO {
         return Sale;
     }
 
-    public void setSale(SaleDTO sale) {
+    public void setSale(final SaleDTO sale) {
         this.Sale = ObjectHelper.getDefault(sale, SaleDTO.getDefault());
     }
 

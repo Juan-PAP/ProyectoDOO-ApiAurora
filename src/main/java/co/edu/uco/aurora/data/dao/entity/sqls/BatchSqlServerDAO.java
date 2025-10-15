@@ -29,11 +29,6 @@ public class BatchSqlServerDAO extends SqlConnection implements BatchDAO {
     }
 
     @Override
-    public BatchEntity findById(UUID uuid) {
-        return null;
-    }
-
-    @Override
     public void update(BatchEntity entity) {
 
     }

@@ -7,6 +7,7 @@ import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 import java.util.UUID;
 
 public class ProductDomain extends Domain {
+
     private String name;
     private CategoryDomain category;
 
@@ -30,7 +31,7 @@ public class ProductDomain extends Domain {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = TextHelper.getDefaultWithTrim(name);
     }
 
@@ -38,9 +39,10 @@ public class ProductDomain extends Domain {
         return category;
     }
 
-    public void setCategory(CategoryDomain category) {
+    public void setCategory(final CategoryDomain category) {
         this.category = ObjectHelper.getDefault(category, CategoryDomain.createDefault());
     }
+
     public static ProductDomain createDefault() {
         return new ProductDomain();
     }

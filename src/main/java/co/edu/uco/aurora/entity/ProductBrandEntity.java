@@ -1,6 +1,5 @@
 package co.edu.uco.aurora.entity;
 
-import co.edu.uco.aurora.crosscuting.helper.BooleanHelper;
 import co.edu.uco.aurora.crosscuting.helper.FloatHelper;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
@@ -16,8 +15,8 @@ public final class ProductBrandEntity extends Entity {
     private String measure;
     private ProductSizeEntity productSize;
     private UnitSalesEntity unitSales;
-    private Float price;
-    private Boolean ageRestriction;
+    private float price;
+    private boolean ageRestriction;
 
     public ProductBrandEntity() {
         super(UUIDHelper.getUUIDHelper().getDefault());
@@ -28,7 +27,7 @@ public final class ProductBrandEntity extends Entity {
         setProductSize(ProductSizeEntity.createDefault());
         setUnitSales(UnitSalesEntity.createDefault());
         setPrice(FloatHelper.getDefault());
-        setAgeRestriction(BooleanHelper.getDefault());
+        setAgeRestriction(false);
     }
 
     public ProductBrandEntity(final UUID id) {
@@ -40,12 +39,12 @@ public final class ProductBrandEntity extends Entity {
         setProductSize(ProductSizeEntity.createDefault());
         setUnitSales(UnitSalesEntity.createDefault());
         setPrice(FloatHelper.getDefault());
-        setAgeRestriction(BooleanHelper.getDefault());
+        setAgeRestriction(false);
     }
 
     public ProductBrandEntity(final UUID id, final String reference, final ProductEntity product, final BrandEntity brand,
-                              final String measure, final ProductSizeEntity productSize, final UnitSalesEntity unitSales,
-                              final Float price, final Boolean ageRestriction) {
+                           final String measure, final ProductSizeEntity productSize, final UnitSalesEntity unitSales,
+                           final float price, final boolean ageRestriction) {
         super(id);
         setReference(reference);
         setProduct(product);
@@ -61,7 +60,7 @@ public final class ProductBrandEntity extends Entity {
         return reference;
     }
 
-    public void setReference(String reference) {
+    public void setReference(final String reference) {
         this.reference = TextHelper.getDefaultWithTrim(reference);
     }
 
@@ -69,7 +68,7 @@ public final class ProductBrandEntity extends Entity {
         return product;
     }
 
-    public void setProduct(ProductEntity product) {
+    public void setProduct(final ProductEntity product) {
         this.product = ObjectHelper.getDefault(product, ProductEntity.createDefault());
     }
 
@@ -77,7 +76,7 @@ public final class ProductBrandEntity extends Entity {
         return brand;
     }
 
-    public void setBrand(BrandEntity brand) {
+    public void setBrand(final BrandEntity brand) {
         this.brand = ObjectHelper.getDefault(brand, BrandEntity.createDefault());
     }
 
@@ -85,7 +84,7 @@ public final class ProductBrandEntity extends Entity {
         return measure;
     }
 
-    public void setMeasure(String measure) {
+    public void setMeasure(final String measure) {
         this.measure = TextHelper.getDefaultWithTrim(measure);
     }
 
@@ -93,7 +92,7 @@ public final class ProductBrandEntity extends Entity {
         return productSize;
     }
 
-    public void setProductSize(ProductSizeEntity productSize) {
+    public void setProductSize(final ProductSizeEntity productSize) {
         this.productSize = ObjectHelper.getDefault(productSize, ProductSizeEntity.createDefault());
     }
 
@@ -101,7 +100,7 @@ public final class ProductBrandEntity extends Entity {
         return unitSales;
     }
 
-    public void setUnitSales(UnitSalesEntity unitSales) {
+    public void setUnitSales(final UnitSalesEntity unitSales) {
         this.unitSales = ObjectHelper.getDefault(unitSales, UnitSalesEntity.createDefault());
     }
 
@@ -109,17 +108,18 @@ public final class ProductBrandEntity extends Entity {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(final Float price) {
         this.price = FloatHelper.getDefault(price);
     }
 
-    public Boolean getAgeRestriction() {
+    public boolean isAgeRestriction() {
         return ageRestriction;
     }
 
-    public void setAgeRestriction(Boolean ageRestriction) {
-        this.ageRestriction = BooleanHelper.getDefault(ageRestriction);
+    public void setAgeRestriction(final boolean ageRestriction) {
+        this.ageRestriction = ageRestriction;
     }
+
     public static ProductBrandEntity createDefault() {
         return new ProductBrandEntity();
     }

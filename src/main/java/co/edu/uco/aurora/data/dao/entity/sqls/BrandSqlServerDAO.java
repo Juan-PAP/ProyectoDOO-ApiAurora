@@ -29,11 +29,6 @@ public class BrandSqlServerDAO extends SqlConnection implements BrandDAO {
     }
 
     @Override
-    public BrandEntity findById(UUID uuid) {
-        return null;
-    }
-
-    @Override
     public void update(BrandEntity entity) {
 
     }

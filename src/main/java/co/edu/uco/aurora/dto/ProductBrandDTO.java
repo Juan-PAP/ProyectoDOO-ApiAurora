@@ -1,6 +1,5 @@
 package co.edu.uco.aurora.dto;
 
-import co.edu.uco.aurora.crosscuting.helper.BooleanHelper;
 import co.edu.uco.aurora.crosscuting.helper.FloatHelper;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
@@ -16,8 +15,8 @@ public final class ProductBrandDTO extends DTO {
     private String measure;
     private ProductSizeDTO productSize;
     private UnitSalesDTO unitSales;
-    private Float price;
-    private Boolean ageRestriction;
+    private float price;
+    private boolean ageRestriction;
 
     public ProductBrandDTO() {
         super(UUIDHelper.getUUIDHelper().getDefault());
@@ -28,7 +27,7 @@ public final class ProductBrandDTO extends DTO {
         setProductSize(ProductSizeDTO.createDefault());
         setUnitSales(UnitSalesDTO.createDefault());
         setPrice(FloatHelper.getDefault());
-        setAgeRestriction(BooleanHelper.getDefault());
+        setAgeRestriction(false);
     }
 
     public ProductBrandDTO(final UUID id) {
@@ -40,12 +39,12 @@ public final class ProductBrandDTO extends DTO {
         setProductSize(ProductSizeDTO.createDefault());
         setUnitSales(UnitSalesDTO.createDefault());
         setPrice(FloatHelper.getDefault());
-        setAgeRestriction(BooleanHelper.getDefault());
+        setAgeRestriction(false);
     }
 
     public ProductBrandDTO(final UUID id, final String reference, final ProductDTO product, final BrandDTO brand,
-                           final String measure, final ProductSizeDTO productSize, final UnitSalesDTO unitSales,
-                           final Float price, final Boolean ageRestriction) {
+                              final String measure, final ProductSizeDTO productSize, final UnitSalesDTO unitSales,
+                              final float price, final boolean ageRestriction) {
         super(id);
         setReference(reference);
         setProduct(product);
@@ -61,7 +60,7 @@ public final class ProductBrandDTO extends DTO {
         return reference;
     }
 
-    public void setReference(String reference) {
+    public void setReference(final String reference) {
         this.reference = TextHelper.getDefaultWithTrim(reference);
     }
 
@@ -69,7 +68,7 @@ public final class ProductBrandDTO extends DTO {
         return product;
     }
 
-    public void setProduct(ProductDTO product) {
+    public void setProduct(final ProductDTO product) {
         this.product = ObjectHelper.getDefault(product, ProductDTO.createDefault());
     }
 
@@ -77,7 +76,7 @@ public final class ProductBrandDTO extends DTO {
         return brand;
     }
 
-    public void setBrand(BrandDTO brand) {
+    public void setBrand(final BrandDTO brand) {
         this.brand = ObjectHelper.getDefault(brand, BrandDTO.createDefault());
     }
 
@@ -85,7 +84,7 @@ public final class ProductBrandDTO extends DTO {
         return measure;
     }
 
-    public void setMeasure(String measure) {
+    public void setMeasure(final String measure) {
         this.measure = TextHelper.getDefaultWithTrim(measure);
     }
 
@@ -93,7 +92,7 @@ public final class ProductBrandDTO extends DTO {
         return productSize;
     }
 
-    public void setProductSize(ProductSizeDTO productSize) {
+    public void setProductSize(final ProductSizeDTO productSize) {
         this.productSize = ObjectHelper.getDefault(productSize, ProductSizeDTO.createDefault());
     }
 
@@ -101,7 +100,7 @@ public final class ProductBrandDTO extends DTO {
         return unitSales;
     }
 
-    public void setUnitSales(UnitSalesDTO unitSales) {
+    public void setUnitSales(final UnitSalesDTO unitSales) {
         this.unitSales = ObjectHelper.getDefault(unitSales, UnitSalesDTO.createDefault());
     }
 
@@ -109,17 +108,18 @@ public final class ProductBrandDTO extends DTO {
         return price;
     }
 
-    public void setPrice(Float price) {
+    public void setPrice(final Float price) {
         this.price = FloatHelper.getDefault(price);
     }
 
-    public Boolean getAgeRestriction() {
+    public boolean isAgeRestriction() {
         return ageRestriction;
     }
 
-    public void setAgeRestriction(Boolean ageRestriction) {
-        this.ageRestriction = BooleanHelper.getDefault(ageRestriction);
+    public void setAgeRestriction(final boolean ageRestriction) {
+        this.ageRestriction = ageRestriction;
     }
+
     public static ProductBrandDTO createDefault() {
         return new ProductBrandDTO();
     }

@@ -9,17 +9,17 @@ public final class BrandDTO extends DTO{
 
     private String name;
 
-    public BrandDTO() {
+    public BrandDTO () {
         super(UUIDHelper.getUUIDHelper().getDefault());
         setName(TextHelper.getDefault());
     }
 
-    public BrandDTO(final UUID id) {
+    public BrandDTO (final UUID id) {
         super(id);
         setName(TextHelper.getDefault());
     }
 
-    public BrandDTO(final UUID id, final String name) {
+    public BrandDTO (final UUID id, final String name) {
         super(id);
         setName(name);
     }
@@ -28,7 +28,7 @@ public final class BrandDTO extends DTO{
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = TextHelper.getDefaultWithTrim(name);
     }
 

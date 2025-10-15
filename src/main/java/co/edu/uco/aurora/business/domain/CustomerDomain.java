@@ -1,6 +1,5 @@
 package co.edu.uco.aurora.business.domain;
 
-import co.edu.uco.aurora.crosscuting.helper.BooleanHelper;
 import co.edu.uco.aurora.crosscuting.helper.LocalDateHelper;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
@@ -15,8 +14,9 @@ public final class CustomerDomain extends Domain{
     private String identificationNumber;
     private String fullName;
     private String phoneNumber;
-    private Boolean confirmedPhoneNumber;
     private LocalDate birthDate;
+    private boolean confirmedPhoneNumber;
+    private boolean phoneNumberIsConfirmedDefualtValue;
 
     public CustomerDomain () {
         super(UUIDHelper.getUUIDHelper().getDefault());
@@ -24,8 +24,9 @@ public final class CustomerDomain extends Domain{
         setIdentificationNumber(TextHelper.getDefault());
         setFullName(TextHelper.getDefault());
         setPhoneNumber(TextHelper.getDefault());
-        setConfirmedPhoneNumber(BooleanHelper.getDefault());
         setBirthDate(LocalDateHelper.getDefault());
+        setConfirmedPhoneNumber(false);
+        setPhoneNumberIsConfirmedDefualtValue(true);
     }
 
     public CustomerDomain (final UUID id) {
@@ -34,24 +35,27 @@ public final class CustomerDomain extends Domain{
         setIdentificationNumber(TextHelper.getDefault());
         setFullName(TextHelper.getDefault());
         setPhoneNumber(TextHelper.getDefault());
-        setConfirmedPhoneNumber(BooleanHelper.getDefault());
         setBirthDate(LocalDateHelper.getDefault());
+        setConfirmedPhoneNumber(false);
+        setPhoneNumberIsConfirmedDefualtValue(true);
     }
-    public CustomerDomain (final UUID id, final IdentificationTypeDomain identificationType, final String identificationNumber, final String fullName, final String phoneNumber, final boolean confirmedPhoneNumber, final LocalDate birthDate) {
+    public CustomerDomain (final UUID id, final IdentificationTypeDomain identificationType, final String identificationNumber,
+                           final String fullName, final String phoneNumber, final boolean confirmedPhoneNumber, final LocalDate birthDate) {
         super(id);
         setIdentificationType(identificationType);
         setIdentificationNumber(identificationNumber);
         setFullName(fullName);
         setPhoneNumber(phoneNumber);
-        setConfirmedPhoneNumber(confirmedPhoneNumber);
         setBirthDate(birthDate);
+        setConfirmedPhoneNumber(confirmedPhoneNumber);
+        setPhoneNumberIsConfirmedDefualtValue(false);
     }
 
     public IdentificationTypeDomain getIdentificationType() {
         return identificationType;
     }
 
-    public void setIdentificationType(IdentificationTypeDomain identificationType) {
+    public void setIdentificationType(final IdentificationTypeDomain identificationType) {
         this.identificationType =
                 ObjectHelper.getDefault(identificationType, IdentificationTypeDomain.createDefault());
     }
@@ -60,7 +64,7 @@ public final class CustomerDomain extends Domain{
         return identificationNumber;
     }
 
-    public void setIdentificationNumber(String identificationNumber) {
+    public void setIdentificationNumber(final String identificationNumber) {
         this.identificationNumber = TextHelper.getDefaultWithTrim(identificationNumber);
     }
 
@@ -68,7 +72,7 @@ public final class CustomerDomain extends Domain{
         return fullName;
     }
 
-    public void setFullName(String fullName) {
+    public void setFullName(final String fullName) {
         this.fullName = TextHelper.getDefaultWithTrim(fullName);
     }
 
@@ -76,24 +80,33 @@ public final class CustomerDomain extends Domain{
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(final String phoneNumber) {
         this.phoneNumber = TextHelper.getDefaultWithTrim(phoneNumber);
-    }
-
-    public boolean getConfirmedPhoneNumber() {
-        return confirmedPhoneNumber;
-    }
-
-    public void setConfirmedPhoneNumber(Boolean confirmedPhoneNumber) {
-        this.confirmedPhoneNumber = BooleanHelper.getDefault(confirmedPhoneNumber);
     }
 
     public LocalDate getBirthDate() {
         return birthDate;
     }
 
-    public void setBirthDate(LocalDate birthDate) {
+    public void setBirthDate(final LocalDate birthDate) {
         this.birthDate = LocalDateHelper.getDefault(birthDate);
+    }
+
+    public boolean isConfirmedPhoneNumber() {
+        return confirmedPhoneNumber;
+    }
+
+    public void setConfirmedPhoneNumber(final boolean confirmedPhoneNumber) {
+        this.confirmedPhoneNumber = confirmedPhoneNumber;
+        setPhoneNumberIsConfirmedDefualtValue(false);
+    }
+
+    public boolean isPhoneNumberIsConfirmedDefualtValue() {
+        return phoneNumberIsConfirmedDefualtValue;
+    }
+
+    public void setPhoneNumberIsConfirmedDefualtValue(final boolean phoneNumberIsConfirmedDefualtValue) {
+        this.phoneNumberIsConfirmedDefualtValue = phoneNumberIsConfirmedDefualtValue;
     }
 
     public static CustomerDomain getDefault() {

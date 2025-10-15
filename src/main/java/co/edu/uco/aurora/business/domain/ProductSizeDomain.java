@@ -20,14 +20,14 @@ public final class ProductSizeDomain extends Domain{
 
     public ProductSizeDomain(final UUID id, final String unitMeasurement) {
         super(id);
-        setUnitMeasurement(this.unitMeasurement);
+        setUnitMeasurement(unitMeasurement);
     }
 
     public String getUnitMeasurement() {
         return unitMeasurement;
     }
 
-    public void setUnitMeasurement(String unitMeasurement) {
+    public void setUnitMeasurement(final String unitMeasurement) {
         this.unitMeasurement = TextHelper.getDefaultWithTrim(unitMeasurement);
     }
 

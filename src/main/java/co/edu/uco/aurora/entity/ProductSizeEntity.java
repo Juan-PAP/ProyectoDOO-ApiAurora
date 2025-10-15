@@ -28,7 +28,7 @@ public final class ProductSizeEntity extends Entity {
         return unitMeasurement;
     }
 
-    public void setUnitMeasurement(String unitMeasurement) {
+    public void setUnitMeasurement(final String unitMeasurement) {
         this.unitMeasurement = TextHelper.getDefaultWithTrim(unitMeasurement);
     }
 

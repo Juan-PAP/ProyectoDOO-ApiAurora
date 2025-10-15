@@ -32,7 +32,7 @@ public final class AdministratorDomain extends Domain{
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(final String user) {
         this.user = TextHelper.getDefaultWithTrim(user);
     }
 
@@ -40,7 +40,7 @@ public final class AdministratorDomain extends Domain{
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = TextHelper.getDefault(password);
     }
 }

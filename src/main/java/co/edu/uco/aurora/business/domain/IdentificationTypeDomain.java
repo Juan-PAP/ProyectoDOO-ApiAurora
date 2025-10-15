@@ -28,7 +28,7 @@ public final class IdentificationTypeDomain extends Domain{
         return name;
     }
 
-    public void setName(String nombre) {
+    public void setName(final String nombre) {
         this.name = TextHelper.getDefault(name);
     }
 

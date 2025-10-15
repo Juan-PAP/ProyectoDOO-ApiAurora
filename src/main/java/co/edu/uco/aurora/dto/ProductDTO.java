@@ -33,7 +33,7 @@ public final class ProductDTO extends DTO {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = TextHelper.getDefaultWithTrim(name);
     }
 
@@ -41,7 +41,7 @@ public final class ProductDTO extends DTO {
         return category;
     }
 
-    public void setCategory(CategoryDTO category) {
+    public void setCategory(final CategoryDTO category) {
         this.category = ObjectHelper.getDefault(category, CategoryDTO.createDefault());
     }
     public static ProductDTO createDefault() {

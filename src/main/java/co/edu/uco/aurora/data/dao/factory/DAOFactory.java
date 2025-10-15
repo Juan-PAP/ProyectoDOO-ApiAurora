@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
 import co.edu.uco.aurora.crosscuting.helper.SqlConnectionHelper;
+import co.edu.uco.aurora.crosscuting.messagescatalog.MessagesEnum;
 import co.edu.uco.aurora.data.dao.entity.AdministratorDAO;
 import co.edu.uco.aurora.data.dao.entity.BatchDAO;
 import co.edu.uco.aurora.data.dao.entity.BrandDAO;
@@ -26,8 +27,8 @@ public abstract class DAOFactory {
         if(FactoryEnum.POSTGRESQL.equals(factory)) {
             return new PostgresqlDAOFactory();
         } else {
-            var userMessage = "Factoria no iniciada";
-            var technicalMessage ="Factoria no valida";
+            var userMessage = MessagesEnum.USER_ERROR_SQL_DATASOURCE_NOT_AVAILABLE.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_DATASOURCE_NOT_AVAILABLE.getContent();
             throw AuroraException.create(userMessage, technicalMessage);
         }
     }
@@ -63,64 +64,73 @@ public abstract class DAOFactory {
         SqlConnectionHelper.ensureTransactionIsNotStarted(connection);
 
         try {
-            connection.setAutoCommit(false);
-        }catch (final SQLException exception) {
-            var userMessage ="";
-            var technicalMessage="";
-            throw AuroraException.create(exception, userMessage, technicalMessage);
-        }catch (final Exception exception) {
-            var userMessage = "";
-            var technicalMessage = "";
-            throw AuroraException.create(exception,userMessage, technicalMessage);
-        }
+            connection.commit();
 
+        } catch (final SQLException exception) {
+            var userMessage = MessagesEnum.USER_ERROR_SQL_CANNOT_INIT_TRANSACTION.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_CANNOT_INIT_TRANSACTION.getContent();
+            throw AuroraException.create(exception, userMessage, technicalMessage);
+
+        } catch (final Exception exception) {
+            var userMessage = MessagesEnum.USER_ERROR_SQL_UNEXPECTED_ERROR_INIT_TRANSACTION.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_INIT_TRANSACTION.getContent();
+            throw AuroraException.create(exception, userMessage, technicalMessage);
+        }
     }
 
     protected final void commitTransaction () {
         SqlConnectionHelper.ensureTransactionIsStarted(connection);
+
         try {
             connection.commit();
 
-        }catch (final SQLException exception) {
-            var userMessage ="";
-            var technicalMessage="";
-            throw AuroraException.create(exception,userMessage, technicalMessage);
-        }catch (final Exception exception) {
-            var userMessage = "";
-            var technicalMessage = "";
+        } catch (final SQLException exception) {
+            var userMessage = MessagesEnum.USER_ERROR_SQL_CANNOT_COMMIT_TRANSACTION.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_CANNOT_COMMIT_TRANSACTION.getContent();
+            throw AuroraException.create(exception, userMessage, technicalMessage);
+
+        } catch (final Exception exception) {
+            var userMessage = MessagesEnum.USER_ERROR_SQL_UNEXPECTED_ERROR_COMMIT_TRANSACTION.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_COMMIT_TRANSACTION.getContent();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
+
     }
 
-    protected final void rollbackTransction () {
+    protected final void rollbackTransaction () {
         SqlConnectionHelper.ensureTransactionIsStarted(connection);
+
         try {
             connection.rollback();
 
-        }catch (final SQLException exception) {
-            var userMessage ="";
-            var technicalMessage="";
+        } catch (final SQLException exception) {
+            var userMessage = MessagesEnum.USER_ERROR_SQL_CANNOT_ROLLBACK_TRANSACTION.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_CANNOT_ROLLBACK_TRANSACTION.getContent();
             throw AuroraException.create(exception, userMessage, technicalMessage);
-        }catch (final Exception exception) {
-            var userMessage = "";
-            var technicalMessage = "";
+
+        } catch (final Exception exception) {
+            var userMessage = MessagesEnum.USER_ERROR_SQL_UNEXPECTED_ERROR_ROLLBACK_TRANSACTION.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_ROLLBACK_TRANSACTION.getContent();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }
 
     protected final void closeTransaction () {
-        SqlConnectionHelper.ensureConnectionIsOpen(connection);
+        SqlConnectionHelper.ensureTransactionIsNotStarted(connection);
+
         try {
             connection.close();
 
-        }catch (final SQLException exception) {
-            var userMessage ="";
-            var technicalMessage="";
-            throw AuroraException.create(exception, userMessage, technicalMessage);
-        }catch (final Exception exception) {
-            var userMessage = "";
-            var technicalMessage = "";
-            throw AuroraException.create(exception, userMessage, technicalMessage);
+        } catch (final SQLException exception) {
+            var userMassage = MessagesEnum.USER_ERROR_SQL_CANNOT_CLOSE_CONNECTION.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_CANNOT_CLOSE_CONNECTION.getContent();
+            throw AuroraException.create(exception, userMassage, technicalMessage);
+
+        }catch (Exception exception) {
+            var userMassage = MessagesEnum.USER_ERROR_SQL_UNEXPECTED_ERROR_CLOSING_CONNECTION.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_CLOSING_CONNECTION.getContent();
+            throw AuroraException.create(exception, userMassage, technicalMessage);
         }
+
     }
 }

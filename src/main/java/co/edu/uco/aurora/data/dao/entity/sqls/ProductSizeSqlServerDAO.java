@@ -21,9 +21,4 @@ public class ProductSizeSqlServerDAO extends SqlConnection implements ProductoSi
     public List<ProductoSizeDAO> findByFilter(ProductoSizeDAO filterEntity) {
         return List.of();
     }
-
-    @Override
-    public ProductoSizeDAO findById(UUID uuid) {
-        return null;
-    }
 }

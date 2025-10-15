@@ -28,19 +28,18 @@ public final class SaleEntity extends Entity{
         setDate(LocalDateHelper.getDefault());
     }
 
-    public SaleEntity(final UUID id, final String salesCode, final CustomerEntity customer,
-                      final LocalDate date) {
+    public SaleEntity(final UUID id, final String salesCode, final CustomerEntity customer) {
         super(id);
         setCodeSale(salesCode);
         setCustomer(customer);
-        setDate();
+        setDate(LocalDateHelper.getDateToday());
     }
 
     public String getCodeSale() {
         return codeSale;
     }
 
-    public void setCodeSale(String codeSale) {
+    public void setCodeSale(final String codeSale) {
         this.codeSale = TextHelper.getDefault(codeSale);
     }
 
@@ -48,7 +47,7 @@ public final class SaleEntity extends Entity{
         return customer;
     }
 
-    public void setCustomer(CustomerEntity customer) {
+    public void setCustomer(final CustomerEntity customer) {
         this.customer = ObjectHelper.getDefault(customer, CustomerEntity.getDefault());
     }
 
@@ -60,7 +59,7 @@ public final class SaleEntity extends Entity{
         this.date = LocalDateHelper.getDateToday();
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(final LocalDate date) {
         this.date = LocalDateHelper.getDefault(date);
     }
 

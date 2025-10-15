@@ -28,7 +28,7 @@ public final class UnitSalesDTO extends DTO {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(final String name) {
         this.name = TextHelper.getDefaultWithTrim(name);
     }
 

@@ -27,9 +27,4 @@ public class SaleSqlServerDAO extends SqlConnection implements SaleDAO {
     public List<SaleEntity> findByFilter(SaleEntity filterEntity) {
         return List.of();
     }
-
-    @Override
-    public SaleEntity findById(UUID uuid) {
-        return null;
-    }
 }

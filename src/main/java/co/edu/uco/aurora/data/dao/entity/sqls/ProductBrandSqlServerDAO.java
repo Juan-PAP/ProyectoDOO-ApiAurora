@@ -29,11 +29,6 @@ public class ProductBrandSqlServerDAO extends SqlConnection implements ProductBr
     }
 
     @Override
-    public ProductBrandEntity findById(UUID uuid) {
-        return null;
-    }
-
-    @Override
     public void update(ProductBrandEntity entity) {
 
     }

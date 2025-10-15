@@ -29,11 +29,6 @@ public class CategorySqlServerDAO extends SqlConnection implements CategoryDAO {
     }
 
     @Override
-    public CategoryEntity findById(UUID uuid) {
-        return null;
-    }
-
-    @Override
     public void update(CategoryEntity entity) {
 
     }

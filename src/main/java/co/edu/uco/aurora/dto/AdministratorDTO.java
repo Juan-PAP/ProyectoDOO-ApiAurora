@@ -32,7 +32,7 @@ public final class AdministratorDTO extends DTO{
         return user;
     }
 
-    public void setUser(String user) {
+    public void setUser(final String user) {
         this.user = TextHelper.getDefaultWithTrim(user);
     }
 
@@ -40,7 +40,7 @@ public final class AdministratorDTO extends DTO{
         return password;
     }
 
-    public void setPassword(String password) {
+    public void setPassword(final String password) {
         this.password = TextHelper.getDefault(password);
     }
 }

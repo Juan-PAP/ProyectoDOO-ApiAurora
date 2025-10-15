@@ -28,19 +28,18 @@ public final class SaleDTO extends DTO {
         setDate(LocalDateHelper.getDefault());
     }
 
-    public SaleDTO(final UUID id, final String salesCode, final CustomerDTO customer,
-                   final LocalDate date) {
+    public SaleDTO(final UUID id, final String salesCode, final CustomerDTO customer) {
         super(id);
         setCodeSale(salesCode);
         setCustomer(customer);
-        setDate();
+        setDate(LocalDateHelper.getDateToday());
     }
 
     public String getCodeSale() {
         return codeSale;
     }
 
-    public void setCodeSale(String codeSale) {
+    public void setCodeSale(final String codeSale) {
         this.codeSale = TextHelper.getDefault(codeSale);
     }
 
@@ -48,7 +47,7 @@ public final class SaleDTO extends DTO {
         return customer;
     }
 
-    public void setCustomer(CustomerDTO customer) {
+    public void setCustomer(final CustomerDTO customer) {
         this.customer = ObjectHelper.getDefault(customer, CustomerDTO.getDefault());
     }
 
@@ -60,7 +59,7 @@ public final class SaleDTO extends DTO {
         this.date = LocalDateHelper.getDateToday();
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(final LocalDate date) {
         this.date = LocalDateHelper.getDefault(date);
     }
 

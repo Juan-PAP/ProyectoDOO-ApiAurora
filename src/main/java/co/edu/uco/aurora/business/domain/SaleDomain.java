@@ -28,18 +28,18 @@ public final class SaleDomain extends Domain {
         setDate(LocalDateHelper.getDefault());
     }
 
-    public SaleDomain (final UUID id, final String salesCode, final CustomerDomain customer, final LocalDate date) {
+    public SaleDomain (final UUID id, final String salesCode, final CustomerDomain customer) {
         super(id);
         setCodeSale(salesCode);
         setCustomer(customer);
-        setDate();
+        setDate(LocalDateHelper.getDateToday());
     }
 
     public String getCodeSale() {
         return codeSale;
     }
 
-    public void setCodeSale(String codeSale) {
+    public void setCodeSale(final String codeSale) {
         this.codeSale = TextHelper.getDefault(codeSale);
     }
 
@@ -47,7 +47,7 @@ public final class SaleDomain extends Domain {
         return customer;
     }
 
-    public void setCustomer(CustomerDomain customer) {
+    public void setCustomer(final CustomerDomain customer) {
         this.customer = ObjectHelper.getDefault(customer, CustomerDomain.getDefault());
     }
 
@@ -59,7 +59,7 @@ public final class SaleDomain extends Domain {
         this.date = LocalDateHelper.getDateToday();
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(final LocalDate date) {
         this.date = LocalDateHelper.getDefault(date);
     }
 

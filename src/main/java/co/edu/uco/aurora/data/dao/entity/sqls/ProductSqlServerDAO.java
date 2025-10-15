@@ -29,11 +29,6 @@ public class ProductSqlServerDAO extends SqlConnection implements ProductDAO {
     }
 
     @Override
-    public ProductEntity findById(UUID uuid) {
-        return null;
-    }
-
-    @Override
     public void update(ProductEntity entity) {
 
     }

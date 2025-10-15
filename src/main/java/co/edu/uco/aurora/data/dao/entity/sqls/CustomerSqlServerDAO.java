@@ -29,11 +29,6 @@ public class CustomerSqlServerDAO extends SqlConnection implements CustomerDAO {
     }
 
     @Override
-    public CustomerEntity findById(UUID uuid) {
-        return null;
-    }
-
-    @Override
     public void update(CustomerEntity entity) {
 
     }
