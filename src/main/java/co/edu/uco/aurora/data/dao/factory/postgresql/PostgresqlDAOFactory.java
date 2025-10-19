@@ -1,6 +1,7 @@
 package co.edu.uco.aurora.data.dao.factory.postgresql;
 
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
+import co.edu.uco.aurora.crosscuting.messagescatalog.MessagesEnum;
 import co.edu.uco.aurora.data.dao.entity.*;
 import co.edu.uco.aurora.data.dao.factory.DAOFactory;
 
@@ -15,18 +16,28 @@ public final class PostgresqlDAOFactory extends DAOFactory {
 
     @Override
     protected void openConnection() {
-        try {
-            this.connection = DriverManager.getConnection("");
-        } catch (SQLException exception) {
-            var userMessage ="";
-            var technicalMessage="";
-            throw AuroraException.create(exception, userMessage, technicalMessage);
-        }catch (final Exception exception) {
-            var userMessage = "";
-            var technicalMessage = "";
-            throw AuroraException.create(exception,userMessage, technicalMessage);
-        }
+        String url = "jdbc:postgresql://localhost:5432/aurora";
+        String user = "postgres";
+        String password = "root";
 
+        try {
+
+            Class.forName("org.postgresql.Driver");
+
+            this.connection = DriverManager.getConnection(url, user, password);
+
+        } catch (SQLException exception) {
+
+            var userMassage = MessagesEnum.USER_ERROR_SQL_CANNOT_OPEN_CONNECTION.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_CANNOT_OPEN_CONNECTION.getContent();
+            throw AuroraException.create(exception, userMassage, technicalMessage);
+
+        } catch (Exception exception) {
+
+            var userMassage = MessagesEnum.USER_ERROR_SQL_UNEXPECTED_ERROR_OPENING_CONNECTION.getContent();
+            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_OPENING_CONNECTION.getContent();
+            throw AuroraException.create(exception, userMassage, technicalMessage);
+        }
     }
 
     @Override

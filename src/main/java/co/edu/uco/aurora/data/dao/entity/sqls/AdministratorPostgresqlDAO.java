@@ -10,11 +10,10 @@ import co.edu.uco.aurora.entity.AdministratorEntity;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.UUID;
 
-public final class AdministratorSqlServerDAO extends SqlConnection implements AdministratorDAO {
+public final class AdministratorPostgresqlDAO extends SqlConnection implements AdministratorDAO {
 
-    public AdministratorSqlServerDAO(Connection connection) {
+    public AdministratorPostgresqlDAO(Connection connection) {
         super(connection);
     }
 
@@ -60,7 +59,7 @@ public final class AdministratorSqlServerDAO extends SqlConnection implements Ad
         }
     }
     @Override
-    public List<AdministratorEntity> findALL() {
+    public List<AdministratorEntity> findAll() {
         SqlConnectionHelper.ensureConnectionIsNotNull(getConnection());
 
         final List<AdministratorEntity> administrators = new java.util.ArrayList<>();

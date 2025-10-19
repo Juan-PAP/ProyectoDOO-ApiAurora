@@ -5,11 +5,10 @@ import co.edu.uco.aurora.entity.BrandEntity;
 
 import java.sql.Connection;
 import java.util.List;
-import java.util.UUID;
 
-public class BrandSqlServerDAO extends SqlConnection implements BrandDAO {
+public class BrandPostgresqlDAO extends SqlConnection implements BrandDAO {
 
-    protected BrandSqlServerDAO(Connection connection) {
+    protected BrandPostgresqlDAO(Connection connection) {
         super(connection);
     }
 
@@ -19,7 +18,7 @@ public class BrandSqlServerDAO extends SqlConnection implements BrandDAO {
     }
 
     @Override
-    public List<BrandEntity> findALL() {
+    public List<BrandEntity> findAll() {
         return List.of();
     }
 

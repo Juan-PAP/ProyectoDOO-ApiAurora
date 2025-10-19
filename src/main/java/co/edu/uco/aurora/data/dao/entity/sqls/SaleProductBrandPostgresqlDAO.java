@@ -6,9 +6,9 @@ import co.edu.uco.aurora.entity.SaleProductBrandEntity;
 import java.sql.Connection;
 import java.util.UUID;
 
-public class SaleProductBrandSqlServerDAO extends SqlConnection implements SaleProductBrandDAO {
+public class SaleProductBrandPostgresqlDAO extends SqlConnection implements SaleProductBrandDAO {
 
-    protected SaleProductBrandSqlServerDAO(Connection connection) {
+    protected SaleProductBrandPostgresqlDAO(Connection connection) {
         super(connection);
     }
 

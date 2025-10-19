@@ -5,11 +5,10 @@ import co.edu.uco.aurora.entity.BatchEntity;
 
 import java.sql.Connection;
 import java.util.List;
-import java.util.UUID;
 
-public class BatchSqlServerDAO extends SqlConnection implements BatchDAO {
+public class BatchPostgresqlDAO extends SqlConnection implements BatchDAO {
 
-    protected BatchSqlServerDAO(Connection connection) {
+    protected BatchPostgresqlDAO(Connection connection) {
         super(connection);
     }
 
@@ -19,7 +18,7 @@ public class BatchSqlServerDAO extends SqlConnection implements BatchDAO {
     }
 
     @Override
-    public List<BatchEntity> findALL() {
+    public List<BatchEntity> findAll() {
         return List.of();
     }
 

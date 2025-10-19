@@ -26,4 +26,12 @@ public final class UUIDHelper {
         return TextHelper.isEmpty(uuidAsString) ? getDefault ()
                 : UUID.fromString(uuidAsString);
     }
+
+    public boolean isDefaultUUID(final UUID value) {
+        return getDefault().equals(getDefault(value));
+    }
+
+    public UUID generateNewUUID () {
+        return UUID.randomUUID();
+    }
 }

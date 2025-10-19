@@ -4,16 +4,15 @@ import co.edu.uco.aurora.data.dao.entity.ProductoSizeDAO;
 
 import java.sql.Connection;
 import java.util.List;
-import java.util.UUID;
 
-public class ProductSizeSqlServerDAO extends SqlConnection implements ProductoSizeDAO {
+public class ProductSizePostgresqlDAO extends SqlConnection implements ProductoSizeDAO {
 
-    protected ProductSizeSqlServerDAO(Connection connection) {
+    protected ProductSizePostgresqlDAO(Connection connection) {
         super(connection);
     }
 
     @Override
-    public List<ProductoSizeDAO> findALL() {
+    public List<ProductoSizeDAO> findAll() {
         return List.of();
     }
 

@@ -5,11 +5,10 @@ import co.edu.uco.aurora.entity.CustomerEntity;
 
 import java.sql.Connection;
 import java.util.List;
-import java.util.UUID;
 
-public class CustomerSqlServerDAO extends SqlConnection implements CustomerDAO {
+public class CustomerPostgresqlDAO extends SqlConnection implements CustomerDAO {
 
-    protected CustomerSqlServerDAO(Connection connection) {
+    protected CustomerPostgresqlDAO(Connection connection) {
         super(connection);
     }
 
@@ -19,7 +18,7 @@ public class CustomerSqlServerDAO extends SqlConnection implements CustomerDAO {
     }
 
     @Override
-    public List<CustomerEntity> findALL() {
+    public List<CustomerEntity> findAll() {
         return List.of();
     }
 

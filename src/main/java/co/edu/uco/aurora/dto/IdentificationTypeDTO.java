@@ -7,29 +7,29 @@ import java.util.UUID;
 
 public final class IdentificationTypeDTO extends DTO {
 
-    private String name;
+    private String identificationType;
 
     public IdentificationTypeDTO() {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setName(TextHelper.getDefault());
+        setIdentificationType(TextHelper.getDefault());
     }
 
     public IdentificationTypeDTO(final UUID id) {
         super(id);
-        setName(TextHelper.getDefault());
+        setIdentificationType(TextHelper.getDefault());
     }
 
     public IdentificationTypeDTO(final UUID id, final String name) {
         super(id);
-        setName(this.name);
+        setIdentificationType(this.identificationType);
     }
 
-    public String getName() {
-        return name;
+    public String getIdentificationType() {
+        return identificationType;
     }
 
-    public void setName(final String nombre) {
-        this.name = TextHelper.getDefault(name);
+    public void setIdentificationType(final String nombre) {
+        this.identificationType = TextHelper.getDefault(identificationType);
     }
 
     public static IdentificationTypeDTO createDefault() {

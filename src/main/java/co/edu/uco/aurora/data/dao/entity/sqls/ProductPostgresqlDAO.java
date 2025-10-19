@@ -5,11 +5,10 @@ import co.edu.uco.aurora.entity.ProductEntity;
 
 import java.sql.Connection;
 import java.util.List;
-import java.util.UUID;
 
-public class ProductSqlServerDAO extends SqlConnection implements ProductDAO {
+public class ProductPostgresqlDAO extends SqlConnection implements ProductDAO {
 
-    protected ProductSqlServerDAO(Connection connection) {
+    protected ProductPostgresqlDAO(Connection connection) {
         super(connection);
     }
 
@@ -19,7 +18,7 @@ public class ProductSqlServerDAO extends SqlConnection implements ProductDAO {
     }
 
     @Override
-    public List<ProductEntity> findALL() {
+    public List<ProductEntity> findAll() {
         return List.of();
     }
 

@@ -61,10 +61,13 @@ public abstract class DAOFactory {
     protected abstract void openConnection();
 
     protected final void initTransaction () {
+
+        openConnection();
+
         SqlConnectionHelper.ensureTransactionIsNotStarted(connection);
 
         try {
-            connection.commit();
+            connection.setAutoCommit(false);
 
         } catch (final SQLException exception) {
             var userMessage = MessagesEnum.USER_ERROR_SQL_CANNOT_INIT_TRANSACTION.getContent();
@@ -115,12 +118,30 @@ public abstract class DAOFactory {
         }
     }
 
-    protected final void closeTransaction () {
-        SqlConnectionHelper.ensureTransactionIsNotStarted(connection);
+//    protected final void closeTransaction () {
+//        SqlConnectionHelper.ensureTransactionIsNotStarted(connection);
+//
+//        try {
+//            connection.close();
+//
+//        } catch (final SQLException exception) {
+//            var userMassage = MessagesEnum.USER_ERROR_SQL_CANNOT_CLOSE_CONNECTION.getContent();
+//            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_CANNOT_CLOSE_CONNECTION.getContent();
+//            throw AuroraException.create(exception, userMassage, technicalMessage);
+//
+//        }catch (Exception exception) {
+//            var userMassage = MessagesEnum.USER_ERROR_SQL_UNEXPECTED_ERROR_CLOSING_CONNECTION.getContent();
+//            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_CLOSING_CONNECTION.getContent();
+//            throw AuroraException.create(exception, userMassage, technicalMessage);
+//        }
+//
+//    }
+
+    public final void closeConnection() {
+        SqlConnectionHelper.ensureConnectionIsOpen(connection);
 
         try {
             connection.close();
-
         } catch (final SQLException exception) {
             var userMassage = MessagesEnum.USER_ERROR_SQL_CANNOT_CLOSE_CONNECTION.getContent();
             var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_CANNOT_CLOSE_CONNECTION.getContent();
@@ -131,6 +152,5 @@ public abstract class DAOFactory {
             var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_CLOSING_CONNECTION.getContent();
             throw AuroraException.create(exception, userMassage, technicalMessage);
         }
-
     }
 }

@@ -5,16 +5,15 @@ import co.edu.uco.aurora.entity.UnitSalesEntity;
 
 import java.sql.Connection;
 import java.util.List;
-import java.util.UUID;
 
-public class UnitSalesSqlServerDAO extends SqlConnection implements UnitSalesDAO {
+public class UnitSalesPostgresqlDAO extends SqlConnection implements UnitSalesDAO {
 
-    protected UnitSalesSqlServerDAO(Connection connection) {
+    protected UnitSalesPostgresqlDAO(Connection connection) {
         super(connection);
     }
 
     @Override
-    public List<UnitSalesEntity> findALL() {
+    public List<UnitSalesEntity> findAll() {
         return List.of();
     }
 

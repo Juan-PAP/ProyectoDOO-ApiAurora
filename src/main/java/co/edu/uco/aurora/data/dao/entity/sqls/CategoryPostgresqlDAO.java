@@ -5,11 +5,10 @@ import co.edu.uco.aurora.entity.CategoryEntity;
 
 import java.sql.Connection;
 import java.util.List;
-import java.util.UUID;
 
-public class CategorySqlServerDAO extends SqlConnection implements CategoryDAO {
+public class CategoryPostgresqlDAO extends SqlConnection implements CategoryDAO {
 
-    protected CategorySqlServerDAO(Connection connection) {
+    protected CategoryPostgresqlDAO(Connection connection) {
         super(connection);
     }
 
@@ -19,7 +18,7 @@ public class CategorySqlServerDAO extends SqlConnection implements CategoryDAO {
     }
 
     @Override
-    public List<CategoryEntity> findALL() {
+    public List<CategoryEntity> findAll() {
         return List.of();
     }
 
