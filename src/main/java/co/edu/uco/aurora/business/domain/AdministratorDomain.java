@@ -43,4 +43,6 @@ public final class AdministratorDomain extends Domain{
     public void setPassword(final String password) {
         this.password = TextHelper.getDefault(password);
     }
+    public static AdministratorDomain createDefault() { return new AdministratorDomain();}
+
 }

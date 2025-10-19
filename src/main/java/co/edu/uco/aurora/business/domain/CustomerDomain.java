@@ -16,7 +16,7 @@ public final class CustomerDomain extends Domain{
     private String phoneNumber;
     private LocalDate birthDate;
     private boolean confirmedPhoneNumber;
-    private boolean phoneNumberIsConfirmedDefualtValue;
+    private boolean confirmedPhoneNumberDefualtValue;
 
     public CustomerDomain () {
         super(UUIDHelper.getUUIDHelper().getDefault());
@@ -26,7 +26,7 @@ public final class CustomerDomain extends Domain{
         setPhoneNumber(TextHelper.getDefault());
         setBirthDate(LocalDateHelper.getDefault());
         setConfirmedPhoneNumber(false);
-        setPhoneNumberIsConfirmedDefualtValue(true);
+        setConfirmedPhoneNumberDefualtValue(true);
     }
 
     public CustomerDomain (final UUID id) {
@@ -37,7 +37,7 @@ public final class CustomerDomain extends Domain{
         setPhoneNumber(TextHelper.getDefault());
         setBirthDate(LocalDateHelper.getDefault());
         setConfirmedPhoneNumber(false);
-        setPhoneNumberIsConfirmedDefualtValue(true);
+        setConfirmedPhoneNumberDefualtValue(true);
     }
     public CustomerDomain (final UUID id, final IdentificationTypeDomain identificationType, final String identificationNumber,
                            final String fullName, final String phoneNumber, final boolean confirmedPhoneNumber, final LocalDate birthDate) {
@@ -48,7 +48,7 @@ public final class CustomerDomain extends Domain{
         setPhoneNumber(phoneNumber);
         setBirthDate(birthDate);
         setConfirmedPhoneNumber(confirmedPhoneNumber);
-        setPhoneNumberIsConfirmedDefualtValue(false);
+        setConfirmedPhoneNumberDefualtValue(false);
     }
 
     public IdentificationTypeDomain getIdentificationType() {
@@ -98,15 +98,15 @@ public final class CustomerDomain extends Domain{
 
     public void setConfirmedPhoneNumber(final boolean confirmedPhoneNumber) {
         this.confirmedPhoneNumber = confirmedPhoneNumber;
-        setPhoneNumberIsConfirmedDefualtValue(false);
+        setConfirmedPhoneNumberDefualtValue(false);
     }
 
-    public boolean isPhoneNumberIsConfirmedDefualtValue() {
-        return phoneNumberIsConfirmedDefualtValue;
+    public boolean isConfirmedPhoneNumberDefualtValue() {
+        return confirmedPhoneNumberDefualtValue;
     }
 
-    public void setPhoneNumberIsConfirmedDefualtValue(final boolean phoneNumberIsConfirmedDefualtValue) {
-        this.phoneNumberIsConfirmedDefualtValue = phoneNumberIsConfirmedDefualtValue;
+    public void setConfirmedPhoneNumberDefualtValue(final boolean confirmedPhoneNumberDefualtValue) {
+        this.confirmedPhoneNumberDefualtValue = confirmedPhoneNumberDefualtValue;
     }
 
     public static CustomerDomain getDefault() {

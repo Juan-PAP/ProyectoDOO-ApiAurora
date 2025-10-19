@@ -21,7 +21,7 @@ public final class IdentificationTypeDomain extends Domain{
 
     public IdentificationTypeDomain (final UUID id, final String name) {
         super(id);
-        setName(this.name);
+        setName(name);
     }
 
     public String getName() {

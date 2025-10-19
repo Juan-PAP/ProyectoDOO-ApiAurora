@@ -1,6 +1,5 @@
 package co.edu.uco.aurora.business.domain;
 
-import co.edu.uco.aurora.crosscuting.helper.FloatHelper;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
@@ -16,7 +15,9 @@ public final class ProductBrandDomain extends Domain{
     private ProductSizeDomain productSize;
     private UnitSalesDomain unitSales;
     private float price;
+    private boolean confirmedPriceDefaultValue;
     private boolean ageRestriction;
+    private boolean confirmedAgeRestrictionDefaultValue;
 
     public ProductBrandDomain() {
         super(UUIDHelper.getUUIDHelper().getDefault());
@@ -26,8 +27,10 @@ public final class ProductBrandDomain extends Domain{
         setMeasure(TextHelper.getDefault());
         setProductSize(ProductSizeDomain.createDefault());
         setUnitSales(UnitSalesDomain.createDefault());
-        setPrice(FloatHelper.getDefault());
+        setPrice(0.0f);
+        setConfirmedPriceDefaultValue(true);
         setAgeRestriction(false);
+        setConfirmedAgeRestrictionDefaultValue(true);
     }
 
     public ProductBrandDomain(final UUID id) {
@@ -38,8 +41,10 @@ public final class ProductBrandDomain extends Domain{
         setMeasure(TextHelper.getDefault());
         setProductSize(ProductSizeDomain.createDefault());
         setUnitSales(UnitSalesDomain.createDefault());
-        setPrice(FloatHelper.getDefault());
+        setPrice(0.0f);
+        setConfirmedPriceDefaultValue(true);
         setAgeRestriction(false);
+        setConfirmedAgeRestrictionDefaultValue(true);
     }
 
     public ProductBrandDomain(final UUID id, final String reference, final ProductDomain product, final BrandDomain brand,
@@ -53,7 +58,9 @@ public final class ProductBrandDomain extends Domain{
         setProductSize(productSize);
         setUnitSales(unitSales);
         setPrice(price);
+        setConfirmedPriceDefaultValue(false);
         setAgeRestriction(ageRestriction);
+        setConfirmedAgeRestrictionDefaultValue(false);
     }
 
     public String getReference() {
@@ -104,12 +111,21 @@ public final class ProductBrandDomain extends Domain{
         this.unitSales = ObjectHelper.getDefault(unitSales, UnitSalesDomain.createDefault());
     }
 
-    public Float getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(final Float price) {
-        this.price = FloatHelper.getDefault(price);
+    public void setPrice(final float price) {
+        this.price = price;
+        setConfirmedPriceDefaultValue(false);
+    }
+
+    public boolean isConfirmedPriceDefaultValue() {
+        return confirmedPriceDefaultValue;
+    }
+
+    public void setConfirmedPriceDefaultValue(final boolean confirmedPriceDefaultValue) {
+        this.confirmedPriceDefaultValue = confirmedPriceDefaultValue;
     }
 
     public boolean isAgeRestriction() {
@@ -118,6 +134,15 @@ public final class ProductBrandDomain extends Domain{
 
     public void setAgeRestriction(final boolean ageRestriction) {
         this.ageRestriction = ageRestriction;
+        setConfirmedAgeRestrictionDefaultValue(false);
+    }
+
+    public boolean isConfirmedAgeRestrictionDefaultValue() {
+        return confirmedAgeRestrictionDefaultValue;
+    }
+
+    public void setConfirmedAgeRestrictionDefaultValue(final boolean confirmedAgeRestrictionDefaultValue) {
+        this.confirmedAgeRestrictionDefaultValue = confirmedAgeRestrictionDefaultValue;
     }
 
     public static ProductBrandDomain createDefault() {
