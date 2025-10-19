@@ -16,7 +16,9 @@ public final class ProductBrandDTO extends DTO {
     private ProductSizeDTO productSize;
     private UnitSalesDTO unitSales;
     private float price;
+    private boolean confirmedPriceDefaultValue;
     private boolean ageRestriction;
+    private boolean confirmedAgeRestrictionDefaultValue;
 
     public ProductBrandDTO() {
         super(UUIDHelper.getUUIDHelper().getDefault());
@@ -26,8 +28,11 @@ public final class ProductBrandDTO extends DTO {
         setMeasure(TextHelper.getDefault());
         setProductSize(ProductSizeDTO.createDefault());
         setUnitSales(UnitSalesDTO.createDefault());
-        setPrice(FloatHelper.getDefault());
+        setPrice(0.0f);
+        setConfirmedPriceDefaultValue(true);
         setAgeRestriction(false);
+        setConfirmedAgeRestrictionDefaultValue(true);
+
     }
 
     public ProductBrandDTO(final UUID id) {
@@ -38,8 +43,11 @@ public final class ProductBrandDTO extends DTO {
         setMeasure(TextHelper.getDefault());
         setProductSize(ProductSizeDTO.createDefault());
         setUnitSales(UnitSalesDTO.createDefault());
-        setPrice(FloatHelper.getDefault());
+        setPrice(0.0f);
+        setConfirmedPriceDefaultValue(true);
         setAgeRestriction(false);
+        setConfirmedAgeRestrictionDefaultValue(true);
+
     }
 
     public ProductBrandDTO(final UUID id, final String reference, final ProductDTO product, final BrandDTO brand,
@@ -104,12 +112,21 @@ public final class ProductBrandDTO extends DTO {
         this.unitSales = ObjectHelper.getDefault(unitSales, UnitSalesDTO.createDefault());
     }
 
-    public Float getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(final Float price) {
-        this.price = FloatHelper.getDefault(price);
+    public void setPrice(final float price) {
+        this.price = price;
+        setConfirmedPriceDefaultValue(false);
+    }
+
+    public boolean isConfirmedPriceDefaultValue() {
+        return confirmedPriceDefaultValue;
+    }
+
+    public void setConfirmedPriceDefaultValue(final boolean confirmedPriceDefaultValue) {
+        this.confirmedPriceDefaultValue = confirmedPriceDefaultValue;
     }
 
     public boolean isAgeRestriction() {
@@ -118,6 +135,15 @@ public final class ProductBrandDTO extends DTO {
 
     public void setAgeRestriction(final boolean ageRestriction) {
         this.ageRestriction = ageRestriction;
+        setConfirmedAgeRestrictionDefaultValue(false);
+    }
+
+    public boolean isConfirmedAgeRestrictionDefaultValue() {
+        return confirmedAgeRestrictionDefaultValue;
+    }
+
+    public void setConfirmedAgeRestrictionDefaultValue(final boolean confirmedAgeRestrictionDefaultValue) {
+        this.confirmedAgeRestrictionDefaultValue = confirmedAgeRestrictionDefaultValue;
     }
 
     public static ProductBrandDTO createDefault() {

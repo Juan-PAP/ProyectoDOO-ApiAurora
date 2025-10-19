@@ -1,5 +1,6 @@
 package co.edu.uco.aurora.dto;
 
+import co.edu.uco.aurora.business.domain.AdministratorDomain;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 
@@ -43,4 +44,7 @@ public final class AdministratorDTO extends DTO{
     public void setPassword(final String password) {
         this.password = TextHelper.getDefault(password);
     }
+
+    public static AdministratorDTO createDefault() { return new AdministratorDTO();}
+
 }

@@ -193,4 +193,5 @@ public class IdentificationTypeSqlServerDAO extends SqlConnection implements Ide
     public IdentificationTypeDAO findById(UUID uuid) {
         return null;
     }
+
 }

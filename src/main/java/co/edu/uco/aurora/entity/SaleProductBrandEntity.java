@@ -12,22 +12,29 @@ public final class SaleProductBrandEntity extends Entity {
     private SaleEntity Sale;
     private ProductBrandEntity ProductBrand;
     private float UnitPrice;
+    private boolean confirmedUnitPriceDefualtValue;
     private int amount;
+    private boolean confirmedAmountDefualtValue;
 
     public SaleProductBrandEntity() {
         super(UUIDHelper.getUUIDHelper().getDefault());
         setSale(SaleEntity.getDefault());
         setProductBrand(ProductBrandEntity.createDefault());
-        setUnitPrice(FloatHelper.getDefault());
-        setAmount(IntegerHelper.getDefault());
+        setUnitPrice(0.0f);
+        setConfirmedUnitPriceDefualtValue(true);
+        setAmount(0);
+        setConfirmedAmountDefualtValue(true);
     }
 
     public SaleProductBrandEntity(UUID id) {
         super(id);
         setSale(SaleEntity.getDefault());
         setProductBrand(ProductBrandEntity.createDefault());
-        setUnitPrice(FloatHelper.getDefault());
-        setAmount(IntegerHelper.getDefault());
+        setUnitPrice(0.0f);
+        setConfirmedUnitPriceDefualtValue(true);
+        setAmount(0);
+        setConfirmedAmountDefualtValue(true);
+
     }
 
     public SaleProductBrandEntity (final UUID id,final SaleEntity sale,final ProductBrandEntity productBrand,
@@ -42,9 +49,17 @@ public final class SaleProductBrandEntity extends Entity {
     public float getUnitPrice() {
         return UnitPrice;
     }
-
     public void setUnitPrice(final float unitPrice) {
-        this.UnitPrice = FloatHelper.getDefault(unitPrice);
+        this.UnitPrice = unitPrice;
+        setConfirmedUnitPriceDefualtValue(false);
+    }
+
+    public boolean isConfirmedUnitPriceDefualtValue() {
+        return confirmedUnitPriceDefualtValue;
+    }
+
+    public void setConfirmedUnitPriceDefualtValue(final boolean confirmedUnitPriceDefualtValue) {
+        this.confirmedUnitPriceDefualtValue = confirmedUnitPriceDefualtValue;
     }
 
     public Integer getAmount() {
@@ -52,7 +67,16 @@ public final class SaleProductBrandEntity extends Entity {
     }
 
     public void setAmount(final int amount) {
-        this.amount = IntegerHelper.getDefault(amount);
+        this.amount = amount;
+        setConfirmedAmountDefualtValue(false);
+    }
+
+    public boolean isConfirmedAmountDefualtValue() {
+        return confirmedAmountDefualtValue;
+    }
+
+    public void setConfirmedAmountDefualtValue(final boolean confirmedAmountDefualtValue) {
+        this.confirmedAmountDefualtValue = confirmedAmountDefualtValue;
     }
 
     public ProductBrandEntity getProductBrand() {

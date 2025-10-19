@@ -1,5 +1,6 @@
 package co.edu.uco.aurora.dto;
 
+import co.edu.uco.aurora.business.domain.BatchDomain;
 import co.edu.uco.aurora.crosscuting.helper.IntegerHelper;
 import co.edu.uco.aurora.crosscuting.helper.LocalDateHelper;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
@@ -12,31 +13,42 @@ public final class BatchDTO extends DTO {
 
     private ProductBrandDTO product;
     private boolean isPerishable;
+    private boolean confirmedPerishableDefaultValue;
     private LocalDate expirationDate;
     private int amount;
+    private boolean confirmedAmountDefaultValue;
 
     public BatchDTO () {
         super(UUIDHelper.getUUIDHelper().getDefault());
         setProduct(ProductBrandDTO.createDefault());
         setPerishable(false);
+        setConfirmedPerishableDefaultValue(true);
         setExpirationDate(LocalDateHelper.getDefault());
         setAmount(0);
+        setConfirmedAmountDefaultValue(true);
+
     }
 
     public BatchDTO(final UUID id) {
         super(id);
         setProduct(ProductBrandDTO.createDefault());
         setPerishable(false);
+        setConfirmedPerishableDefaultValue(true);
         setExpirationDate(LocalDateHelper.getDefault());
         setAmount(0);
+        setConfirmedAmountDefaultValue(true);
+
     }
 
     public BatchDTO(final UUID id, final ProductBrandDTO product , final Boolean isPerishable, final LocalDate expirationDate, final int amount) {
         super(id);
         setProduct(product);
         setPerishable(isPerishable);
+        setConfirmedPerishableDefaultValue(false);
         setExpirationDate(expirationDate);
         setAmount(amount);
+        setConfirmedAmountDefaultValue(false);
+
     }
 
     public ProductBrandDTO getProduct() {
@@ -53,6 +65,15 @@ public final class BatchDTO extends DTO {
 
     public void setPerishable(boolean perishable) {
         isPerishable = perishable;
+        setConfirmedPerishableDefaultValue(false);
+    }
+
+    public boolean isConfirmedPerishableDefaultValue() {
+        return confirmedPerishableDefaultValue;
+    }
+
+    public void setConfirmedPerishableDefaultValue(final boolean confirmedPerishableDefaultValue) {
+        this.confirmedPerishableDefaultValue = confirmedPerishableDefaultValue;
     }
 
     public LocalDate getExpirationDate() {
@@ -68,6 +89,19 @@ public final class BatchDTO extends DTO {
     }
 
     public void setAmount(int amount) {
-        this.amount = IntegerHelper.getDefault(amount);
+        this.amount = amount;
+        setConfirmedAmountDefaultValue(false);
+    }
+
+    public boolean isConfirmedAmountDefaultValue() {
+        return confirmedAmountDefaultValue;
+    }
+
+    public void setConfirmedAmountDefaultValue(final boolean confirmedAmountDefaultValue) {
+        this.confirmedAmountDefaultValue = confirmedAmountDefaultValue;
+    }
+
+    public static BatchDTO getDefault() {
+        return new BatchDTO();
     }
 }

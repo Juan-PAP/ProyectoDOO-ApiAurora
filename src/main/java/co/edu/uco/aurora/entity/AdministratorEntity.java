@@ -1,5 +1,6 @@
 package co.edu.uco.aurora.entity;
 
+import co.edu.uco.aurora.business.domain.AdministratorDomain;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 
@@ -43,4 +44,7 @@ public final class AdministratorEntity extends Entity {
     public void setPassword(final String password) {
         this.password = TextHelper.getDefault(password);
     }
+
+    public static AdministratorEntity createDefault() { return new AdministratorEntity();}
+
 }

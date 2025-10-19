@@ -1,5 +1,6 @@
 package co.edu.uco.aurora.entity;
 
+import co.edu.uco.aurora.business.domain.BatchDomain;
 import co.edu.uco.aurora.crosscuting.helper.IntegerHelper;
 import co.edu.uco.aurora.crosscuting.helper.LocalDateHelper;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
@@ -12,31 +13,42 @@ public final class BatchEntity extends Entity {
 
     private ProductBrandEntity product;
     private boolean isPerishable;
+    private boolean confirmedPerishableDefaultValue;
     private LocalDate expirationDate;
     private int amount;
+    private boolean confirmedAmountDefaultValue;
 
     public BatchEntity () {
         super(UUIDHelper.getUUIDHelper().getDefault());
         setProduct(ProductBrandEntity.createDefault());
         setPerishable(false);
+        setConfirmedPerishableDefaultValue(true);
         setExpirationDate(LocalDateHelper.getDefault());
         setAmount(0);
+        setConfirmedAmountDefaultValue(true);
+
     }
 
     public BatchEntity(final UUID id) {
         super(id);
         setProduct(ProductBrandEntity.createDefault());
         setPerishable(false);
+        setConfirmedPerishableDefaultValue(true);
         setExpirationDate(LocalDateHelper.getDefault());
         setAmount(0);
+        setConfirmedAmountDefaultValue(true);
+
     }
 
     public BatchEntity(final UUID id, final ProductBrandEntity product , final Boolean isPerishable, final LocalDate expirationDate, final int amount) {
         super(id);
         setProduct(product);
         setPerishable(isPerishable);
+        setConfirmedPerishableDefaultValue(false);
         setExpirationDate(expirationDate);
         setAmount(amount);
+        setConfirmedAmountDefaultValue(false);
+
     }
 
     public ProductBrandEntity getProduct() {
@@ -53,6 +65,15 @@ public final class BatchEntity extends Entity {
 
     public void setPerishable(boolean perishable) {
         isPerishable = perishable;
+        setConfirmedPerishableDefaultValue(false);
+    }
+
+    public boolean isConfirmedPerishableDefaultValue() {
+        return confirmedPerishableDefaultValue;
+    }
+
+    public void setConfirmedPerishableDefaultValue(final boolean confirmedPerishableDefaultValue) {
+        this.confirmedPerishableDefaultValue = confirmedPerishableDefaultValue;
     }
 
     public LocalDate getExpirationDate() {
@@ -68,6 +89,19 @@ public final class BatchEntity extends Entity {
     }
 
     public void setAmount(int amount) {
-        this.amount = IntegerHelper.getDefault(amount);
+        this.amount = amount;
+        setConfirmedAmountDefaultValue(false);
+    }
+
+    public boolean isConfirmedAmountDefaultValue() {
+        return confirmedAmountDefaultValue;
+    }
+
+    public void setConfirmedAmountDefaultValue(final boolean confirmedAmountDefaultValue) {
+        this.confirmedAmountDefaultValue = confirmedAmountDefaultValue;
+    }
+
+    public static BatchEntity getDefault() {
+        return new BatchEntity();
     }
 }

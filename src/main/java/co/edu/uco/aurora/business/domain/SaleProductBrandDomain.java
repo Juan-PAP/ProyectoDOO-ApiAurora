@@ -17,8 +17,10 @@ public final class SaleProductBrandDomain extends Domain {
         super(UUIDHelper.getUUIDHelper().getDefault());
         setSale(SaleDomain.getDefault());
         setProductBrand(ProductBrandDomain.createDefault());
-        setUnitPrice(FloatHelper.getDefault());
-        setAmount(IntegerHelper.getDefault());
+        setUnitPrice(0.0f);
+        setConfirmedUnitPriceDefualtValue(true);
+        setAmount(0);
+        setConfirmedAmountDefualtValue(true);
     }
     public SaleProductBrandDomain(UUID id) {
         super(id);

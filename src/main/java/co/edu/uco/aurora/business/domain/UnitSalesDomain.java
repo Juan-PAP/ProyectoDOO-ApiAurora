@@ -35,4 +35,5 @@ public final class UnitSalesDomain extends Domain{
     public static UnitSalesDomain createDefault() {
         return new UnitSalesDomain();
     }
+
 }

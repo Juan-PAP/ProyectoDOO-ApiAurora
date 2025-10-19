@@ -16,7 +16,9 @@ public final class ProductBrandEntity extends Entity {
     private ProductSizeEntity productSize;
     private UnitSalesEntity unitSales;
     private float price;
+    private boolean confirmedPriceDefaultValue;
     private boolean ageRestriction;
+    private boolean confirmedAgeRestrictionDefaultValue;
 
     public ProductBrandEntity() {
         super(UUIDHelper.getUUIDHelper().getDefault());
@@ -26,8 +28,11 @@ public final class ProductBrandEntity extends Entity {
         setMeasure(TextHelper.getDefault());
         setProductSize(ProductSizeEntity.createDefault());
         setUnitSales(UnitSalesEntity.createDefault());
-        setPrice(FloatHelper.getDefault());
+        setPrice(0.0f);
+        setConfirmedPriceDefaultValue(true);
         setAgeRestriction(false);
+        setConfirmedAgeRestrictionDefaultValue(true);
+
     }
 
     public ProductBrandEntity(final UUID id) {
@@ -38,8 +43,11 @@ public final class ProductBrandEntity extends Entity {
         setMeasure(TextHelper.getDefault());
         setProductSize(ProductSizeEntity.createDefault());
         setUnitSales(UnitSalesEntity.createDefault());
-        setPrice(FloatHelper.getDefault());
+        setPrice(0.0f);
+        setConfirmedPriceDefaultValue(true);
         setAgeRestriction(false);
+        setConfirmedAgeRestrictionDefaultValue(true);
+
     }
 
     public ProductBrandEntity(final UUID id, final String reference, final ProductEntity product, final BrandEntity brand,
@@ -53,7 +61,10 @@ public final class ProductBrandEntity extends Entity {
         setProductSize(productSize);
         setUnitSales(unitSales);
         setPrice(price);
+        setConfirmedPriceDefaultValue(false);
         setAgeRestriction(ageRestriction);
+        setConfirmedAgeRestrictionDefaultValue(false);
+
     }
 
     public String getReference() {
@@ -104,12 +115,21 @@ public final class ProductBrandEntity extends Entity {
         this.unitSales = ObjectHelper.getDefault(unitSales, UnitSalesEntity.createDefault());
     }
 
-    public Float getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(final Float price) {
-        this.price = FloatHelper.getDefault(price);
+    public void setPrice(final float price) {
+        this.price = price;
+        setConfirmedPriceDefaultValue(false);
+    }
+
+    public boolean isConfirmedPriceDefaultValue() {
+        return confirmedPriceDefaultValue;
+    }
+
+    public void setConfirmedPriceDefaultValue(final boolean confirmedPriceDefaultValue) {
+        this.confirmedPriceDefaultValue = confirmedPriceDefaultValue;
     }
 
     public boolean isAgeRestriction() {
@@ -118,6 +138,15 @@ public final class ProductBrandEntity extends Entity {
 
     public void setAgeRestriction(final boolean ageRestriction) {
         this.ageRestriction = ageRestriction;
+        setConfirmedAgeRestrictionDefaultValue(false);
+    }
+
+    public boolean isConfirmedAgeRestrictionDefaultValue() {
+        return confirmedAgeRestrictionDefaultValue;
+    }
+
+    public void setConfirmedAgeRestrictionDefaultValue(final boolean confirmedAgeRestrictionDefaultValue) {
+        this.confirmedAgeRestrictionDefaultValue = confirmedAgeRestrictionDefaultValue;
     }
 
     public static ProductBrandEntity createDefault() {
