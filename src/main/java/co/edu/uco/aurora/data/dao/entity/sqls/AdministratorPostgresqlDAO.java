@@ -34,7 +34,7 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
     }
 
     @Override
-    public void crate(final AdministratorEntity entity) {
+    public void create(final AdministratorEntity entity) {
         SqlConnectionHelper.ensureTransactionIsStarted(getConnection());
 
         final var sql = new StringBuilder();

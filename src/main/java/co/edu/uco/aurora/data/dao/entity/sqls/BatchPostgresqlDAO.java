@@ -13,7 +13,7 @@ public class BatchPostgresqlDAO extends SqlConnection implements BatchDAO {
     }
 
     @Override
-    public void crate(BatchEntity entity) {
+    public void create(BatchEntity entity) {
 
     }
 

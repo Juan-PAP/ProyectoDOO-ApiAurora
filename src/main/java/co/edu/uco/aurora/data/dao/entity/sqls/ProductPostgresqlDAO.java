@@ -13,7 +13,7 @@ public class ProductPostgresqlDAO extends SqlConnection implements ProductDAO {
     }
 
     @Override
-    public void crate(ProductEntity entity) {
+    public void create(ProductEntity entity) {
 
     }
 

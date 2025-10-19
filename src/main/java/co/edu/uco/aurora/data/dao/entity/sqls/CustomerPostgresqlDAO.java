@@ -13,7 +13,7 @@ public class CustomerPostgresqlDAO extends SqlConnection implements CustomerDAO 
     }
 
     @Override
-    public void crate(CustomerEntity entity) {
+    public void create(CustomerEntity entity) {
 
     }
 
