@@ -1,7 +1,5 @@
 package co.edu.uco.aurora.dto;
 
-import co.edu.uco.aurora.crosscuting.helper.FloatHelper;
-import co.edu.uco.aurora.crosscuting.helper.IntegerHelper;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 

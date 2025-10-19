@@ -64,7 +64,7 @@ public final class SaleProductBrandDomain extends Domain {
     }
 
     public void setUnitPrice(final float unitPrice) {
-        this.UnitPrice = FloatHelper.getDefault(unitPrice);
+        this.UnitPrice = unitPrice;
         setConfirmedUnitPriceDefualtValue(false);
     }
 
@@ -81,7 +81,7 @@ public final class SaleProductBrandDomain extends Domain {
     }
 
     public void setAmount(final int amount) {
-        this.amount = IntegerHelper.getDefault(amount);
+        this.amount = amount;
         setConfirmedAmountDefualtValue(false);
     }
 
