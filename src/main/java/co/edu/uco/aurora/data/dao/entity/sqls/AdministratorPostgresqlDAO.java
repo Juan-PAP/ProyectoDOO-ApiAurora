@@ -44,7 +44,7 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
         SqlConnectionHelper.ensureTransactionIsStarted(getConnection());
 
         final var sql = new StringBuilder();
-        sql.append("INSERT INTO Administrador (id, usuario, contraseña");
+        sql.append("INSERT INTO Administrador (id, usuario, contraseña) ");
         sql.append("SELECT ?, ?, ?");
         try(var preparedStatement = this.getConnection().prepareStatement(sql.toString())){
             preparedStatement.setObject(1, entity.getId());
@@ -87,12 +87,12 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
 
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR.getContent();
-            var technicalMessage = MessagesEnumIdentificationTypeDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_IDENTIFICATION_TYPE.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR.getContent() + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         }catch (final Exception exception) {
-            var userMessage = MessagesEnumIdentificationTypeDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_IDENTIFICATION_TYPE.getContent(); // Crear este mensaje
-            var technicalMessage = MessagesEnumIdentificationTypeDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_IDENTIFICATION_TYPE.getContent(); // Crear este mensaje
+            var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_ADMINISTRATOR.getContent();
+            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_ADMINISTRATOR.getContent();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }

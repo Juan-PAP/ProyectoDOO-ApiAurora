@@ -43,42 +43,10 @@ public enum MessagesEnumAdministratorDAO {
                     + "Por favor valide que la base de datos esté funcionando correctamente y revise los registros del sistema. "
                     + "Si el problema persiste, contacte al administrador del sistema."),
 
-    //FINDALL
-    USER_ERROR_SQL_EXECUTING_FIND_ALL_ADMINISTRATOR ("Error al consultar todos los administradores",
-            "Se ha presentado un problema tratando de consultar la información de todos los administradores. "
-                    + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
-
-    TECHNICAL_ERROR_SQL_EXECUTING_FIND_ALL_ADMINISTRATOR ("Error técnico al consultar todos los administradores",
-            "Se ha presentado un problema técnico al tratar de ejecutar la consulta SQL para obtener la información de todos los administradores en la base de datos. "
-                    + "Por favor valide que la conexión a la base de datos sea correcta. "
-                    + "Si el problema persiste, revise la traza de la excepción y contacte al administrador."),
-
-    USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_ALL_ADMINISTRATOR ("Error inesperado al consultar todos los administradores",
-            "Se ha presentado un problema inesperado tratando de consultar la información de todos los administradores. "
-                    + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
-
-    TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_ALL_ADMINISTRATOR ("Error técnico inesperado al consultar todos los administradores",
-            "Se ha presentado un problema técnico inesperado y fuera de control al tratar de consultar la información de todos los administradores. "
-                    + "Por favor revise la traza de la excepción para identificar la causa raíz del inconveniente. "
-                    + "Si el problema persiste, contacte al administrador."),
     //find by filter
     USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR ("Error al filtrar los administradores",
             "Se ha presentado un problema tratando de consultar los administradores que cumplen con los criterios de búsqueda especificados. "
                     + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
-
-    TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR ("Error técnico al filtrar los administradores",
-            "Se ha presentado un problema técnico al tratar de ejecutar la consulta SQL para filtrar la información de los administradores en la base de datos. "
-                    + "Por favor valide que la conexión a la base de datos sea correcta. "
-                    + "Si el problema persiste, revise la traza de la excepción y contacte al administrador."),
-
-    USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_ADMINISTRATOR ("Error inesperado al filtrar los usuarios",
-            "Se ha presentado un problema inesperado tratando de filtrar la información de los usuarios. "
-                    + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
-
-    TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_ADMINISTRATOR("Error técnico inesperado al filtrar los usuarios",
-            "Se ha presentado un problema técnico inesperado y fuera de control al tratar de filtrar la información de los usuarios. "
-                    + "Por favor revise la traza de la excepción para identificar la causa raíz del inconveniente. "
-                    + "Si el problema persiste, contacte al administrador."),
 
     // Errores para la operación de Actualización (UPDATE)
     USER_ERROR_SQL_UPDATE_ADMINISTRATOR("Error al actualizar la información del administrador",
@@ -89,6 +57,18 @@ public enum MessagesEnumAdministratorDAO {
             "Se ha presentado un problema al tratar de ejecutar el proceso de actualización de un administrador. "
                     + "Por favor valide que la base de datos esté funcionando correctamente. "
                     + "Si el problema persiste, contacte al administrador del sistema."),
+
+    TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR ("Error técnico ejecutando la consulta de administradores",
+            "Se ha presentado un problema técnico de tipo SQLException al ejecutar la sentencia para consultar administradores en la base de datos. " +
+                    "Verifique la sintaxis de la consulta SQL generada dinámicamente, los parámetros enviados y el estado de la conexión."),
+
+    USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_ADMINISTRATOR ("Error inesperado consultando la información de los administradores",
+            "Se ha presentado un problema inesperado tratando de consultar la información de los administradores. "
+                    + "Por favor, contacte al administrador del sistema."),
+
+    TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_ADMINISTRATOR ("Error técnico inesperado en la consulta de administradores",
+            "Se ha presentado un error inesperado (no-SQL) durante el proceso de consulta de administradores por filtro. "
+                    + "Revise la traza completa de la excepción para determinar la causa raíz del problema."),
 
     // Errores Inesperados para la operación de Actualización (UPDATE)
     USER_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_ADMINISTRATOR("Error inesperado al actualizar la información del administrador",
