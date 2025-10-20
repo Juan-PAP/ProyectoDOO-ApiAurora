@@ -23,22 +23,6 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
         super(connection);
     }
 
-    /*private void mapResultSetToAdministrator(final java.sql.ResultSet resultSet, final AdministratorEntity entity) {
-        try {
-            entity.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("id")));
-            entity.setUser(resultSet.getString("nombre"));
-            entity.setPassword(resultSet.getString("contraseña"));
-        } catch (final SQLException exception) {
-            var userMessage = MessagesEnum.USER_ERROR_SQL_MAPPING_ADMINISTRATOR.getContent();
-            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_MAPPING_ADMINISTRATOR.getContent();
-            throw AuroraException.create(exception, userMessage, technicalMessage);
-        } catch (final Exception exception) {
-            var userMessage = MessagesEnum.USER_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_ADMINISTRATOR.getContent();
-            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_ADMINISTRATOR.getContent();
-            throw AuroraException.create(exception, userMessage, technicalMessage);
-        }
-    }*/
-
     @Override
     public void create(final AdministratorEntity entity) {
         SqlConnectionHelper.ensureTransactionIsStarted(getConnection());

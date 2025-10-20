@@ -1,0 +1,70 @@
+package co.edu.uco.aurora.crosscuting.messagescatalog.messagesenumsqls;
+
+import co.edu.uco.aurora.crosscuting.helper.TextHelper;
+
+public enum MessagesEnumBrandDAO {
+    // Errores para la operación de Inserción (INSERT) de Marca (BRAND)
+
+    USER_ERROR_SQL_INSERT_BRAND("Error al registrar la información de la nueva marca",
+            "Se ha presentado un problema tratando de registrar la información de la nueva marca. "
+                    + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
+
+    TECHNICAL_ERROR_SQL_INSERT_BRAND("Error técnico al registrar la información de la nueva marca",
+            "Se ha presentado un problema al tratar de ejecutar el proceso de creación de una nueva marca. "
+                    + "Por favor valide que la base de datos esté funcionando correctamente. "
+                    + "Si el problema persiste, contacte al administrador del sistema."),
+
+    USER_ERROR_SQL_UNEXPECTED_ERROR_INSERT_BRAND("Error inesperado al registrar la información de la marca",
+            "Se ha presentado un problema inesperado tratando de registrar la información de la nueva marca. "
+                    + "Por favor intente nuevamente y si el problema persiste, contacte al administrador del sistema."),
+
+    TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_INSERT_BRAND("Error técnico inesperado al registrar la información de la marca",
+            "Se ha presentado un problema técnico inesperado al tratar de ejecutar el proceso de creación de la marca. "
+                    + "Por favor valide que la base de datos esté funcionando correctamente y revise los registros. "
+                    + "Si el problema persiste, contacte al administrador del sistema."),
+    // Errores para la operación de Ejecutar Consulta con Filtro de Marca (EXECUTING_FIND_BY_FILTER_BRAND)
+
+    USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_BRAND(
+            "Error consultando información de la marca por filtro",
+            "Se ha presentado un problema tratando de buscar información de la marca por filtro en la base de datos. "
+                    + "Por favor, intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
+
+    TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_BRAND(
+            "Error técnico ejecutando consulta de marca por filtro",
+            "Se ha presentado un problema al tratar de ejecutar la sentencia de consulta por filtro para la marca en la base de datos. "
+                    + "Verifique que la sintaxis SQL de la consulta sea correcta y que la conexión esté activa."),
+
+    USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_BRAND(
+            "Error inesperado al consultar información de la marca por filtro",
+            "Ha ocurrido un problema inesperado al intentar buscar información de la marca por filtro. "
+                    + "Por favor, intente nuevamente y si el problema persiste, contacte al administrador del sistema."),
+
+    TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_BRAND(
+            "Error técnico inesperado en la consulta de marca por filtro",
+            "Se ha presentado un error técnico inesperado (no-SQL) al intentar ejecutar la consulta por filtro de marca. "
+                    + "Revise la traza completa de la excepción para determinar la causa raíz del fallo en el proceso de búsqueda.");
+
+    private String title;
+    private String content;
+
+    MessagesEnumBrandDAO(final String title, final String content) {
+        setTitle(title);
+        setContent(content);
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = TextHelper.getDefaultWithTrim(title);
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = TextHelper.getDefaultWithTrim(content);
+    }
+    }
