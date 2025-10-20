@@ -78,7 +78,27 @@ public enum MessagesEnumAdministratorDAO {
     TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_ADMINISTRATOR("Error técnico inesperado al filtrar los usuarios",
             "Se ha presentado un problema técnico inesperado y fuera de control al tratar de filtrar la información de los usuarios. "
                     + "Por favor revise la traza de la excepción para identificar la causa raíz del inconveniente. "
-                    + "Si el problema persiste, contacte al administrador.");
+                    + "Si el problema persiste, contacte al administrador."),
+
+    // Errores para la operación de Actualización (UPDATE)
+    USER_ERROR_SQL_UPDATE_ADMINISTRATOR("Error al actualizar la información del administrador",
+            "Se ha presentado un problema tratando de actualizar la información del administrador. "
+                    + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
+
+    TECHNICAL_ERROR_SQL_UPDATE_ADMINISTRATOR("Error técnico al actualizar la información del administrador",
+            "Se ha presentado un problema al tratar de ejecutar el proceso de actualización de un administrador. "
+                    + "Por favor valide que la base de datos esté funcionando correctamente. "
+                    + "Si el problema persiste, contacte al administrador del sistema."),
+
+    // Errores Inesperados para la operación de Actualización (UPDATE)
+    USER_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_ADMINISTRATOR("Error inesperado al actualizar la información del administrador",
+            "Se ha presentado un problema inesperado tratando de actualizar la información del administrador. "
+                    + "Por favor intente nuevamente y si el problema persiste, contacte al administrador del sistema."),
+
+    TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_ADMINISTRATOR("Error técnico inesperado al actualizar la información del administrador",
+            "Se ha presentado un problema técnico inesperado al tratar de ejecutar el proceso de actualización del administrador. "
+                    + "Por favor valide que la base de datos esté funcionando correctamente y revise los registros. "
+                    + "Si el problema persiste, contacte al administrador del sistema.");
 
     private String title;
     private String content;

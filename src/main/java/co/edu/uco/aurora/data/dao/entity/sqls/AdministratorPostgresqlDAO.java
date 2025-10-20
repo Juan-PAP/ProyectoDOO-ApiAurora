@@ -169,6 +169,29 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
 
     @Override
     public void update(AdministratorEntity entity) {
+        SqlConnectionHelper.ensureTransactionIsStarted(getConnection());
 
+        final var sql = new StringBuilder();
+        sql.append("UPDATE Administrador SET usuario = ?, contrasenia = ? ");
+        sql.append("WHERE idAdministrador = ?");
+
+        try (var preparedStatement = this.getConnection().prepareStatement(sql.toString())) {
+
+            preparedStatement.setString(1, entity.getUser());
+            preparedStatement.setString(2, entity.getPassword());
+            preparedStatement.setObject(3, entity.getId());
+
+            preparedStatement.executeUpdate();
+
+        } catch (final SQLException exception) {
+            var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_UPDATE_ADMINISTRATOR.getContent();
+            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_UPDATE_ADMINISTRATOR.getContent();
+            throw AuroraException.create(exception, userMessage, technicalMessage);
+
+        } catch (final Exception exception) {
+            var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_ADMINISTRATOR.getContent();
+            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_ADMINISTRATOR.getContent();
+            throw AuroraException.create(exception, userMessage, technicalMessage);
+        }
     }
 }
