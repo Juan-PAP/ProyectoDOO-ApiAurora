@@ -23,11 +23,14 @@ public final class AdministratorEntity extends Entity {
         setPassword(TextHelper.getDefault());
     }
 
+
     public AdministratorEntity(final UUID id, final String user, final String password) {
         super(id);
         setUser(user);
         setPassword(password);
     }
+
+
 
     public String getUser() {
         return user;

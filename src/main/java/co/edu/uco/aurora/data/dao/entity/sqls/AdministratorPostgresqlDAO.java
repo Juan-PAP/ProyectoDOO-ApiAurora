@@ -1,14 +1,20 @@
 package co.edu.uco.aurora.data.dao.entity.sqls;
 
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
+import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.SqlConnectionHelper;
+import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
-import co.edu.uco.aurora.crosscuting.messagescatalog.MessagesEnum;
+import co.edu.uco.aurora.crosscuting.messagescatalog.messagesenumsqls.MessagesEnumAdministratorDAO;
+import co.edu.uco.aurora.crosscuting.messagescatalog.messagesenumsqls.MessagesEnumIdentificationTypeDAO;
 import co.edu.uco.aurora.data.dao.entity.AdministratorDAO;
 import co.edu.uco.aurora.entity.AdministratorEntity;
+import co.edu.uco.aurora.entity.IdentificationTypeEntity;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public final class AdministratorPostgresqlDAO extends SqlConnection implements AdministratorDAO {
@@ -17,7 +23,7 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
         super(connection);
     }
 
-    private void mapResultSetToAdministrator(final java.sql.ResultSet resultSet, final AdministratorEntity entity) {
+    /*private void mapResultSetToAdministrator(final java.sql.ResultSet resultSet, final AdministratorEntity entity) {
         try {
             entity.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("id")));
             entity.setUser(resultSet.getString("nombre"));
@@ -31,7 +37,7 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
             var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_ADMINISTRATOR.getContent();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
-    }
+    }*/
 
     @Override
     public void create(final AdministratorEntity entity) {
@@ -47,105 +53,118 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
 
             preparedStatement.executeUpdate();
         } catch (final SQLException exception) {
-            var userMessage = MessagesEnum.USER_ERROR_SQL_INSERT_ADMINISTRATOR.getContent();
-            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_INSERT_ADMINISTRATOR.getContent();
+            var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_INSERT_ADMINISTRATOR.getContent();
+            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_INSERT_ADMINISTRATOR.getContent();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (final Exception exception) {
 
-            var userMessage = MessagesEnum.USER_ERROR_SQL_UNEXPECTED_ERROR_INSERT_ADMINISTRATOR.getContent();
-            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_INSERT_ADMINISTRATOR.getContent();
+            var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_INSERT_ADMINISTRATOR.getContent();
+            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_INSERT_ADMINISTRATOR.getContent();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }
     @Override
-    public List<AdministratorEntity> findAll() {
-        SqlConnectionHelper.ensureConnectionIsNotNull(getConnection());
-
-        final List<AdministratorEntity> administrators = new java.util.ArrayList<>();
-        final var sql = new StringBuilder();
-
-        sql.append("SELECT      a.id, ");
-        sql.append("            a.usuario ");
-        sql.append("            a.contrasenia");
-        sql.append("FROM        Administrador AS a");
-
-        try (var preparedStatement = this.getConnection().prepareStatement(sql.toString());
-             var resultSet = preparedStatement.executeQuery()) {
-            while (resultSet.next()) {
-                var administrator = new AdministratorEntity();
-                mapResultSetToAdministrator(resultSet, administrator);
-                administrators.add(administrator);
-            }
-
-        } catch (final SQLException exception) {
-            var userMessage = MessagesEnum.USER_ERROR_SQL_EXECUTING_FIND_ALL_ADMINISTRATOR.getContent(); // Crear este mensaje
-            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_EXECUTING_FIND_ALL_ADMINISTRATOR.getContent(); // Crear este mensaje
-            throw AuroraException.create(exception, userMessage, technicalMessage);
-
-        } catch (final Exception exception) {
-            var userMessage = MessagesEnum.USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_ALL_ADMINISTRATOR.getContent(); // Crear este mensaje
-            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_ALL_ADMINISTRATOR.getContent(); // Crear este mensaje
-            throw AuroraException.create(exception, userMessage, technicalMessage);
-        }
-        return administrators;
+    public List<AdministratorEntity> findAll() { return findByFilter(new AdministratorEntity());
     }
 
     @Override
     public List<AdministratorEntity> findByFilter(AdministratorEntity filterEntity) {
         SqlConnectionHelper.ensureConnectionIsNotNull(getConnection());
 
-        final List<AdministratorEntity> administrators = new java.util.ArrayList<>();
+        var parameterList = new ArrayList<Object>();
+        var sql = createSentenceFindByFilter(filterEntity, parameterList);
 
-        final var sql = new StringBuilder();
-        final var parameters = new java.util.ArrayList<Object>();
+        try (var preparedStatement = this.getConnection().prepareStatement(sql)) {
 
-        sql.append("SELECT     a.id, ");
-        sql.append("           a.usuario, ");
-        sql.append("           a.contrasenia, ");
-        sql.append("           u.numeroIdentificacion, ");
-        sql.append("FROM       Administrador AS a ");
-        sql.append("WHERE 1=1 ");
-
-        if (filterEntity.getId() != null && !UUIDHelper.getUUIDHelper().getDefault().equals(filterEntity.getId())) { // <-- CORRECCIÓN AQUÍ
-            sql.append("AND a.id = ? ");
-            parameters.add(filterEntity.getId());
-        }
-        if (filterEntity.getUser() != null && !filterEntity.getUser().trim().isEmpty()) {
-            sql.append("AND a.usuario LIKE ? ");
-            parameters.add("%" + filterEntity.getUser().trim() + "%");
-        }
-        if (filterEntity.getPassword() != null && !filterEntity.getPassword().trim().isEmpty()) {
-            sql.append("AND u.segundoNombre LIKE ? ");
-            parameters.add("%" + filterEntity.getPassword().trim() + "%");
-        }
-
-        try (var preparedStatement = this.getConnection().prepareStatement(sql.toString())) {
-
-            for (int i = 0; i < parameters.size(); i++) {
-                preparedStatement.setObject(i + 1, parameters.get(i));
+            for (int i = 0; i < parameterList.size(); i++) {
+                preparedStatement.setObject(i + 1, parameterList.get(i));
             }
 
-            try (var resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    var administrator = new AdministratorEntity();
-                    mapResultSetToAdministrator(resultSet, administrator);
-                    administrators.add(administrator);
-                }
-            }
+            return executeSentenceFindByFilter(preparedStatement);
+        } catch (final AuroraException exception) {
+            throw exception;
 
         } catch (final SQLException exception) {
-            var userMessage = MessagesEnum.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_USER.getContent(); // Crear este mensaje
-            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_USER.getContent(); // Crear este mensaje
+            var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR.getContent();
+            var technicalMessage = MessagesEnumIdentificationTypeDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_IDENTIFICATION_TYPE.getContent() + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
-        } catch (final Exception exception) {
-            var userMessage = MessagesEnum.USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_USER.getContent(); // Crear este mensaje
-            var technicalMessage = MessagesEnum.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_USER.getContent(); // Crear este mensaje
+        }catch (final Exception exception) {
+            var userMessage = MessagesEnumIdentificationTypeDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_IDENTIFICATION_TYPE.getContent(); // Crear este mensaje
+            var technicalMessage = MessagesEnumIdentificationTypeDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_IDENTIFICATION_TYPE.getContent(); // Crear este mensaje
+            throw AuroraException.create(exception, userMessage, technicalMessage);
+        }
+    }
+
+    private String createSentenceFindByFilter (final AdministratorEntity filterEntity, final List<Object> parameterList) {
+
+        final var sql = new StringBuilder("SELECT A.idAdministrador, A.usuario, A.contrasenia FROM Administrador A");
+
+        createWhereClauseFindByFilter(sql, parameterList, filterEntity);
+
+        return sql.toString();
+    }
+
+    private void createWhereClauseFindByFilter(final StringBuilder sql, final List<Object> parameterList,
+                                               final AdministratorEntity filterEntity) {
+
+        var filterEntityValidated = ObjectHelper.getDefault(filterEntity, new AdministratorEntity());
+        final var conditions = new ArrayList<String>();
+
+        addCondition(conditions, parameterList,
+                !UUIDHelper.getUUIDHelper().isDefaultUUID(filterEntityValidated.getId()),
+                "A.idAdministrador = ?", filterEntityValidated.getId());
+
+        addCondition(conditions, parameterList,
+                !TextHelper.isEmptyWithTrim(filterEntityValidated.getUser()),
+                "A.usuario = ?", filterEntityValidated.getUser());
+
+        addCondition(conditions, parameterList,
+                !TextHelper.isEmptyWithTrim(filterEntityValidated.getPassword()),
+                "A.contrasenia = ?", filterEntityValidated.getPassword());
+
+
+        if (!conditions.isEmpty()){
+            sql.append(" WHERE ");
+            sql.append(String.join(" AND ", conditions));
+        }
+    }
+
+    private void addCondition(final List<String> conditions, final List<Object> parameterList, final boolean codition,
+                              final String clause, final Object value) {
+        if (codition) {
+            conditions.add(clause);
+            parameterList.add(value);
+        }
+    }
+
+    private List<AdministratorEntity> executeSentenceFindByFilter(final PreparedStatement preparedStatement) {
+        var listAdmin = new ArrayList<AdministratorEntity>();
+
+        try (var resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                var idAdmin = new AdministratorEntity();
+
+                idAdmin.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("idAdministrador")));
+                idAdmin.setUser(resultSet.getString("usuario"));
+                idAdmin.setPassword(resultSet.getString("contrasenia"));
+
+                listAdmin.add(idAdmin);
+            }
+
+        }  catch (SQLException exception) {
+            var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_MAPPING_ADMINISTRATOR.getContent();
+            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_MAPPING_ADMINISTRATOR.getContent() + ": " + exception.getMessage();
+            throw AuroraException.create(exception, userMessage, technicalMessage);
+        } catch (Exception exception){
+            var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_ADMINISTRATOR.getContent();
+            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_ADMINISTRATOR.getContent() + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
 
-        return administrators;
+        return listAdmin;
     }
 
     @Override

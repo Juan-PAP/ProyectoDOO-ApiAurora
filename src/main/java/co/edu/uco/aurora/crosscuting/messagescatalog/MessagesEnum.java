@@ -196,7 +196,7 @@ public enum MessagesEnum {
     TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_CLOSING_CONNECTION(
             "Error técnico inesperado al intentar cerrar la conexión",
             "Se presentó un error técnico no controlado durante el cierre de la conexión con la base de datos. " +
-                    "Por favor revise los registros del sistema y si el problema persiste, contacte al administrador de la aplicación."),
+                    "Por favor revise los registros del sistema y si el problema persiste, contacte al administrador de la aplicación.");
 
 
 
@@ -215,7 +215,7 @@ public enum MessagesEnum {
 
     //AdministratorSqlServerDAO
 
-    //mapper
+    /*mapper
     USER_ERROR_SQL_MAPPING_ADMINISTRATOR ("Error interpretando la información del administrador",
             "Se ha presentado un problema tratando de interpretar la información de un administrador consultada desde la base de datos. " +
                     "Por favor, contacte al administrador del sistema."),
@@ -284,10 +284,10 @@ public enum MessagesEnum {
             "Se ha presentado un problema inesperado tratando de filtrar la información de los usuarios. "
                     + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
 
-    TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_USER ("Error técnico inesperado al filtrar los usuarios",
+    TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_ADMINISTRATOR ("Error técnico inesperado al filtrar los usuarios",
             "Se ha presentado un problema técnico inesperado y fuera de control al tratar de filtrar la información de los usuarios. "
                     + "Por favor revise la traza de la excepción para identificar la causa raíz del inconveniente. "
-                    + "Si el problema persiste, contacte al administrador.");
+                    + "Si el problema persiste, contacte al administrador.");*/
 
 
     private String title;

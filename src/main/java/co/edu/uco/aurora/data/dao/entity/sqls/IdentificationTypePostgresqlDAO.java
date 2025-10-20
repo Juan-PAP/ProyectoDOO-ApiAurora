@@ -5,6 +5,7 @@ import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.SqlConnectionHelper;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
+import co.edu.uco.aurora.crosscuting.messagescatalog.MessagesEnum;
 import co.edu.uco.aurora.crosscuting.messagescatalog.messagesenumsqls.MessagesEnumIdentificationTypeDAO;
 import co.edu.uco.aurora.data.dao.entity.IdentificationTypeDAO;
 import co.edu.uco.aurora.entity.IdentificationTypeEntity;
@@ -46,6 +47,11 @@ public class IdentificationTypePostgresqlDAO extends SqlConnection implements Id
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumIdentificationTypeDAO.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_IDENTIFICATION_TYPE.getContent();
             var technicalMessage = MessagesEnumIdentificationTypeDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_IDENTIFICATION_TYPE.getContent() + ": " + exception.getMessage();
+            throw AuroraException.create(exception, userMessage, technicalMessage);
+
+        }catch (final Exception exception) {
+            var userMessage = MessagesEnumIdentificationTypeDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_IDENTIFICATION_TYPE.getContent(); // Crear este mensaje
+            var technicalMessage = MessagesEnumIdentificationTypeDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_IDENTIFICATION_TYPE.getContent(); // Crear este mensaje
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }
