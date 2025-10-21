@@ -5,7 +5,7 @@ import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 
 import java.util.UUID;
 
-public class CategoryDomain extends Domain{
+public final class CategoryDomain extends Domain{
     private String name;
 
     public CategoryDomain() {

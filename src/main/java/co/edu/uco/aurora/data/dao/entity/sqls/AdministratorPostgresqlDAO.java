@@ -161,9 +161,9 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
 
         try (var preparedStatement = this.getConnection().prepareStatement(sql.toString())) {
 
-            preparedStatement.setString(1, entity.getUser());
-            preparedStatement.setString(2, entity.getPassword());
-            preparedStatement.setObject(3, entity.getId());
+            preparedStatement.setObject(1, entity.getId());
+            preparedStatement.setString(2, entity.getUser());
+            preparedStatement.setString(3, entity.getPassword());
 
             preparedStatement.executeUpdate();
 

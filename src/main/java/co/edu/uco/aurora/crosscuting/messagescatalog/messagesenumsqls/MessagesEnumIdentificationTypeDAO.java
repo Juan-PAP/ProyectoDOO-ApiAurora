@@ -12,8 +12,16 @@ public enum MessagesEnumIdentificationTypeDAO {
             "Se ha presentado un problema técnico al tratar de ejecutar la consulta SQL para obtener la información de los tipos de identificación en la base de datos. "
                     + "Por favor valide que la conexión a la base de datos sea correcta. "
                     + "Si el problema persiste, revise la traza de la excepción y contacte al administrador."),
-    USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_IDENTIFICATION_TYPE(),
-    TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_IDENTIFICATION_TYPE(),
+
+    USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_IDENTIFICATION_TYPE("Error inesperado al consultar los tipos de identificación",
+            "Se ha presentado un problema inesperado tratando de consultar la información de los tipos de identificación. "
+                    + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
+
+    TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_IDENTIFICATION_TYPE("Error técnico inesperado al consultar los tipos de identificación",
+            "Se ha presentado un problema inesperado al tratar de ejecutar la consulta SQL para obtener la información de los tipos de identificación en la base de datos. "
+                    + "Por favor valide que la conexión a la base de datos sea correcta. "
+                    + "Si el problema persiste, revise la traza de la excepción y contacte al administrador."),
+
     USER_ERROR_SQL_MAPPING_IDENTIFICATION_TYPE("Error al procesar los datos del tipo de identificación",
             "Se ha presentado un problema tratando de procesar los datos del tipo de identificación consultado. "
                     + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
