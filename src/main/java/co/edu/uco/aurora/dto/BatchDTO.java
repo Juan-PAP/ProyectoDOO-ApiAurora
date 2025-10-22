@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public final class BatchDTO extends DTO {
 
-    private ProductBrandDTO product;
+    private ProductBrandDTO productBrand;
     private boolean isPerishable;
     private boolean confirmedPerishableDefaultValue;
     private LocalDate expirationDate;
@@ -18,7 +18,7 @@ public final class BatchDTO extends DTO {
 
     public BatchDTO () {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setProduct(ProductBrandDTO.createDefault());
+        setProductBrand(ProductBrandDTO.createDefault());
         setPerishable(false);
         setConfirmedPerishableDefaultValue(true);
         setExpirationDate(LocalDateHelper.getDefault());
@@ -29,7 +29,7 @@ public final class BatchDTO extends DTO {
 
     public BatchDTO(final UUID id) {
         super(id);
-        setProduct(ProductBrandDTO.createDefault());
+        setProductBrand(ProductBrandDTO.createDefault());
         setPerishable(false);
         setConfirmedPerishableDefaultValue(true);
         setExpirationDate(LocalDateHelper.getDefault());
@@ -40,7 +40,7 @@ public final class BatchDTO extends DTO {
 
     public BatchDTO(final UUID id, final ProductBrandDTO product , final Boolean isPerishable, final LocalDate expirationDate, final int amount) {
         super(id);
-        setProduct(product);
+        setProductBrand(product);
         setPerishable(isPerishable);
         setConfirmedPerishableDefaultValue(false);
         setExpirationDate(expirationDate);
@@ -49,12 +49,12 @@ public final class BatchDTO extends DTO {
 
     }
 
-    public ProductBrandDTO getProduct() {
-        return product;
+    public ProductBrandDTO getProductBrand() {
+        return productBrand;
     }
 
-    public void setProduct(ProductBrandDTO product) {
-        this.product = ObjectHelper.getDefault(product, ProductBrandDTO.createDefault());
+    public void setProductBrand(ProductBrandDTO productBrand) {
+        this.productBrand = ObjectHelper.getDefault(productBrand, ProductBrandDTO.createDefault());
     }
 
     public boolean isPerishable() {

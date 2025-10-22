@@ -2,8 +2,11 @@ package co.edu.uco.aurora.business.assembler.entity.impl;
 
 import co.edu.uco.aurora.business.assembler.entity.EntityAssembler;
 import co.edu.uco.aurora.business.domain.SaleProductBrandDomain;
+import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
+import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 import co.edu.uco.aurora.entity.SaleProductBrandEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class SaleProductBrandEntityAssembler implements EntityAssembler<SaleProductBrandEntity, SaleProductBrandDomain> {
@@ -18,19 +21,37 @@ public final class SaleProductBrandEntityAssembler implements EntityAssembler<Sa
         return instance;
     }
 
-
     @Override
-    public SaleProductBrandEntity toEntity(SaleProductBrandDomain domain) {
-        return null;
+    public SaleProductBrandEntity toEntity(final SaleProductBrandDomain domain) {
+        var domainTmp = ObjectHelper.getDefault(domain, new SaleProductBrandDomain(UUIDHelper.getUUIDHelper().getDefault()));
+        var saleEntityTmp = SaleEntityAssembler.getSaleEntityAssembler().toEntity(domainTmp.getSale());
+        var productBrandEntityTmp = ProductBrandEntityAssembler.getProductBrandEntityAssembler()
+                .toEntity(domainTmp.getProductBrand());
+        return new SaleProductBrandEntity(domainTmp.getId(), saleEntityTmp, productBrandEntityTmp, domainTmp.getUnitPrice(),
+                domainTmp.getAmount());
     }
 
     @Override
-    public SaleProductBrandDomain toDomain(SaleProductBrandEntity entity) {
-        return null;
+    public SaleProductBrandDomain toDomain(final SaleProductBrandEntity entity) {
+        var entityTmp = ObjectHelper.getDefault(entity, new SaleProductBrandEntity(UUIDHelper.getUUIDHelper().getDefault()));
+        var saleDomainTmp = SaleEntityAssembler.getSaleEntityAssembler().toDomain(entityTmp.getSale());
+        var productBrandDomainTmp = ProductBrandEntityAssembler.getProductBrandEntityAssembler().toDomain(entityTmp.getProductBrand());
+        return new SaleProductBrandDomain(entityTmp.getId(), saleDomainTmp, productBrandDomainTmp, entityTmp.getUnitPrice(),
+                entityTmp.getAmount());
     }
 
     @Override
-    public List<SaleProductBrandEntity> toDTO(List<SaleProductBrandDomain> domainList) {
-        return List.of();
+    public List<SaleProductBrandEntity> toEntity(final List<SaleProductBrandDomain> domainList) {
+        if (ObjectHelper.isNull(domainList)){
+            return new ArrayList<>();
+        }
+
+        var saleProductBrandEntityList = new ArrayList<SaleProductBrandEntity>();
+
+        for (var productBrandDomain : domainList){
+            saleProductBrandEntityList.add(toEntity(productBrandDomain));
+        }
+
+        return saleProductBrandEntityList;
     }
 }

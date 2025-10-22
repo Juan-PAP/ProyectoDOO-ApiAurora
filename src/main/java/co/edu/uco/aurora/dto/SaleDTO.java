@@ -28,11 +28,11 @@ public final class SaleDTO extends DTO {
         setDate(LocalDateHelper.getDefault());
     }
 
-    public SaleDTO(final UUID id, final String salesCode, final CustomerDTO customer) {
+    public SaleDTO(final UUID id, final String salesCode, final CustomerDTO customer, final LocalDate date) {
         super(id);
         setCodeSale(salesCode);
         setCustomer(customer);
-        setDate(LocalDateHelper.getDateToday());
+        setDate(date);
     }
 
     public String getCodeSale() {

@@ -2,8 +2,11 @@ package co.edu.uco.aurora.business.assembler.dto.impl;
 
 import co.edu.uco.aurora.business.assembler.dto.DTOAssembler;
 import co.edu.uco.aurora.business.domain.IdentificationTypeDomain;
+import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
+import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 import co.edu.uco.aurora.dto.IdentificationTypeDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class IdentificationTypeDTOAssembler implements DTOAssembler<IdentificationTypeDTO,
@@ -22,17 +25,29 @@ public final class IdentificationTypeDTOAssembler implements DTOAssembler<Identi
     }
 
     @Override
-    public IdentificationTypeDTO toDTO(IdentificationTypeDomain domain) {
-        return null;
+    public IdentificationTypeDTO toDTO(final IdentificationTypeDomain domain) {
+        var domainTmp = ObjectHelper.getDefault(domain, new IdentificationTypeDomain(UUIDHelper.getUUIDHelper().getDefault()));
+        return new IdentificationTypeDTO(domainTmp.getId(), domainTmp.getIdentificationType());
     }
 
     @Override
-    public IdentificationTypeDomain toDomain(IdentificationTypeDTO dto) {
-        return null;
+    public IdentificationTypeDomain toDomain(final IdentificationTypeDTO dto) {
+        var dtoTmp = ObjectHelper.getDefault(dto, new IdentificationTypeDTO());
+        return new IdentificationTypeDomain(dtoTmp.getId(), dtoTmp.getIdentificationType());
     }
 
     @Override
-    public List<IdentificationTypeDTO> toDTO(List<IdentificationTypeDomain> domainList) {
-        return List.of();
+    public List<IdentificationTypeDTO> toDTO(final List<IdentificationTypeDomain> domainList) {
+        if (ObjectHelper.isNull(domainList)) {
+            return new ArrayList<>();
+        }
+
+        var identificationTypeDtoList = new ArrayList<IdentificationTypeDTO>();
+
+        for (var identificationTypeDomain : domainList) {
+            identificationTypeDtoList.add(toDTO(identificationTypeDomain));
+        }
+
+        return identificationTypeDtoList;
     }
 }

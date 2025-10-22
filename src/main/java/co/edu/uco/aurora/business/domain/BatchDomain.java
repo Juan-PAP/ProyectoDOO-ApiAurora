@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public final class BatchDomain extends Domain {
 
-    private ProductBrandDomain product;
+    private ProductBrandDomain productBrand;
     private boolean isPerishable;
     private boolean confirmedPerishableDefaultValue;
     private LocalDate expirationDate;
@@ -18,7 +18,7 @@ public final class BatchDomain extends Domain {
 
     public BatchDomain () {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setProduct(ProductBrandDomain.createDefault());
+        setProductBrand(ProductBrandDomain.createDefault());
         setPerishable(false);
         setConfirmedPerishableDefaultValue(true);
         setExpirationDate(LocalDateHelper.getDefault());
@@ -29,7 +29,7 @@ public final class BatchDomain extends Domain {
 
     public BatchDomain (final UUID id) {
         super(id);
-        setProduct(ProductBrandDomain.createDefault());
+        setProductBrand(ProductBrandDomain.createDefault());
         setPerishable(false);
         setConfirmedPerishableDefaultValue(true);
         setExpirationDate(LocalDateHelper.getDefault());
@@ -40,7 +40,7 @@ public final class BatchDomain extends Domain {
 
     public BatchDomain (final UUID id,final ProductBrandDomain product ,final Boolean isPerishable, final LocalDate expirationDate, final int amount) {
         super(id);
-        setProduct(product);
+        setProductBrand(product);
         setPerishable(isPerishable);
         setConfirmedPerishableDefaultValue(false);
         setExpirationDate(expirationDate);
@@ -49,12 +49,12 @@ public final class BatchDomain extends Domain {
 
     }
 
-    public ProductBrandDomain getProduct() {
-        return product;
+    public ProductBrandDomain getProductBrand() {
+        return productBrand;
     }
 
-    public void setProduct(ProductBrandDomain product) {
-        this.product = ObjectHelper.getDefault(product, ProductBrandDomain.createDefault());
+    public void setProductBrand(ProductBrandDomain productBrand) {
+        this.productBrand = ObjectHelper.getDefault(productBrand, ProductBrandDomain.createDefault());
     }
 
     public boolean isPerishable() {

@@ -2,8 +2,11 @@ package co.edu.uco.aurora.business.assembler.entity.impl;
 
 import co.edu.uco.aurora.business.assembler.entity.EntityAssembler;
 import co.edu.uco.aurora.business.domain.ProductBrandDomain;
+import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
+import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 import co.edu.uco.aurora.entity.ProductBrandEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class ProductBrandEntityAssembler implements EntityAssembler<ProductBrandEntity, ProductBrandDomain> {
@@ -20,17 +23,43 @@ public final class ProductBrandEntityAssembler implements EntityAssembler<Produc
 
 
     @Override
-    public ProductBrandEntity toEntity(ProductBrandDomain domain) {
-        return null;
+    public ProductBrandEntity toEntity(final ProductBrandDomain domain) {
+        var domainTmp = ObjectHelper.getDefault(domain, new ProductBrandDomain(UUIDHelper.getUUIDHelper().getDefault()));
+        var productEntityTmp = ProductEntityAssembler.getProductEntityAssembler().toEntity(domainTmp.getProduct());
+        var brandEntityTmp = BrandEntityAssembler.getBrandEntityAssembler().toEntity(domainTmp.getBrand());
+        var productSizeEntityTmp = ProductSizeEntityAssembler.getProductSizeEntityAssembler().toEntity(domainTmp.getProductSize());
+        var unitSalesEntityTmp = UnitSalesEntityAssembler.getUnitSalesEntityAssembler().toEntity(domainTmp.getUnitSales());
+
+        return new ProductBrandEntity(domainTmp.getId(),domainTmp.getReference() , productEntityTmp, brandEntityTmp,
+                domainTmp.getMeasure(), productSizeEntityTmp, unitSalesEntityTmp, domainTmp.getPrice(),
+                domainTmp.isAgeRestriction());
     }
 
     @Override
-    public ProductBrandDomain toDomain(ProductBrandEntity entity) {
-        return null;
+    public ProductBrandDomain toDomain(final ProductBrandEntity entity) {
+        var entityTmp = ObjectHelper.getDefault(entity, new ProductBrandEntity());
+        var productDomainTmp = ProductEntityAssembler.getProductEntityAssembler().toDomain(entityTmp.getProduct());
+        var brandDomainTmp = BrandEntityAssembler.getBrandEntityAssembler().toDomain(entityTmp.getBrand());
+        var productSizeDomainTmp = ProductSizeEntityAssembler.getProductSizeEntityAssembler().toDomain(entityTmp.getProductSize());
+        var unitSalesDomainTmp = UnitSalesEntityAssembler.getUnitSalesEntityAssembler().toDomain(entityTmp.getUnitSales());
+
+        return new ProductBrandDomain(entityTmp.getId(), entityTmp.getReference() , productDomainTmp, brandDomainTmp,
+                entityTmp.getMeasure(), productSizeDomainTmp, unitSalesDomainTmp, entityTmp.getPrice(),
+                entityTmp.isAgeRestriction());
     }
 
     @Override
-    public List<ProductBrandEntity> toDTO(List<ProductBrandDomain> domainList) {
-        return List.of();
+    public List<ProductBrandEntity> toEntity(final List<ProductBrandDomain> domainList) {
+        if (ObjectHelper.isNull(domainList)) {
+            return new ArrayList<>();
+        }
+
+        var productBrandEntityList = new ArrayList<ProductBrandEntity>();
+
+        for (var productBrandDomain : domainList){
+            productBrandEntityList.add(toEntity(productBrandDomain));
+        }
+
+        return productBrandEntityList;
     }
 }

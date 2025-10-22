@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public final class BatchEntity extends Entity {
 
-    private ProductBrandEntity product;
+    private ProductBrandEntity productBrand;
     private boolean isPerishable;
     private boolean confirmedPerishableDefaultValue;
     private LocalDate expirationDate;
@@ -18,7 +18,7 @@ public final class BatchEntity extends Entity {
 
     public BatchEntity () {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setProduct(ProductBrandEntity.createDefault());
+        setProductBrand(ProductBrandEntity.createDefault());
         setPerishable(false);
         setConfirmedPerishableDefaultValue(true);
         setExpirationDate(LocalDateHelper.getDefault());
@@ -29,7 +29,7 @@ public final class BatchEntity extends Entity {
 
     public BatchEntity(final UUID id) {
         super(id);
-        setProduct(ProductBrandEntity.createDefault());
+        setProductBrand(ProductBrandEntity.createDefault());
         setPerishable(false);
         setConfirmedPerishableDefaultValue(true);
         setExpirationDate(LocalDateHelper.getDefault());
@@ -40,7 +40,7 @@ public final class BatchEntity extends Entity {
 
     public BatchEntity(final UUID id, final ProductBrandEntity product , final Boolean isPerishable, final LocalDate expirationDate, final int amount) {
         super(id);
-        setProduct(product);
+        setProductBrand(product);
         setPerishable(isPerishable);
         setConfirmedPerishableDefaultValue(false);
         setExpirationDate(expirationDate);
@@ -49,12 +49,12 @@ public final class BatchEntity extends Entity {
 
     }
 
-    public ProductBrandEntity getProduct() {
-        return product;
+    public ProductBrandEntity getProductBrand() {
+        return productBrand;
     }
 
-    public void setProduct(ProductBrandEntity product) {
-        this.product = ObjectHelper.getDefault(product, ProductBrandEntity.createDefault());
+    public void setProductBrand(ProductBrandEntity productBrand) {
+        this.productBrand = ObjectHelper.getDefault(productBrand, ProductBrandEntity.createDefault());
     }
 
     public boolean isPerishable() {

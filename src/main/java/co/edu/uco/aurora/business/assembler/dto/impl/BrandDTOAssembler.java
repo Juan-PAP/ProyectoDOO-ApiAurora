@@ -23,20 +23,19 @@ public final class BrandDTOAssembler implements DTOAssembler<BrandDTO, BrandDoma
     }
 
     @Override
-    public BrandDTO toDTO(BrandDomain domain) {
+    public BrandDTO toDTO(final BrandDomain domain) {
         var domainTmp = ObjectHelper.getDefault(domain, new BrandDomain(UUIDHelper.getUUIDHelper().getDefault()));
         return new BrandDTO(domainTmp.getId(), domainTmp.getName());
     }
 
     @Override
-    public BrandDomain toDomain(BrandDTO dto) {
+    public BrandDomain toDomain(final BrandDTO dto) {
         var dtoTmp = ObjectHelper.getDefault(dto, new BrandDTO());
         return new BrandDomain(dtoTmp.getId(), dtoTmp.getName());
-
     }
 
     @Override
-    public List<BrandDTO> toDTO(List<BrandDomain> domainList) {
+    public List<BrandDTO> toDTO(final List<BrandDomain> domainList) {
 
         if (ObjectHelper.isNull(domainList)) {
             return new ArrayList<>();

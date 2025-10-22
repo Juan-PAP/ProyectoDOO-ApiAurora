@@ -2,8 +2,11 @@ package co.edu.uco.aurora.business.assembler.entity.impl;
 
 import co.edu.uco.aurora.business.assembler.entity.EntityAssembler;
 import co.edu.uco.aurora.business.domain.IdentificationTypeDomain;
+import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
+import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 import co.edu.uco.aurora.entity.IdentificationTypeEntity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public final class IdentificationTypeEntityAssembler implements EntityAssembler<IdentificationTypeEntity, IdentificationTypeDomain> {
@@ -19,17 +22,29 @@ public final class IdentificationTypeEntityAssembler implements EntityAssembler<
     }
 
     @Override
-    public IdentificationTypeEntity toEntity(IdentificationTypeDomain domain) {
-        return null;
+    public IdentificationTypeEntity toEntity(final IdentificationTypeDomain domain) {
+        var domainTmp = ObjectHelper.getDefault(domain, new IdentificationTypeDomain(UUIDHelper.getUUIDHelper().getDefault()));
+        return new IdentificationTypeEntity(domainTmp.getId(), domainTmp.getIdentificationType());
     }
 
     @Override
-    public IdentificationTypeDomain toDomain(IdentificationTypeEntity entity) {
-        return null;
+    public IdentificationTypeDomain toDomain(final IdentificationTypeEntity entity) {
+        var entityTmp = ObjectHelper.getDefault(entity, new IdentificationTypeEntity());
+        return new IdentificationTypeDomain(entityTmp.getId(), entityTmp.getIdentificationType());
     }
 
     @Override
-    public List<IdentificationTypeEntity> toDTO(List<IdentificationTypeDomain> domainList) {
-        return List.of();
+    public List<IdentificationTypeEntity> toEntity(final List<IdentificationTypeDomain> domainList) {
+        if (ObjectHelper.isNull(domainList)) {
+            return new ArrayList<>();
+        }
+
+        var identificationTypeEntityList = new ArrayList<IdentificationTypeEntity>();
+
+        for (var identificationTypeDomain : domainList) {
+            identificationTypeEntityList.add(toEntity(identificationTypeDomain));
+        }
+
+        return identificationTypeEntityList;
     }
 }

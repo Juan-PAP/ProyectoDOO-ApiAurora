@@ -28,11 +28,11 @@ public final class SaleEntity extends Entity{
         setDate(LocalDateHelper.getDefault());
     }
 
-    public SaleEntity(final UUID id, final String salesCode, final CustomerEntity customer) {
+    public SaleEntity(final UUID id, final String salesCode, final CustomerEntity customer, final LocalDate date) {
         super(id);
         setCodeSale(salesCode);
         setCustomer(customer);
-        setDate(LocalDateHelper.getDateToday());
+        setDate(date);
     }
 
     public String getCodeSale() {

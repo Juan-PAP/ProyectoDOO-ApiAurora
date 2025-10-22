@@ -60,7 +60,7 @@ public abstract class DAOFactory {
 
     protected abstract void openConnection();
 
-    protected final void initTransaction () {
+    public final void initTransaction () {
 
         openConnection();
 
@@ -81,7 +81,7 @@ public abstract class DAOFactory {
         }
     }
 
-    protected final void commitTransaction () {
+    public final void commitTransaction () {
         SqlConnectionHelper.ensureTransactionIsStarted(connection);
 
         try {
@@ -100,7 +100,7 @@ public abstract class DAOFactory {
 
     }
 
-    protected final void rollbackTransaction () {
+    public final void rollbackTransaction () {
         SqlConnectionHelper.ensureTransactionIsStarted(connection);
 
         try {
