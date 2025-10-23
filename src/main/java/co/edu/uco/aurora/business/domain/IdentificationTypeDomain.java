@@ -7,29 +7,29 @@ import java.util.UUID;
 
 public final class IdentificationTypeDomain extends Domain{
 
-    private String nombre;
+    private String name ;
 
     public IdentificationTypeDomain() {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setNombre(TextHelper.getDefault());
+        setName(TextHelper.getDefault());
     }
 
     public IdentificationTypeDomain (final UUID id) {
         super(id);
-        setNombre(TextHelper.getDefault());
+        setName(TextHelper.getDefault());
     }
 
     public IdentificationTypeDomain (final UUID id, final String name) {
         super(id);
-        setNombre(name);
+        setName(name);
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(final String nombre) {
-        this.nombre = TextHelper.getDefault(this.nombre);
+    public void setName(final String name) {
+        this.name = TextHelper.getDefault(this.name);
     }
 
     public static IdentificationTypeDomain createDefault() {

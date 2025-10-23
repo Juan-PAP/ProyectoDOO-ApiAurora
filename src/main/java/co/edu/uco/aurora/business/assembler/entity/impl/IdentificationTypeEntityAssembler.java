@@ -24,13 +24,13 @@ public final class IdentificationTypeEntityAssembler implements EntityAssembler<
     @Override
     public IdentificationTypeEntity toEntity(final IdentificationTypeDomain domain) {
         var domainTmp = ObjectHelper.getDefault(domain, new IdentificationTypeDomain(UUIDHelper.getUUIDHelper().getDefault()));
-        return new IdentificationTypeEntity(domainTmp.getId(), domainTmp.getNombre());
+        return new IdentificationTypeEntity(domainTmp.getId(), domainTmp.getName());
     }
 
     @Override
     public IdentificationTypeDomain toDomain(final IdentificationTypeEntity entity) {
         var entityTmp = ObjectHelper.getDefault(entity, new IdentificationTypeEntity());
-        return new IdentificationTypeDomain(entityTmp.getId(), entityTmp.getIdentificationType());
+        return new IdentificationTypeDomain(entityTmp.getId(), entityTmp.getName());
     }
 
     @Override

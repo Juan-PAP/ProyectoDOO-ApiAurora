@@ -75,8 +75,8 @@ public final class IdentificationTypePostgresqlDAO extends SqlConnection impleme
                 "T.id = ?", filterEntityValidated.getId());
 
         addCondition(conditions, parameterList,
-                !TextHelper.isEmptyWithTrim(filterEntityValidated.getIdentificationType()),
-                "T.nombre = ?", filterEntityValidated.getIdentificationType());
+                !TextHelper.isEmptyWithTrim(filterEntityValidated.getName()),
+                "T.nombre = ?", filterEntityValidated.getName());
 
         if (!conditions.isEmpty()){
             sql.append(" WHERE ");
@@ -101,7 +101,7 @@ public final class IdentificationTypePostgresqlDAO extends SqlConnection impleme
                 var idType = new IdentificationTypeEntity();
 
                 idType.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("id")));
-                idType.setIdentificationType(resultSet.getString("nombre"));
+                idType.setName(resultSet.getString("nombre"));
 
                 listIdType.add(idType);
             }

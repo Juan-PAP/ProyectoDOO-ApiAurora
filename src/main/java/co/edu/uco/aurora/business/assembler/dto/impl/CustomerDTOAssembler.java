@@ -27,7 +27,7 @@ public final class CustomerDTOAssembler implements DTOAssembler<CustomerDTO, Cus
         var domainTmp = ObjectHelper.getDefault(domain, new CustomerDomain(UUIDHelper.getUUIDHelper().getDefault()));
         var identificationTypeDtoTmp = IdentificationTypeDTOAssembler.getIdentificationTypeDTOAssembler().toDTO(domainTmp.getIdentificationType());
         return new CustomerDTO(domainTmp.getId(), identificationTypeDtoTmp, domainTmp.getIdentificationNumber()
-                , domainTmp.getFullName(), domainTmp.getPhoneNumber(), domainTmp.isConfirmedPhoneNumber(), domainTmp.getBirthDate());
+                , domainTmp.getFullName(), domainTmp.getPhoneNumber(), domainTmp.isPhoneNumberConfirmed(), domainTmp.getBirthDate());
     }
 
     @Override
@@ -35,7 +35,7 @@ public final class CustomerDTOAssembler implements DTOAssembler<CustomerDTO, Cus
         var dtoTmp = ObjectHelper.getDefault(dto, new CustomerDTO());
         var identificationTypeDomainTmp = IdentificationTypeDTOAssembler.getIdentificationTypeDTOAssembler().toDomain(dtoTmp.getIdentificationType());
         return new CustomerDomain(dtoTmp.getId(), identificationTypeDomainTmp, dtoTmp.getIdentificationNumber()
-                , dtoTmp.getFullName(), dtoTmp.getPhoneNumber(), dtoTmp.isConfirmedPhoneNumber(), dtoTmp.getBirthDate());
+                , dtoTmp.getFullName(), dtoTmp.getPhoneNumber(), dtoTmp.isPhoneNumberConfirmed(), dtoTmp.getBirthDate());
     }
 
     @Override

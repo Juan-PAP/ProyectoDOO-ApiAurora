@@ -28,7 +28,7 @@ public final class CustomerEntityAssembler implements EntityAssembler<CustomerEn
         var identificationTypeEntityTmp = IdentificationTypeEntityAssembler.getIdentificationTypeEntityAssembler().
                 toEntity(domainTmp.getIdentificationType());
         return new CustomerEntity(domainTmp.getId(), identificationTypeEntityTmp, domainTmp.getIdentificationNumber()
-                , domainTmp.getFullName(), domainTmp.getPhoneNumber(), domainTmp.isConfirmedPhoneNumber(), domainTmp.getBirthDate());
+                , domainTmp.getFullName(), domainTmp.getPhoneNumber(), domainTmp.isPhoneNumberConfirmed(), domainTmp.getBirthDate());
     }
 
     @Override
@@ -37,7 +37,7 @@ public final class CustomerEntityAssembler implements EntityAssembler<CustomerEn
         var identificationTypeDomainTmp = IdentificationTypeEntityAssembler.getIdentificationTypeEntityAssembler().
                 toDomain(entityTmp.getIdentificationType());
         return new CustomerDomain(entityTmp.getId(), identificationTypeDomainTmp, entityTmp.getIdentificationNumber()
-                , entityTmp.getFullName(), entityTmp.getPhoneNumber(), entityTmp.isConfirmedPhoneNumber(), entityTmp.getBirthDate());
+                , entityTmp.getFullName(), entityTmp.getPhoneNumber(), entityTmp.isPhoneNumberConfirmed(), entityTmp.getBirthDate());
     }
 
     @Override

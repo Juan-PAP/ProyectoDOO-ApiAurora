@@ -7,29 +7,29 @@ import java.util.UUID;
 
 public final class IdentificationTypeEntity extends Entity {
 
-    private String identificationType;
+    private String name;
 
     public IdentificationTypeEntity() {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setIdentificationType(TextHelper.getDefault());
+        setName(TextHelper.getDefault());
     }
 
     public IdentificationTypeEntity(final UUID id) {
         super(id);
-        setIdentificationType(TextHelper.getDefault());
+        setName(TextHelper.getDefault());
     }
 
     public IdentificationTypeEntity(final UUID id, final String name) {
         super(id);
-        setIdentificationType(this.identificationType);
+        setName(this.name);
     }
 
-    public String getIdentificationType() {
-        return identificationType;
+    public String getName() {
+        return name;
     }
 
-    public void setIdentificationType(final String nombre) {
-        this.identificationType = TextHelper.getDefault(identificationType);
+    public void setName(final String nombre) {
+        this.name = TextHelper.getDefault(name);
     }
 
     public static IdentificationTypeEntity createDefault() {

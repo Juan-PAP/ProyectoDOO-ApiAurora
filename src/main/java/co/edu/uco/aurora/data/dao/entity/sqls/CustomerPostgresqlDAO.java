@@ -8,7 +8,7 @@ import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 import co.edu.uco.aurora.crosscuting.messagescatalog.messagesenumsqls.MessagesEnumCustomerDAO;
 import co.edu.uco.aurora.data.dao.entity.CustomerDAO;
 import co.edu.uco.aurora.entity.CustomerEntity;
-import co.edu.uco.aurora.entity.IdentificationTypeEntity; // Necesario para el mapeo
+import co.edu.uco.aurora.entity.IdentificationTypeEntity;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -37,6 +37,7 @@ public final class CustomerPostgresqlDAO extends SqlConnection implements Custom
             preparedStatement.setString(3, entity.getIdentificationNumber());
             preparedStatement.setString(4, entity.getFullName());
             preparedStatement.setString(5, entity.getPhoneNumber());
+            preparedStatement.setBoolean(6, entity.isPhoneNumberConfirmed());
             preparedStatement.setObject(7, entity.getBirthDate());
 
             preparedStatement.executeUpdate();
@@ -54,6 +55,7 @@ public final class CustomerPostgresqlDAO extends SqlConnection implements Custom
 
     @Override
     public List<CustomerEntity> findAll() {
+
         return findByFilter(new CustomerEntity());
     }
 
@@ -90,13 +92,15 @@ public final class CustomerPostgresqlDAO extends SqlConnection implements Custom
     private String createSentenceFindByFilter (final CustomerEntity filterEntity, final List<Object> parameterList) {
         final var sql = new StringBuilder();
 
-        // Se unen Cliente (C) y TipoIdentificacion (TI) para obtener el nombre del tipo
         sql.append("SELECT C.id, C.numeroIdentificacion, C.nombreCompleto, C.numeroTelefono, C.numeroTelefonoConfirmado, C.fechaNacimiento, ");
         sql.append("TI.id AS idTipoIdentificacion, TI.nombre AS nombreTipoIdentificacion ");
         sql.append("FROM Cliente C ");
         sql.append("INNER JOIN TipoIdentificacion TI ON C.idTipoIdentificacion = TI.id");
 
         createWhereClauseFindByFilter(sql, parameterList, filterEntity);
+
+        sql.append(" ORDER BY C.nombreCompleto ASC");
+
         return sql.toString();
     }
 
@@ -110,12 +114,14 @@ public final class CustomerPostgresqlDAO extends SqlConnection implements Custom
                 !UUIDHelper.getUUIDHelper().isDefaultUUID(filterEntityValidated.getId()),
                 "C.id = ?", filterEntityValidated.getId());
 
-        // Filtro por el ID del objeto TipoIdentificacion
-        if (!ObjectHelper.getDefault(filterEntityValidated.getIdentificationType(), IdentificationTypeEntity.getDefault()).isDefault()) {
-            addCondition(conditions, parameterList,
-                    true,
-                    "TI.id = ?", filterEntityValidated.getIdentificationType().getId());
-        }
+        var identificationTypeFilter = ObjectHelper.getDefault(
+                filterEntityValidated.getIdentificationType(),
+                IdentificationTypeEntity.createDefault()
+        );
+
+        addCondition(conditions, parameterList,
+                !UUIDHelper.getUUIDHelper().isDefaultUUID(identificationTypeFilter.getId()),
+                "C.idTipoIdentificacion = ?", identificationTypeFilter.getId());
 
         addCondition(conditions, parameterList,
                 !TextHelper.isEmptyWithTrim(filterEntityValidated.getIdentificationNumber()),
@@ -125,6 +131,17 @@ public final class CustomerPostgresqlDAO extends SqlConnection implements Custom
                 !TextHelper.isEmptyWithTrim(filterEntityValidated.getFullName()),
                 "C.nombreCompleto = ?", filterEntityValidated.getFullName());
 
+        addCondition(conditions, parameterList,
+                !TextHelper.isEmptyWithTrim(filterEntityValidated.getPhoneNumber()),
+                "C.numeroTelefono = ?", filterEntityValidated.getPhoneNumber());
+
+        addCondition(conditions, parameterList,
+                filterEntityValidated.isPhoneNumberConfirmed(),
+                "C.numeroTelefonoConfirmado = ?", filterEntityValidated.isPhoneNumberConfirmed());
+
+        addCondition(conditions, parameterList,
+                filterEntityValidated.getBirthDate() != null,
+                "C.fechaNacimiento = ?", filterEntityValidated.getBirthDate());
 
         if (!conditions.isEmpty()){
             sql.append(" WHERE ");
@@ -146,22 +163,22 @@ public final class CustomerPostgresqlDAO extends SqlConnection implements Custom
         try (var resultSet = preparedStatement.executeQuery()) {
 
             while (resultSet.next()) {
-                var customerEntity = new CustomerEntity();
-
-                // Mapeo de atributos simples
-                customerEntity.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("id")));
-                customerEntity.setIdentificationNumber(resultSet.getString("numeroIdentificacion"));
-                customerEntity.setFullName(resultSet.getString("nombreCompleto"));
-                customerEntity.setPhoneNumber(resultSet.getString("numeroTelefono"));
-                customerEntity.setBirthDate(resultSet.getDate("fechaNacimiento"));
-
 
                 var identificationType = new IdentificationTypeEntity();
                 identificationType.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("idTipoIdentificacion")));
                 identificationType.setName(resultSet.getString("nombreTipoIdentificacion"));
-                customerEntity.setIdentificationType(identificationType);
 
-                listCustomers.add(customerEntity);
+                var customer = new CustomerEntity();
+
+                customer.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("id")));
+                customer.setIdentificationType(identificationType);
+                customer.setIdentificationNumber(resultSet.getString("numeroIdentificacion"));
+                customer.setFullName(resultSet.getString("nombreCompleto"));
+                customer.setPhoneNumber(resultSet.getString("numeroTelefono"));
+                customer.setPhoneNumberConfirmed(resultSet.getBoolean("numeroTelefonoConfirmado"));
+                customer.setBirthDate(resultSet.getObject("fechaNacimiento", java.time.LocalDate.class));
+
+                listCustomers.add(customer);
             }
 
         } catch (SQLException exception) {
@@ -193,6 +210,7 @@ public final class CustomerPostgresqlDAO extends SqlConnection implements Custom
             preparedStatement.setString(2, entity.getIdentificationNumber());
             preparedStatement.setString(3, entity.getFullName());
             preparedStatement.setString(4, entity.getPhoneNumber());
+            preparedStatement.setBoolean(5, entity.isPhoneNumberConfirmed());
             preparedStatement.setObject(6, entity.getBirthDate());
             preparedStatement.setObject(7, entity.getId());
 

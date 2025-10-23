@@ -15,7 +15,7 @@ public final class CustomerEntity extends Entity{
     private String fullName;
     private String phoneNumber;
     private LocalDate birthDate;
-    private boolean confirmedPhoneNumber;
+    private boolean phoneNumberConfirmed;
     private boolean phoneNumberIsConfirmedDefualtValue;
 
     public CustomerEntity () {
@@ -25,7 +25,7 @@ public final class CustomerEntity extends Entity{
         setFullName(TextHelper.getDefault());
         setPhoneNumber(TextHelper.getDefault());
         setBirthDate(LocalDateHelper.getDefault());
-        setConfirmedPhoneNumber(false);
+        setPhoneNumberConfirmed(false);
         setPhoneNumberIsConfirmedDefualtValue(true);
     }
 
@@ -36,7 +36,7 @@ public final class CustomerEntity extends Entity{
         setFullName(TextHelper.getDefault());
         setPhoneNumber(TextHelper.getDefault());
         setBirthDate(LocalDateHelper.getDefault());
-        setConfirmedPhoneNumber(false);
+        setPhoneNumberConfirmed(false);
         setPhoneNumberIsConfirmedDefualtValue(true);
     }
     public CustomerEntity (final UUID id, final IdentificationTypeEntity identificationType, final String identificationNumber,
@@ -47,7 +47,7 @@ public final class CustomerEntity extends Entity{
         setFullName(fullName);
         setPhoneNumber(phoneNumber);
         setBirthDate(birthDate);
-        setConfirmedPhoneNumber(confirmedPhoneNumber);
+        setPhoneNumberConfirmed(confirmedPhoneNumber);
         setPhoneNumberIsConfirmedDefualtValue(false);
     }
 
@@ -92,12 +92,12 @@ public final class CustomerEntity extends Entity{
         this.birthDate = LocalDateHelper.getDefault(birthDate);
     }
 
-    public boolean isConfirmedPhoneNumber() {
-        return confirmedPhoneNumber;
+    public boolean isPhoneNumberConfirmed() {
+        return phoneNumberConfirmed;
     }
 
-    public void setConfirmedPhoneNumber(final boolean confirmedPhoneNumber) {
-        this.confirmedPhoneNumber = confirmedPhoneNumber;
+    public void setPhoneNumberConfirmed(final boolean phoneNumberConfirmed) {
+        this.phoneNumberConfirmed = phoneNumberConfirmed;
         setPhoneNumberIsConfirmedDefualtValue(false);
     }
 
