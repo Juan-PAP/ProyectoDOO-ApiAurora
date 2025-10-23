@@ -26,14 +26,14 @@ public final  class SaleEntityAssembler implements EntityAssembler<SaleEntity, S
     public SaleEntity toEntity(final SaleDomain domain) {
         var domainTmp = ObjectHelper.getDefault(domain, new SaleDomain(UUIDHelper.getUUIDHelper().getDefault()));
         var customerEntityTmp = CustomerEntityAssembler.getCustomerEntityAssembler().toEntity(domainTmp.getCustomer());
-        return new SaleEntity(domainTmp.getId(), domainTmp.getCodeSale(), customerEntityTmp, domainTmp.getDate());
+        return new SaleEntity(domainTmp.getId(), domainTmp.getSaleCode(), customerEntityTmp, domainTmp.getDate());
     }
 
     @Override
     public SaleDomain toDomain(final SaleEntity entity) {
         var entityTmp = ObjectHelper.getDefault(entity, new SaleEntity());
         var customerDomainTmp = CustomerEntityAssembler.getCustomerEntityAssembler().toDomain(entityTmp.getCustomer());
-        return new SaleDomain(entityTmp.getId(), entityTmp.getCodeSale(), customerDomainTmp, entityTmp.getDate());
+        return new SaleDomain(entityTmp.getId(), entityTmp.getSaleCode(), customerDomainTmp, entityTmp.getDate());
     }
 
     @Override

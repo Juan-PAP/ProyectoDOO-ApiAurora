@@ -10,37 +10,37 @@ import java.util.UUID;
 
 public final class SaleDTO extends DTO {
 
-    private String codeSale;
+    private String saleCode;
     private CustomerDTO customer;
     private LocalDate date;
 
     public SaleDTO() {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setCodeSale(TextHelper.getDefault());
+        setSaleCode(TextHelper.getDefault());
         setCustomer(CustomerDTO.getDefault());
         setDate(LocalDateHelper.getDefault());
     }
 
     public SaleDTO(final UUID id) {
         super(id);
-        setCodeSale(TextHelper.getDefault());
+        setSaleCode(TextHelper.getDefault());
         setCustomer(CustomerDTO.getDefault());
         setDate(LocalDateHelper.getDefault());
     }
 
     public SaleDTO(final UUID id, final String salesCode, final CustomerDTO customer, final LocalDate date) {
         super(id);
-        setCodeSale(salesCode);
+        setSaleCode(salesCode);
         setCustomer(customer);
         setDate(date);
     }
 
-    public String getCodeSale() {
-        return codeSale;
+    public String getSaleCode() {
+        return saleCode;
     }
 
-    public void setCodeSale(final String codeSale) {
-        this.codeSale = TextHelper.getDefault(codeSale);
+    public void setSaleCode(final String saleCode) {
+        this.saleCode = TextHelper.getDefault(saleCode);
     }
 
     public CustomerDTO getCustomer() {

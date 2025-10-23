@@ -26,8 +26,8 @@ public final class CategoryPostgresqlDAO extends SqlConnection implements Catego
         SqlConnectionHelper.ensureTransactionIsStarted(getConnection());
 
         final var sql = new StringBuilder();
-        sql.append("INSERT INTO Categoria (idCategoria, nombre) ");
-        sql.append("SELECT ?, ? ");
+        sql.append("INSERT INTO Categoria (id, nombre) ");
+        sql.append("VALUES (?, ?)");
 
         try (var preparedStatement = this.getConnection().prepareStatement(sql.toString())) {
             preparedStatement.setObject(1, entity.getId());
@@ -36,12 +36,14 @@ public final class CategoryPostgresqlDAO extends SqlConnection implements Catego
 
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumCategoryDAO.USER_ERROR_SQL_INSERT_CATEGORY.getContent();
-            var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_INSERT_CATEGORY.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_INSERT_CATEGORY.getContent()
+                    + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (final Exception exception) {
             var userMessage = MessagesEnumCategoryDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_INSERT_CATEGORY.getContent();
-            var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_INSERT_CATEGORY.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_INSERT_CATEGORY.getContent()
+                    + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }
@@ -50,7 +52,7 @@ public final class CategoryPostgresqlDAO extends SqlConnection implements Catego
     public void update(CategoryEntity entity) {
         SqlConnectionHelper.ensureTransactionIsStarted(getConnection());
 
-        final var sql = "UPDATE Categoria SET nombre = ? WHERE idCategoria = ?";
+        final var sql = "UPDATE Categoria SET nombre = ? WHERE id = ?";
 
         try (var preparedStatement = this.getConnection().prepareStatement(sql)) {
             preparedStatement.setString(1, entity.getName());
@@ -59,12 +61,14 @@ public final class CategoryPostgresqlDAO extends SqlConnection implements Catego
 
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumCategoryDAO.USER_ERROR_SQL_UPDATE_CATEGORY.getContent();
-            var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_UPDATE_CATEGORY.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_UPDATE_CATEGORY.getContent()
+                    + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (final Exception exception) {
             var userMessage = MessagesEnumCategoryDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_CATEGORY.getContent();
-            var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_CATEGORY.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_CATEGORY.getContent()
+                    + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
 
@@ -94,13 +98,14 @@ public final class CategoryPostgresqlDAO extends SqlConnection implements Catego
 
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumCategoryDAO.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_CATEGORY.getContent();
-            var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_CATEGORY.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_CATEGORY.getContent()
+                    + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }
 
     private String createSentenceFindByFilter(final CategoryEntity filterEntity, final List<Object> parameterList) {
-        final var sql = new StringBuilder("SELECT C.idCategoria, C.nombre FROM Categoria C ");
+        final var sql = new StringBuilder("SELECT C.id, C.nombre FROM Categoria C ");
         createWhereClauseFindByFilter(sql, parameterList, filterEntity);
         return sql.toString();
     }
@@ -113,7 +118,7 @@ public final class CategoryPostgresqlDAO extends SqlConnection implements Catego
 
         addCondition(conditions, parameterList,
                 !UUIDHelper.getUUIDHelper().isDefaultUUID(filterEntityValidated.getId()),
-                "C.idCategoria = ?", filterEntityValidated.getId());
+                "C.id = ?", filterEntityValidated.getId());
 
         addCondition(conditions, parameterList,
                 !TextHelper.isEmptyWithTrim(filterEntityValidated.getName()),
@@ -141,7 +146,7 @@ public final class CategoryPostgresqlDAO extends SqlConnection implements Catego
             while (resultSet.next()) {
                 var category = new CategoryEntity();
 
-                category.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("idCategoria")));
+                category.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("id")));
                 category.setName(resultSet.getString("nombre"));
 
                 listCategory.add(category);
@@ -149,12 +154,14 @@ public final class CategoryPostgresqlDAO extends SqlConnection implements Catego
 
         } catch (SQLException exception) {
             var userMessage = MessagesEnumCategoryDAO.USER_ERROR_SQL_MAPPING_CATEGORY.getContent();
-            var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_MAPPING_CATEGORY.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_MAPPING_CATEGORY.getContent()
+                    + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (Exception exception) {
             var userMessage = MessagesEnumCategoryDAO.USER_ERROR_SQL_UNEXPECTED_MAPPING_CATEGORY.getContent();
-            var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_MAPPING_CATEGORY.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_MAPPING_CATEGORY.getContent()
+                    + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
         return listCategory;

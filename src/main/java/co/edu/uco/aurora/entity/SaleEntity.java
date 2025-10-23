@@ -10,37 +10,37 @@ import java.util.UUID;
 
 public final class SaleEntity extends Entity{
 
-    private String codeSale;
+    private String saleCode;
     private CustomerEntity customer;
     private LocalDate date;
 
     public SaleEntity() {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setCodeSale(TextHelper.getDefault());
+        setSaleCode(TextHelper.getDefault());
         setCustomer(CustomerEntity.getDefault());
         setDate(LocalDateHelper.getDefault());
     }
 
     public SaleEntity(final UUID id) {
         super(id);
-        setCodeSale(TextHelper.getDefault());
+        setSaleCode(TextHelper.getDefault());
         setCustomer(CustomerEntity.getDefault());
         setDate(LocalDateHelper.getDefault());
     }
 
     public SaleEntity(final UUID id, final String salesCode, final CustomerEntity customer, final LocalDate date) {
         super(id);
-        setCodeSale(salesCode);
+        setSaleCode(salesCode);
         setCustomer(customer);
         setDate(date);
     }
 
-    public String getCodeSale() {
-        return codeSale;
+    public String getSaleCode() {
+        return saleCode;
     }
 
-    public void setCodeSale(final String codeSale) {
-        this.codeSale = TextHelper.getDefault(codeSale);
+    public void setSaleCode(final String saleCode) {
+        this.saleCode = TextHelper.getDefault(saleCode);
     }
 
     public CustomerEntity getCustomer() {

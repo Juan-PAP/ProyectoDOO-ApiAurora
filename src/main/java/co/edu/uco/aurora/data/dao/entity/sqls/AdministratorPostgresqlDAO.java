@@ -26,8 +26,9 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
         SqlConnectionHelper.ensureTransactionIsStarted(getConnection());
 
         final var sql = new StringBuilder();
-        sql.append("INSERT INTO Administrador (id, usuario, contraseña) ");
-        sql.append("SELECT ?, ?, ?");
+        sql.append("INSERT INTO Administrador (id, usuario, contrasenia) ");
+        sql.append("VALUES (?, ?, ?)");
+
         try(var preparedStatement = this.getConnection().prepareStatement(sql.toString())){
             preparedStatement.setObject(1, entity.getId());
             preparedStatement.setString(2, entity.getUser());
@@ -122,12 +123,12 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
         try (var resultSet = preparedStatement.executeQuery()) {
 
             while (resultSet.next()) {
-                var idAdmin = new AdministratorEntity();
+                var administrator = new AdministratorEntity();
 
-                idAdmin.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("id")));
-                idAdmin.setUser(resultSet.getString("usuario"));
+                administrator.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("id")));
+                administrator.setUser(resultSet.getString("usuario"));
 
-                listAdmin.add(idAdmin);
+                listAdmin.add(administrator);
             }
 
         }  catch (SQLException exception) {
@@ -153,9 +154,9 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
 
         try (var preparedStatement = this.getConnection().prepareStatement(sql.toString())) {
 
-            preparedStatement.setObject(1, entity.getId());
-            preparedStatement.setString(2, entity.getUser());
-            preparedStatement.setString(3, entity.getPassword());
+            preparedStatement.setString(1, entity.getUser());
+            preparedStatement.setString(2, entity.getPassword());
+            preparedStatement.setObject(3, entity.getId());
 
             preparedStatement.executeUpdate();
 
@@ -169,5 +170,47 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
             var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_ADMINISTRATOR.getContent();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
+    }
+
+    @Override
+    public List<AdministratorEntity> findByUsername(String userName) {
+        SqlConnectionHelper.ensureConnectionIsNotNull(getConnection());
+
+        final var sql = new StringBuilder();
+
+        sql.append("SELECT A.id, A.usuario, A.contrasenia ");
+        sql.append("FROM Administrador A ");
+        sql.append("WHERE A.usuario = ?");
+
+        var listAdmin = new ArrayList<AdministratorEntity>();
+
+        try (var preparedStatement = this.getConnection().prepareStatement(sql.toString())) {
+
+            preparedStatement.setString(1, userName);
+
+            try (var resultSet = preparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+                    var administrator = new AdministratorEntity();
+                    administrator.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("id")));
+                    administrator.setUser(resultSet.getString("usuario"));
+                    administrator.setPassword(resultSet.getString("contrasenia"));
+
+                    listAdmin.add(administrator);
+                }
+            }
+
+        } catch (final SQLException exception) {
+            var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR.getContent();
+            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR.getContent() + ": " + exception.getMessage();
+            throw AuroraException.create(exception, userMessage, technicalMessage);
+
+        } catch (final Exception exception) {
+            var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_ADMINISTRATOR.getContent();
+            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_ADMINISTRATOR.getContent();
+            throw AuroraException.create(exception, userMessage, technicalMessage);
+        }
+
+        return listAdmin;
     }
 }

@@ -10,37 +10,37 @@ import java.util.UUID;
 
 public final class SaleDomain extends Domain {
 
-    private String codeSale;
+    private String saleCode;
     private CustomerDomain customer;
     private LocalDate date;
 
     public SaleDomain () {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setCodeSale(TextHelper.getDefault());
+        setSaleCode(TextHelper.getDefault());
         setCustomer(CustomerDomain.getDefault());
         setDate(LocalDateHelper.getDefault());
     }
 
     public SaleDomain (final UUID id) {
         super(id);
-        setCodeSale(TextHelper.getDefault());
+        setSaleCode(TextHelper.getDefault());
         setCustomer(CustomerDomain.getDefault());
         setDate(LocalDateHelper.getDefault());
     }
 
     public SaleDomain (final UUID id, final String salesCode, final CustomerDomain customer, final LocalDate date) {
         super(id);
-        setCodeSale(salesCode);
+        setSaleCode(salesCode);
         setCustomer(customer);
         setDate(date);
     }
 
-    public String getCodeSale() {
-        return codeSale;
+    public String getSaleCode() {
+        return saleCode;
     }
 
-    public void setCodeSale(final String codeSale) {
-        this.codeSale = TextHelper.getDefault(codeSale);
+    public void setSaleCode(final String saleCode) {
+        this.saleCode = TextHelper.getDefault(saleCode);
     }
 
     public CustomerDomain getCustomer() {

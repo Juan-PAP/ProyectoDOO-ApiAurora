@@ -26,14 +26,14 @@ public final class SaleDTOAssembler implements DTOAssembler<SaleDTO, SaleDomain>
     public SaleDTO toDTO(final SaleDomain domain) {
         var domainTmp = ObjectHelper.getDefault(domain, new SaleDomain(UUIDHelper.getUUIDHelper().getDefault()));
         var customerDtoTmp = CustomerDTOAssembler.getCustomerDTOAssembler().toDTO(domainTmp.getCustomer());
-        return new SaleDTO(domainTmp.getId(), domainTmp.getCodeSale(),customerDtoTmp, domainTmp.getDate());
+        return new SaleDTO(domainTmp.getId(), domainTmp.getSaleCode(),customerDtoTmp, domainTmp.getDate());
     }
 
     @Override
     public SaleDomain toDomain(final SaleDTO dto) {
         var dtoTmp = ObjectHelper.getDefault(dto, new SaleDTO());
         var customerDomainTmp = CustomerDTOAssembler.getCustomerDTOAssembler().toDomain(dtoTmp.getCustomer());
-        return new SaleDomain(dtoTmp.getId(), dtoTmp.getCodeSale(), customerDomainTmp, dtoTmp.getDate());
+        return new SaleDomain(dtoTmp.getId(), dtoTmp.getSaleCode(), customerDomainTmp, dtoTmp.getDate());
     }
 
     @Override
