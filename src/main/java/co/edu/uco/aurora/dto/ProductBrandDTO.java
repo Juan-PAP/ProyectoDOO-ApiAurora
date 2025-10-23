@@ -12,11 +12,11 @@ public final class ProductBrandDTO extends DTO {
     private ProductDTO product;
     private BrandDTO brand;
     private String measure;
-    private UnitMeasurementDTO productSize;
+    private UnitMeasurementDTO unitMeasurement;
     private UnitSalesDTO unitSales;
     private float price;
     private boolean confirmedPriceDefaultValue;
-    private boolean ageRestriction;
+    private boolean hasAgeRestriction;
     private boolean confirmedAgeRestrictionDefaultValue;
 
     public ProductBrandDTO() {
@@ -25,11 +25,11 @@ public final class ProductBrandDTO extends DTO {
         setProduct(ProductDTO.createDefault());
         setBrand(BrandDTO.createDefault());
         setMeasure(TextHelper.getDefault());
-        setProductSize(UnitMeasurementDTO.createDefault());
+        setUnitMeasurement(UnitMeasurementDTO.createDefault());
         setUnitSales(UnitSalesDTO.createDefault());
         setPrice(0.0f);
         setConfirmedPriceDefaultValue(true);
-        setAgeRestriction(false);
+        setHasAgeRestriction(false);
         setConfirmedAgeRestrictionDefaultValue(true);
 
     }
@@ -40,11 +40,11 @@ public final class ProductBrandDTO extends DTO {
         setProduct(ProductDTO.createDefault());
         setBrand(BrandDTO.createDefault());
         setMeasure(TextHelper.getDefault());
-        setProductSize(UnitMeasurementDTO.createDefault());
+        setUnitMeasurement(UnitMeasurementDTO.createDefault());
         setUnitSales(UnitSalesDTO.createDefault());
         setPrice(0.0f);
         setConfirmedPriceDefaultValue(true);
-        setAgeRestriction(false);
+        setHasAgeRestriction(false);
         setConfirmedAgeRestrictionDefaultValue(true);
 
     }
@@ -57,10 +57,10 @@ public final class ProductBrandDTO extends DTO {
         setProduct(product);
         setBrand(brand);
         setMeasure(measure);
-        setProductSize(productSize);
+        setUnitMeasurement(productSize);
         setUnitSales(unitSales);
         setPrice(price);
-        setAgeRestriction(ageRestriction);
+        setHasAgeRestriction(ageRestriction);
     }
 
     public String getReference() {
@@ -95,12 +95,12 @@ public final class ProductBrandDTO extends DTO {
         this.measure = TextHelper.getDefaultWithTrim(measure);
     }
 
-    public UnitMeasurementDTO getProductSize() {
-        return productSize;
+    public UnitMeasurementDTO getUnitMeasurement() {
+        return unitMeasurement;
     }
 
-    public void setProductSize(final UnitMeasurementDTO productSize) {
-        this.productSize = ObjectHelper.getDefault(productSize, UnitMeasurementDTO.createDefault());
+    public void setUnitMeasurement(final UnitMeasurementDTO unitMeasurement) {
+        this.unitMeasurement = ObjectHelper.getDefault(unitMeasurement, UnitMeasurementDTO.createDefault());
     }
 
     public UnitSalesDTO getUnitSales() {
@@ -128,12 +128,12 @@ public final class ProductBrandDTO extends DTO {
         this.confirmedPriceDefaultValue = confirmedPriceDefaultValue;
     }
 
-    public boolean isAgeRestriction() {
-        return ageRestriction;
+    public boolean isHasAgeRestriction() {
+        return hasAgeRestriction;
     }
 
-    public void setAgeRestriction(final boolean ageRestriction) {
-        this.ageRestriction = ageRestriction;
+    public void setHasAgeRestriction(final boolean hasAgeRestriction) {
+        this.hasAgeRestriction = hasAgeRestriction;
         setConfirmedAgeRestrictionDefaultValue(false);
     }
 

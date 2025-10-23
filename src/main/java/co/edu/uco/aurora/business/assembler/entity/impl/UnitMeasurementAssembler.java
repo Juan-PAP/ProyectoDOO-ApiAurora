@@ -24,13 +24,13 @@ public final class UnitMeasurementAssembler implements EntityAssembler<UnitMeasu
     @Override
     public UnitMeasurementEntity toEntity(final UnitMeasurementDomain domain) {
         var domainTmp = ObjectHelper.getDefault(domain, new UnitMeasurementDomain(UUIDHelper.getUUIDHelper().getDefault()));
-        return new UnitMeasurementEntity(domainTmp.getId(), domainTmp.getNombre());
+        return new UnitMeasurementEntity(domainTmp.getId(), domainTmp.getName());
     }
 
     @Override
     public UnitMeasurementDomain toDomain(final UnitMeasurementEntity entity) {
         var entityTmp = ObjectHelper.getDefault(entity, new UnitMeasurementEntity());
-        return new UnitMeasurementDomain(entityTmp.getId(), entityTmp.getNombre());
+        return new UnitMeasurementDomain(entityTmp.getId(), entityTmp.getName());
     }
 
     @Override

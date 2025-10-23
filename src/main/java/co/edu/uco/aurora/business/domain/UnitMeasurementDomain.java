@@ -7,28 +7,28 @@ import java.util.UUID;
 
 public final class UnitMeasurementDomain extends Domain{
 
-    private String nombre;
+    private String name;
 
     public UnitMeasurementDomain() {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setNombre(TextHelper.getDefault());
+        setName(TextHelper.getDefault());
     }
     public UnitMeasurementDomain(UUID id) {
         super(id);
-        setNombre(TextHelper.getDefault());
+        setName(TextHelper.getDefault());
     }
 
     public UnitMeasurementDomain(final UUID id, final String unitMeasurement) {
         super(id);
-        setNombre(unitMeasurement);
+        setName(unitMeasurement);
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(final String nombre) {
-        this.nombre = TextHelper.getDefaultWithTrim(nombre);
+    public void setName(final String name) {
+        this.name = TextHelper.getDefaultWithTrim(name);
     }
 
     public static UnitMeasurementDomain createDefault() {

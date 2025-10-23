@@ -27,12 +27,12 @@ public final class ProductBrandEntityAssembler implements EntityAssembler<Produc
         var domainTmp = ObjectHelper.getDefault(domain, new ProductBrandDomain(UUIDHelper.getUUIDHelper().getDefault()));
         var productEntityTmp = ProductEntityAssembler.getProductEntityAssembler().toEntity(domainTmp.getProduct());
         var brandEntityTmp = BrandEntityAssembler.getBrandEntityAssembler().toEntity(domainTmp.getBrand());
-        var productSizeEntityTmp = UnitMeasurementAssembler.getProductSizeEntityAssembler().toEntity(domainTmp.getProductSize());
+        var productSizeEntityTmp = UnitMeasurementAssembler.getProductSizeEntityAssembler().toEntity(domainTmp.getUnitMeasurement());
         var unitSalesEntityTmp = UnitSalesEntityAssembler.getUnitSalesEntityAssembler().toEntity(domainTmp.getUnitSales());
 
         return new ProductBrandEntity(domainTmp.getId(),domainTmp.getReference() , productEntityTmp, brandEntityTmp,
                 domainTmp.getMeasure(), productSizeEntityTmp, unitSalesEntityTmp, domainTmp.getPrice(),
-                domainTmp.isAgeRestriction());
+                domainTmp.isHasAgeRestriction());
     }
 
     @Override
@@ -40,12 +40,12 @@ public final class ProductBrandEntityAssembler implements EntityAssembler<Produc
         var entityTmp = ObjectHelper.getDefault(entity, new ProductBrandEntity());
         var productDomainTmp = ProductEntityAssembler.getProductEntityAssembler().toDomain(entityTmp.getProduct());
         var brandDomainTmp = BrandEntityAssembler.getBrandEntityAssembler().toDomain(entityTmp.getBrand());
-        var productSizeDomainTmp = UnitMeasurementAssembler.getProductSizeEntityAssembler().toDomain(entityTmp.getProductSize());
+        var productSizeDomainTmp = UnitMeasurementAssembler.getProductSizeEntityAssembler().toDomain(entityTmp.getUnitMeasurement());
         var unitSalesDomainTmp = UnitSalesEntityAssembler.getUnitSalesEntityAssembler().toDomain(entityTmp.getUnitSales());
 
         return new ProductBrandDomain(entityTmp.getId(), entityTmp.getReference() , productDomainTmp, brandDomainTmp,
                 entityTmp.getMeasure(), productSizeDomainTmp, unitSalesDomainTmp, entityTmp.getPrice(),
-                entityTmp.isAgeRestriction());
+                entityTmp.isHasAgeRestriction());
     }
 
     @Override

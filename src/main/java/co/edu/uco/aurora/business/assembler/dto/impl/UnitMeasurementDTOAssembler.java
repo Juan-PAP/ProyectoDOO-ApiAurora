@@ -25,13 +25,13 @@ public final class UnitMeasurementDTOAssembler implements DTOAssembler<UnitMeasu
     @Override
     public UnitMeasurementDTO toDTO(final UnitMeasurementDomain domain) {
         var domainTmp = ObjectHelper.getDefault(domain, new UnitMeasurementDomain(UUIDHelper.getUUIDHelper().getDefault()));
-        return new UnitMeasurementDTO(domainTmp.getId(), domainTmp.getNombre());
+        return new UnitMeasurementDTO(domainTmp.getId(), domainTmp.getName());
     }
 
     @Override
     public UnitMeasurementDomain toDomain(final UnitMeasurementDTO dto) {
         var dtoTmp = ObjectHelper.getDefault(dto, new UnitMeasurementDTO());
-        return new UnitMeasurementDomain(dtoTmp.getId(), dtoTmp.getNombre());
+        return new UnitMeasurementDomain(dtoTmp.getId(), dtoTmp.getName());
     }
 
     @Override

@@ -7,29 +7,29 @@ import java.util.UUID;
 
 public final class UnitMeasurementEntity extends Entity {
 
-    private String nombre;
+    private String name;
 
     public UnitMeasurementEntity() {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setNombre(TextHelper.getDefault());
+        setName(TextHelper.getDefault());
     }
 
     public UnitMeasurementEntity(UUID id) {
         super(id);
-        setNombre(TextHelper.getDefault());
+        setName(TextHelper.getDefault());
     }
 
     public UnitMeasurementEntity(final UUID id, final String unitMeasurement) {
         super(id);
-        setNombre(this.nombre);
+        setName(this.name);
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(final String nombre) {
-        this.nombre = TextHelper.getDefaultWithTrim(nombre);
+    public void setName(final String name) {
+        this.name = TextHelper.getDefaultWithTrim(name);
     }
 
     public static UnitMeasurementEntity createDefault() {

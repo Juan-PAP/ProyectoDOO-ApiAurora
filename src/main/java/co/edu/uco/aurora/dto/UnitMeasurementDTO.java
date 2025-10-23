@@ -7,29 +7,29 @@ import java.util.UUID;
 
 public final class UnitMeasurementDTO extends DTO {
 
-    private String nombre;
+    private String name;
 
     public UnitMeasurementDTO() {
         super(UUIDHelper.getUUIDHelper().getDefault());
-        setNombre(TextHelper.getDefault());
+        setName(TextHelper.getDefault());
     }
 
     public UnitMeasurementDTO(UUID id) {
         super(id);
-        setNombre(TextHelper.getDefault());
+        setName(TextHelper.getDefault());
     }
 
     public UnitMeasurementDTO(final UUID id, final String unitMeasurement) {
         super(id);
-        setNombre(unitMeasurement);
+        setName(unitMeasurement);
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(final String nombre) {
-        this.nombre = TextHelper.getDefaultWithTrim(nombre);
+    public void setName(final String name) {
+        this.name = TextHelper.getDefaultWithTrim(name);
     }
 
     public static UnitMeasurementDTO createDefault() {

@@ -12,11 +12,11 @@ public final class ProductBrandDomain extends Domain{
     private ProductDomain product;
     private BrandDomain brand;
     private String measure;
-    private UnitMeasurementDomain productSize;
+    private UnitMeasurementDomain unitMeasurement;
     private UnitSalesDomain unitSales;
     private float price;
     private boolean confirmedPriceDefaultValue;
-    private boolean ageRestriction;
+    private boolean hasAgeRestriction;
     private boolean confirmedAgeRestrictionDefaultValue;
 
     public ProductBrandDomain() {
@@ -25,11 +25,11 @@ public final class ProductBrandDomain extends Domain{
         setProduct(ProductDomain.createDefault());
         setBrand(BrandDomain.createDefault());
         setMeasure(TextHelper.getDefault());
-        setProductSize(UnitMeasurementDomain.createDefault());
+        setUnitMeasurement(UnitMeasurementDomain.createDefault());
         setUnitSales(UnitSalesDomain.createDefault());
         setPrice(0.0f);
         setConfirmedPriceDefaultValue(true);
-        setAgeRestriction(false);
+        setHasAgeRestriction(false);
         setConfirmedAgeRestrictionDefaultValue(true);
     }
 
@@ -39,11 +39,11 @@ public final class ProductBrandDomain extends Domain{
         setProduct(ProductDomain.createDefault());
         setBrand(BrandDomain.createDefault());
         setMeasure(TextHelper.getDefault());
-        setProductSize(UnitMeasurementDomain.createDefault());
+        setUnitMeasurement(UnitMeasurementDomain.createDefault());
         setUnitSales(UnitSalesDomain.createDefault());
         setPrice(0.0f);
         setConfirmedPriceDefaultValue(true);
-        setAgeRestriction(false);
+        setHasAgeRestriction(false);
         setConfirmedAgeRestrictionDefaultValue(true);
     }
 
@@ -55,11 +55,11 @@ public final class ProductBrandDomain extends Domain{
         setProduct(product);
         setBrand(brand);
         setMeasure(measure);
-        setProductSize(productSize);
+        setUnitMeasurement(productSize);
         setUnitSales(unitSales);
         setPrice(price);
         setConfirmedPriceDefaultValue(false);
-        setAgeRestriction(ageRestriction);
+        setHasAgeRestriction(ageRestriction);
         setConfirmedAgeRestrictionDefaultValue(false);
     }
 
@@ -95,12 +95,12 @@ public final class ProductBrandDomain extends Domain{
         this.measure = TextHelper.getDefaultWithTrim(measure);
     }
 
-    public UnitMeasurementDomain getProductSize() {
-        return productSize;
+    public UnitMeasurementDomain getUnitMeasurement() {
+        return unitMeasurement;
     }
 
-    public void setProductSize(final UnitMeasurementDomain productSize) {
-        this.productSize = ObjectHelper.getDefault(productSize, UnitMeasurementDomain.createDefault());
+    public void setUnitMeasurement(final UnitMeasurementDomain unitMeasurement) {
+        this.unitMeasurement = ObjectHelper.getDefault(unitMeasurement, UnitMeasurementDomain.createDefault());
     }
 
     public UnitSalesDomain getUnitSales() {
@@ -128,12 +128,12 @@ public final class ProductBrandDomain extends Domain{
         this.confirmedPriceDefaultValue = confirmedPriceDefaultValue;
     }
 
-    public boolean isAgeRestriction() {
-        return ageRestriction;
+    public boolean isHasAgeRestriction() {
+        return hasAgeRestriction;
     }
 
-    public void setAgeRestriction(final boolean ageRestriction) {
-        this.ageRestriction = ageRestriction;
+    public void setHasAgeRestriction(final boolean hasAgeRestriction) {
+        this.hasAgeRestriction = hasAgeRestriction;
         setConfirmedAgeRestrictionDefaultValue(false);
     }
 

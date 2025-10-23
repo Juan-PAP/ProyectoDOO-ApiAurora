@@ -12,11 +12,11 @@ public final class ProductBrandEntity extends Entity {
     private ProductEntity product;
     private BrandEntity brand;
     private String measure;
-    private UnitMeasurementEntity productSize;
+    private UnitMeasurementEntity unitMeasurement;
     private UnitSalesEntity unitSales;
     private float price;
     private boolean confirmedPriceDefaultValue;
-    private boolean ageRestriction;
+    private boolean hasAgeRestriction;
     private boolean confirmedAgeRestrictionDefaultValue;
 
     public ProductBrandEntity() {
@@ -25,11 +25,11 @@ public final class ProductBrandEntity extends Entity {
         setProduct(ProductEntity.createDefault());
         setBrand(BrandEntity.createDefault());
         setMeasure(TextHelper.getDefault());
-        setProductSize(UnitMeasurementEntity.createDefault());
+        setUnitMeasurement(UnitMeasurementEntity.createDefault());
         setUnitSales(UnitSalesEntity.createDefault());
         setPrice(0.0f);
         setConfirmedPriceDefaultValue(true);
-        setAgeRestriction(false);
+        setHasAgeRestriction(false);
         setConfirmedAgeRestrictionDefaultValue(true);
 
     }
@@ -40,11 +40,11 @@ public final class ProductBrandEntity extends Entity {
         setProduct(ProductEntity.createDefault());
         setBrand(BrandEntity.createDefault());
         setMeasure(TextHelper.getDefault());
-        setProductSize(UnitMeasurementEntity.createDefault());
+        setUnitMeasurement(UnitMeasurementEntity.createDefault());
         setUnitSales(UnitSalesEntity.createDefault());
         setPrice(0.0f);
         setConfirmedPriceDefaultValue(true);
-        setAgeRestriction(false);
+        setHasAgeRestriction(false);
         setConfirmedAgeRestrictionDefaultValue(true);
 
     }
@@ -57,11 +57,11 @@ public final class ProductBrandEntity extends Entity {
         setProduct(product);
         setBrand(brand);
         setMeasure(measure);
-        setProductSize(productSize);
+        setUnitMeasurement(productSize);
         setUnitSales(unitSales);
         setPrice(price);
         setConfirmedPriceDefaultValue(false);
-        setAgeRestriction(ageRestriction);
+        setHasAgeRestriction(ageRestriction);
         setConfirmedAgeRestrictionDefaultValue(false);
 
     }
@@ -98,12 +98,12 @@ public final class ProductBrandEntity extends Entity {
         this.measure = TextHelper.getDefaultWithTrim(measure);
     }
 
-    public UnitMeasurementEntity getProductSize() {
-        return productSize;
+    public UnitMeasurementEntity getUnitMeasurement() {
+        return unitMeasurement;
     }
 
-    public void setProductSize(final UnitMeasurementEntity productSize) {
-        this.productSize = ObjectHelper.getDefault(productSize, UnitMeasurementEntity.createDefault());
+    public void setUnitMeasurement(final UnitMeasurementEntity unitMeasurement) {
+        this.unitMeasurement = ObjectHelper.getDefault(unitMeasurement, UnitMeasurementEntity.createDefault());
     }
 
     public UnitSalesEntity getUnitSales() {
@@ -131,12 +131,12 @@ public final class ProductBrandEntity extends Entity {
         this.confirmedPriceDefaultValue = confirmedPriceDefaultValue;
     }
 
-    public boolean isAgeRestriction() {
-        return ageRestriction;
+    public boolean isHasAgeRestriction() {
+        return hasAgeRestriction;
     }
 
-    public void setAgeRestriction(final boolean ageRestriction) {
-        this.ageRestriction = ageRestriction;
+    public void setHasAgeRestriction(final boolean hasAgeRestriction) {
+        this.hasAgeRestriction = hasAgeRestriction;
         setConfirmedAgeRestrictionDefaultValue(false);
     }
 
