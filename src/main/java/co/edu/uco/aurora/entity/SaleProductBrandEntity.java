@@ -11,7 +11,7 @@ public final class SaleProductBrandEntity extends Entity {
     private ProductBrandEntity ProductBrand;
     private float UnitPrice;
     private boolean confirmedUnitPriceDefualtValue;
-    private int amount;
+    private float amount;
     private boolean confirmedAmountDefualtValue;
 
     public SaleProductBrandEntity() {
@@ -20,7 +20,7 @@ public final class SaleProductBrandEntity extends Entity {
         setProductBrand(ProductBrandEntity.createDefault());
         setUnitPrice(0.0f);
         setConfirmedUnitPriceDefualtValue(true);
-        setAmount(0);
+        setAmount(0.0f);
         setConfirmedAmountDefualtValue(true);
     }
 
@@ -30,18 +30,20 @@ public final class SaleProductBrandEntity extends Entity {
         setProductBrand(ProductBrandEntity.createDefault());
         setUnitPrice(0.0f);
         setConfirmedUnitPriceDefualtValue(true);
-        setAmount(0);
+        setAmount(0.0f);
         setConfirmedAmountDefualtValue(true);
 
     }
 
-    public SaleProductBrandEntity (final UUID id,final SaleEntity sale,final ProductBrandEntity productBrand,
-                                   float unitPrice,  final int cantidad) {
+    public SaleProductBrandEntity (final UUID id, final SaleEntity sale, final ProductBrandEntity productBrand,
+                                   float unitPrice,  final float amount) {
         super(id);
-        setSale(Sale);
-        setProductBrand(ProductBrand);
-        setUnitPrice(UnitPrice);
-        setAmount(cantidad);
+        setSale(sale);
+        setProductBrand(productBrand);
+        setUnitPrice(unitPrice);
+        setConfirmedUnitPriceDefualtValue(false);
+        setAmount(amount);
+        setConfirmedAmountDefualtValue(false);
     }
 
     public float getUnitPrice() {
@@ -60,11 +62,11 @@ public final class SaleProductBrandEntity extends Entity {
         this.confirmedUnitPriceDefualtValue = confirmedUnitPriceDefualtValue;
     }
 
-    public Integer getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(final int amount) {
+    public void setAmount(final float amount) {
         this.amount = amount;
         setConfirmedAmountDefualtValue(false);
     }

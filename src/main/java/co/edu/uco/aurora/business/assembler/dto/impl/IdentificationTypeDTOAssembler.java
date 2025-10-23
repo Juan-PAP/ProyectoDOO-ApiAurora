@@ -27,13 +27,13 @@ public final class IdentificationTypeDTOAssembler implements DTOAssembler<Identi
     @Override
     public IdentificationTypeDTO toDTO(final IdentificationTypeDomain domain) {
         var domainTmp = ObjectHelper.getDefault(domain, new IdentificationTypeDomain(UUIDHelper.getUUIDHelper().getDefault()));
-        return new IdentificationTypeDTO(domainTmp.getId(), domainTmp.getIdentificationType());
+        return new IdentificationTypeDTO(domainTmp.getId(), domainTmp.getNombre());
     }
 
     @Override
     public IdentificationTypeDomain toDomain(final IdentificationTypeDTO dto) {
         var dtoTmp = ObjectHelper.getDefault(dto, new IdentificationTypeDTO());
-        return new IdentificationTypeDomain(dtoTmp.getId(), dtoTmp.getIdentificationType());
+        return new IdentificationTypeDomain(dtoTmp.getId(), dtoTmp.getNombre());
     }
 
     @Override

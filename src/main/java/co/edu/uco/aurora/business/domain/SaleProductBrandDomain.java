@@ -10,7 +10,7 @@ public final class SaleProductBrandDomain extends Domain {
     private ProductBrandDomain ProductBrand;
     private float UnitPrice;
     private boolean confirmedUnitPriceDefualtValue;
-    private int amount;
+    private float amount;
     private boolean confirmedAmountDefualtValue;
 
     public SaleProductBrandDomain() {
@@ -33,7 +33,7 @@ public final class SaleProductBrandDomain extends Domain {
     }
 
     public SaleProductBrandDomain (final UUID id, final SaleDomain Sale, final ProductBrandDomain ProductBrand,
-                                   float UnitPrice, final int amount) {
+                                   float UnitPrice, final float amount) {
         super(id);
         setSale(Sale);
         setProductBrand(ProductBrand);
@@ -76,11 +76,11 @@ public final class SaleProductBrandDomain extends Domain {
         this.confirmedUnitPriceDefualtValue = confirmedUnitPriceDefualtValue;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(final int amount) {
+    public void setAmount(final float amount) {
         this.amount = amount;
         setConfirmedAmountDefualtValue(false);
     }

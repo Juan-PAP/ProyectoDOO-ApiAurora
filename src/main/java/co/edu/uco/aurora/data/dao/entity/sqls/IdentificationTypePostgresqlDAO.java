@@ -57,7 +57,7 @@ public final class IdentificationTypePostgresqlDAO extends SqlConnection impleme
 
     private String createSentenceFindByFilter (final IdentificationTypeEntity filterEntity, final List<Object> parameterList) {
 
-        final var sql = new StringBuilder("SELECT T.id, T.tipoDocumento FROM TipoDocumento T");
+        final var sql = new StringBuilder("SELECT T.id, T.nombre FROM TipoDocumento T");
 
         createWhereClauseFindByFilter(sql, parameterList, filterEntity);
 
@@ -76,7 +76,7 @@ public final class IdentificationTypePostgresqlDAO extends SqlConnection impleme
 
         addCondition(conditions, parameterList,
                 !TextHelper.isEmptyWithTrim(filterEntityValidated.getIdentificationType()),
-                "T.tipoDocumento = ?", filterEntityValidated.getIdentificationType());
+                "T.nombre = ?", filterEntityValidated.getIdentificationType());
 
         if (!conditions.isEmpty()){
             sql.append(" WHERE ");
@@ -101,7 +101,7 @@ public final class IdentificationTypePostgresqlDAO extends SqlConnection impleme
                 var idType = new IdentificationTypeEntity();
 
                 idType.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("id")));
-                idType.setIdentificationType(resultSet.getString("tipoDocumento"));
+                idType.setIdentificationType(resultSet.getString("nombre"));
 
                 listIdType.add(idType);
             }

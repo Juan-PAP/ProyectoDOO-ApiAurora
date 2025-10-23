@@ -24,7 +24,7 @@ public final class IdentificationTypeEntityAssembler implements EntityAssembler<
     @Override
     public IdentificationTypeEntity toEntity(final IdentificationTypeDomain domain) {
         var domainTmp = ObjectHelper.getDefault(domain, new IdentificationTypeDomain(UUIDHelper.getUUIDHelper().getDefault()));
-        return new IdentificationTypeEntity(domainTmp.getId(), domainTmp.getIdentificationType());
+        return new IdentificationTypeEntity(domainTmp.getId(), domainTmp.getNombre());
     }
 
     @Override

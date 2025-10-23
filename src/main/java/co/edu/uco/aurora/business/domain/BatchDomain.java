@@ -13,7 +13,7 @@ public final class BatchDomain extends Domain {
     private boolean isPerishable;
     private boolean confirmedPerishableDefaultValue;
     private LocalDate expirationDate;
-    private int amount;
+    private float amount;
     private boolean confirmedAmountDefaultValue;
 
     public BatchDomain () {
@@ -22,7 +22,7 @@ public final class BatchDomain extends Domain {
         setPerishable(false);
         setConfirmedPerishableDefaultValue(true);
         setExpirationDate(LocalDateHelper.getDefault());
-        setAmount(0);
+        setAmount(0.0f);
         setConfirmedAmountDefaultValue(true);
 
     }
@@ -33,12 +33,12 @@ public final class BatchDomain extends Domain {
         setPerishable(false);
         setConfirmedPerishableDefaultValue(true);
         setExpirationDate(LocalDateHelper.getDefault());
-        setAmount(0);
+        setAmount(0.0f);
         setConfirmedAmountDefaultValue(true);
 
     }
 
-    public BatchDomain (final UUID id,final ProductBrandDomain product ,final Boolean isPerishable, final LocalDate expirationDate, final int amount) {
+    public BatchDomain (final UUID id,final ProductBrandDomain product ,final Boolean isPerishable, final LocalDate expirationDate, final float amount) {
         super(id);
         setProductBrand(product);
         setPerishable(isPerishable);
@@ -82,11 +82,11 @@ public final class BatchDomain extends Domain {
         this.expirationDate = LocalDateHelper.getDefault(expirationDate);
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(int amount) {
+    public void setAmount(float amount) {
         this.amount = amount;
         setConfirmedAmountDefaultValue(false);
     }

@@ -11,7 +11,7 @@ public final class SaleProductBrandDTO extends DTO {
     private ProductBrandDTO ProductBrand;
     private float unitPrice;
     private boolean confirmedUnitPriceDefualtValue;
-    private int amount;
+    private float amount;
     private boolean confirmedAmountDefualtValue;
 
 
@@ -21,7 +21,7 @@ public final class SaleProductBrandDTO extends DTO {
         setProductBrand(ProductBrandDTO.createDefault());
         setUnitPrice(0.0f);
         setConfirmedUnitPriceDefualtValue(true);
-        setAmount(0);
+        setAmount(0.0f);
         setConfirmedAmountDefualtValue(true);
 
     }
@@ -32,18 +32,20 @@ public final class SaleProductBrandDTO extends DTO {
         setProductBrand(ProductBrandDTO.createDefault());
         setUnitPrice(0.0f);
         setConfirmedUnitPriceDefualtValue(true);
-        setAmount(0);
+        setAmount(0.0f);
         setConfirmedAmountDefualtValue(true);
 
     }
 
     public SaleProductBrandDTO(final UUID id, final SaleDTO sale, final ProductBrandDTO productBrand,
-                               float unitPrice, final int cantidad) {
+                               float unitPrice, final float amount) {
         super(id);
         setSale(sale);
         setProductBrand(productBrand);
         setUnitPrice(unitPrice);
-        setAmount(cantidad);
+        setConfirmedUnitPriceDefualtValue(false);
+        setAmount(amount);
+        setConfirmedAmountDefualtValue(false);
     }
 
     public float getUnitPrice() {
@@ -63,11 +65,11 @@ public final class SaleProductBrandDTO extends DTO {
         this.confirmedUnitPriceDefualtValue = confirmedUnitPriceDefualtValue;
     }
 
-    public int getAmount() {
+    public float getAmount() {
         return amount;
     }
 
-    public void setAmount(final int amount) {
+    public void setAmount(final float amount) {
         this.amount = amount;
         setConfirmedAmountDefualtValue(false);
     }

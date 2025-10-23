@@ -72,7 +72,7 @@ public final class CustomerBusinessImpl implements CustomerBusiness {
     }
 
     private void validateCustomerAgeAndDocument(CustomerDomain customer) throws AuroraException {
-        if (customer.getBirthDate() == null || TextHelper.isEmpty(customer.getIdentificationType().getIdentificationType())) {
+        if (customer.getBirthDate() == null || TextHelper.isEmpty(customer.getIdentificationType().getNombre())) {
             throw AuroraException.create("La fecha de nacimiento y el tipo de documento son obligatorios.");
         }
 
@@ -84,7 +84,7 @@ public final class CustomerBusinessImpl implements CustomerBusiness {
         }
 
         int age = Period.between(birthDate, today).getYears();
-        String docType = customer.getIdentificationType().getIdentificationType();
+        String docType = customer.getIdentificationType().getNombre();
 
         if (age >= 18) {
             if (ID_TYPE_TI.equalsIgnoreCase(docType)) {
