@@ -17,7 +17,7 @@ import java.util.List;
 
 public final class CustomerPostgresqlDAO extends SqlConnection implements CustomerDAO {
 
-    protected CustomerPostgresqlDAO(Connection connection) {
+    public CustomerPostgresqlDAO(Connection connection) {
         super(connection);
     }
 

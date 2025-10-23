@@ -12,7 +12,7 @@ public final class ProductBrandDTO extends DTO {
     private ProductDTO product;
     private BrandDTO brand;
     private String measure;
-    private ProductSizeDTO productSize;
+    private UnitMeasurementDTO productSize;
     private UnitSalesDTO unitSales;
     private float price;
     private boolean confirmedPriceDefaultValue;
@@ -25,7 +25,7 @@ public final class ProductBrandDTO extends DTO {
         setProduct(ProductDTO.createDefault());
         setBrand(BrandDTO.createDefault());
         setMeasure(TextHelper.getDefault());
-        setProductSize(ProductSizeDTO.createDefault());
+        setProductSize(UnitMeasurementDTO.createDefault());
         setUnitSales(UnitSalesDTO.createDefault());
         setPrice(0.0f);
         setConfirmedPriceDefaultValue(true);
@@ -40,7 +40,7 @@ public final class ProductBrandDTO extends DTO {
         setProduct(ProductDTO.createDefault());
         setBrand(BrandDTO.createDefault());
         setMeasure(TextHelper.getDefault());
-        setProductSize(ProductSizeDTO.createDefault());
+        setProductSize(UnitMeasurementDTO.createDefault());
         setUnitSales(UnitSalesDTO.createDefault());
         setPrice(0.0f);
         setConfirmedPriceDefaultValue(true);
@@ -50,8 +50,8 @@ public final class ProductBrandDTO extends DTO {
     }
 
     public ProductBrandDTO(final UUID id, final String reference, final ProductDTO product, final BrandDTO brand,
-                              final String measure, final ProductSizeDTO productSize, final UnitSalesDTO unitSales,
-                              final float price, final boolean ageRestriction) {
+                           final String measure, final UnitMeasurementDTO productSize, final UnitSalesDTO unitSales,
+                           final float price, final boolean ageRestriction) {
         super(id);
         setReference(reference);
         setProduct(product);
@@ -95,12 +95,12 @@ public final class ProductBrandDTO extends DTO {
         this.measure = TextHelper.getDefaultWithTrim(measure);
     }
 
-    public ProductSizeDTO getProductSize() {
+    public UnitMeasurementDTO getProductSize() {
         return productSize;
     }
 
-    public void setProductSize(final ProductSizeDTO productSize) {
-        this.productSize = ObjectHelper.getDefault(productSize, ProductSizeDTO.createDefault());
+    public void setProductSize(final UnitMeasurementDTO productSize) {
+        this.productSize = ObjectHelper.getDefault(productSize, UnitMeasurementDTO.createDefault());
     }
 
     public UnitSalesDTO getUnitSales() {

@@ -5,7 +5,6 @@ import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.SqlConnectionHelper;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
-import co.edu.uco.aurora.crosscuting.messagescatalog.MessagesEnum;
 import co.edu.uco.aurora.crosscuting.messagescatalog.messagesenumsqls.MessagesEnumIdentificationTypeDAO;
 import co.edu.uco.aurora.data.dao.entity.IdentificationTypeDAO;
 import co.edu.uco.aurora.entity.IdentificationTypeEntity;
@@ -16,7 +15,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IdentificationTypePostgresqlDAO extends SqlConnection implements IdentificationTypeDAO {
+public final class IdentificationTypePostgresqlDAO extends SqlConnection implements IdentificationTypeDAO {
 
     public IdentificationTypePostgresqlDAO(Connection connection) {
         super(connection);
@@ -58,7 +57,7 @@ public class IdentificationTypePostgresqlDAO extends SqlConnection implements Id
 
     private String createSentenceFindByFilter (final IdentificationTypeEntity filterEntity, final List<Object> parameterList) {
 
-        final var sql = new StringBuilder("SELECT T.idTipoDocumento, T.tipoDocumento FROM TipoDocumento T");
+        final var sql = new StringBuilder("SELECT T.id, T.tipoDocumento FROM TipoDocumento T");
 
         createWhereClauseFindByFilter(sql, parameterList, filterEntity);
 
@@ -73,7 +72,7 @@ public class IdentificationTypePostgresqlDAO extends SqlConnection implements Id
 
         addCondition(conditions, parameterList,
                 !UUIDHelper.getUUIDHelper().isDefaultUUID(filterEntityValidated.getId()),
-                "T.idTipoDocumento = ?", filterEntityValidated.getId());
+                "T.id = ?", filterEntityValidated.getId());
 
         addCondition(conditions, parameterList,
                 !TextHelper.isEmptyWithTrim(filterEntityValidated.getIdentificationType()),
@@ -101,7 +100,7 @@ public class IdentificationTypePostgresqlDAO extends SqlConnection implements Id
             while (resultSet.next()) {
                 var idType = new IdentificationTypeEntity();
 
-                idType.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("idTipoDocumento")));
+                idType.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("id")));
                 idType.setIdentificationType(resultSet.getString("tipoDocumento"));
 
                 listIdType.add(idType);

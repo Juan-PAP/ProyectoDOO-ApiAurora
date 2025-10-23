@@ -6,9 +6,9 @@ import co.edu.uco.aurora.entity.BatchEntity;
 import java.sql.Connection;
 import java.util.List;
 
-public class BatchPostgresqlDAO extends SqlConnection implements BatchDAO {
+public final class BatchPostgresqlDAO extends SqlConnection implements BatchDAO {
 
-    protected BatchPostgresqlDAO(Connection connection) {
+    public BatchPostgresqlDAO(Connection connection) {
         super(connection);
     }
 

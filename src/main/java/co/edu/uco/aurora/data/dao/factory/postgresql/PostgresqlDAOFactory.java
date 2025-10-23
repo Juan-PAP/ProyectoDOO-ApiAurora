@@ -81,7 +81,7 @@ public final class PostgresqlDAOFactory extends DAOFactory {
     }
 
     @Override
-    public ProductoSizeDAO getProductSizeDAO() {
+    public UnitMeasurementDAO getProductSizeDAO() {
         return null;
     }
 

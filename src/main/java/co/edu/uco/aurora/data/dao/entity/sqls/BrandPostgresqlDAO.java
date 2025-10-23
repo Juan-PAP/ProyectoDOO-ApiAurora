@@ -17,7 +17,7 @@ import java.util.List;
 
 public final class BrandPostgresqlDAO extends SqlConnection implements BrandDAO {
 
-    protected BrandPostgresqlDAO(Connection connection) {
+    public BrandPostgresqlDAO(Connection connection) {
         super(connection);
     }
 

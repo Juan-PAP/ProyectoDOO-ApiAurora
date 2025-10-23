@@ -27,7 +27,7 @@ public final class ProductBrandEntityAssembler implements EntityAssembler<Produc
         var domainTmp = ObjectHelper.getDefault(domain, new ProductBrandDomain(UUIDHelper.getUUIDHelper().getDefault()));
         var productEntityTmp = ProductEntityAssembler.getProductEntityAssembler().toEntity(domainTmp.getProduct());
         var brandEntityTmp = BrandEntityAssembler.getBrandEntityAssembler().toEntity(domainTmp.getBrand());
-        var productSizeEntityTmp = ProductSizeEntityAssembler.getProductSizeEntityAssembler().toEntity(domainTmp.getProductSize());
+        var productSizeEntityTmp = UnitMeasurementAssembler.getProductSizeEntityAssembler().toEntity(domainTmp.getProductSize());
         var unitSalesEntityTmp = UnitSalesEntityAssembler.getUnitSalesEntityAssembler().toEntity(domainTmp.getUnitSales());
 
         return new ProductBrandEntity(domainTmp.getId(),domainTmp.getReference() , productEntityTmp, brandEntityTmp,
@@ -40,7 +40,7 @@ public final class ProductBrandEntityAssembler implements EntityAssembler<Produc
         var entityTmp = ObjectHelper.getDefault(entity, new ProductBrandEntity());
         var productDomainTmp = ProductEntityAssembler.getProductEntityAssembler().toDomain(entityTmp.getProduct());
         var brandDomainTmp = BrandEntityAssembler.getBrandEntityAssembler().toDomain(entityTmp.getBrand());
-        var productSizeDomainTmp = ProductSizeEntityAssembler.getProductSizeEntityAssembler().toDomain(entityTmp.getProductSize());
+        var productSizeDomainTmp = UnitMeasurementAssembler.getProductSizeEntityAssembler().toDomain(entityTmp.getProductSize());
         var unitSalesDomainTmp = UnitSalesEntityAssembler.getUnitSalesEntityAssembler().toDomain(entityTmp.getUnitSales());
 
         return new ProductBrandDomain(entityTmp.getId(), entityTmp.getReference() , productDomainTmp, brandDomainTmp,

@@ -6,9 +6,9 @@ import co.edu.uco.aurora.entity.ProductEntity;
 import java.sql.Connection;
 import java.util.List;
 
-public class ProductPostgresqlDAO extends SqlConnection implements ProductDAO {
+public final class ProductPostgresqlDAO extends SqlConnection implements ProductDAO {
 
-    protected ProductPostgresqlDAO(Connection connection) {
+    public ProductPostgresqlDAO(Connection connection) {
         super(connection);
     }
 

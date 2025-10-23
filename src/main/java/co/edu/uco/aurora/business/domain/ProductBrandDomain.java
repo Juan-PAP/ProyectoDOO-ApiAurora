@@ -12,7 +12,7 @@ public final class ProductBrandDomain extends Domain{
     private ProductDomain product;
     private BrandDomain brand;
     private String measure;
-    private ProductSizeDomain productSize;
+    private UnitMeasurementDomain productSize;
     private UnitSalesDomain unitSales;
     private float price;
     private boolean confirmedPriceDefaultValue;
@@ -25,7 +25,7 @@ public final class ProductBrandDomain extends Domain{
         setProduct(ProductDomain.createDefault());
         setBrand(BrandDomain.createDefault());
         setMeasure(TextHelper.getDefault());
-        setProductSize(ProductSizeDomain.createDefault());
+        setProductSize(UnitMeasurementDomain.createDefault());
         setUnitSales(UnitSalesDomain.createDefault());
         setPrice(0.0f);
         setConfirmedPriceDefaultValue(true);
@@ -39,7 +39,7 @@ public final class ProductBrandDomain extends Domain{
         setProduct(ProductDomain.createDefault());
         setBrand(BrandDomain.createDefault());
         setMeasure(TextHelper.getDefault());
-        setProductSize(ProductSizeDomain.createDefault());
+        setProductSize(UnitMeasurementDomain.createDefault());
         setUnitSales(UnitSalesDomain.createDefault());
         setPrice(0.0f);
         setConfirmedPriceDefaultValue(true);
@@ -48,7 +48,7 @@ public final class ProductBrandDomain extends Domain{
     }
 
     public ProductBrandDomain(final UUID id, final String reference, final ProductDomain product, final BrandDomain brand,
-                              final String measure, final ProductSizeDomain productSize, final UnitSalesDomain unitSales,
+                              final String measure, final UnitMeasurementDomain productSize, final UnitSalesDomain unitSales,
                               final Float price, final boolean ageRestriction) {
         super(id);
         setReference(reference);
@@ -95,12 +95,12 @@ public final class ProductBrandDomain extends Domain{
         this.measure = TextHelper.getDefaultWithTrim(measure);
     }
 
-    public ProductSizeDomain getProductSize() {
+    public UnitMeasurementDomain getProductSize() {
         return productSize;
     }
 
-    public void setProductSize(final ProductSizeDomain productSize) {
-        this.productSize = ObjectHelper.getDefault(productSize, ProductSizeDomain.createDefault());
+    public void setProductSize(final UnitMeasurementDomain productSize) {
+        this.productSize = ObjectHelper.getDefault(productSize, UnitMeasurementDomain.createDefault());
     }
 
     public UnitSalesDomain getUnitSales() {

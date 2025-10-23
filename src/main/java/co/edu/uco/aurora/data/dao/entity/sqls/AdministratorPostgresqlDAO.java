@@ -6,10 +6,8 @@ import co.edu.uco.aurora.crosscuting.helper.SqlConnectionHelper;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 import co.edu.uco.aurora.crosscuting.messagescatalog.messagesenumsqls.MessagesEnumAdministratorDAO;
-import co.edu.uco.aurora.crosscuting.messagescatalog.messagesenumsqls.MessagesEnumIdentificationTypeDAO;
 import co.edu.uco.aurora.data.dao.entity.AdministratorDAO;
 import co.edu.uco.aurora.entity.AdministratorEntity;
-import co.edu.uco.aurora.entity.IdentificationTypeEntity;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -83,7 +81,7 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
 
     private String createSentenceFindByFilter (final AdministratorEntity filterEntity, final List<Object> parameterList) {
 
-        final var sql = new StringBuilder("SELECT A.idAdministrador, A.usuario, A.contrasenia FROM Administrador A");
+        final var sql = new StringBuilder("SELECT A.id, A.usuario FROM Administrador A");
 
         createWhereClauseFindByFilter(sql, parameterList, filterEntity);
 
@@ -98,16 +96,11 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
 
         addCondition(conditions, parameterList,
                 !UUIDHelper.getUUIDHelper().isDefaultUUID(filterEntityValidated.getId()),
-                "A.idAdministrador = ?", filterEntityValidated.getId());
+                "A.id = ?", filterEntityValidated.getId());
 
         addCondition(conditions, parameterList,
                 !TextHelper.isEmptyWithTrim(filterEntityValidated.getUser()),
                 "A.usuario = ?", filterEntityValidated.getUser());
-
-        addCondition(conditions, parameterList,
-                !TextHelper.isEmptyWithTrim(filterEntityValidated.getPassword()),
-                "A.contrasenia = ?", filterEntityValidated.getPassword());
-
 
         if (!conditions.isEmpty()){
             sql.append(" WHERE ");
@@ -131,9 +124,8 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
             while (resultSet.next()) {
                 var idAdmin = new AdministratorEntity();
 
-                idAdmin.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("idAdministrador")));
+                idAdmin.setId(UUIDHelper.getUUIDHelper().getFromString(resultSet.getString("id")));
                 idAdmin.setUser(resultSet.getString("usuario"));
-                idAdmin.setPassword(resultSet.getString("contrasenia"));
 
                 listAdmin.add(idAdmin);
             }
@@ -157,7 +149,7 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
 
         final var sql = new StringBuilder();
         sql.append("UPDATE Administrador SET usuario = ?, contrasenia = ? ");
-        sql.append("WHERE idAdministrador = ?");
+        sql.append("WHERE id = ?");
 
         try (var preparedStatement = this.getConnection().prepareStatement(sql.toString())) {
 

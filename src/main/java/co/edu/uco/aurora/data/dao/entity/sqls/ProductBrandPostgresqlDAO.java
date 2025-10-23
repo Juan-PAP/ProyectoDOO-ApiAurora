@@ -6,9 +6,9 @@ import co.edu.uco.aurora.entity.ProductBrandEntity;
 import java.sql.Connection;
 import java.util.List;
 
-public class ProductBrandPostgresqlDAO extends SqlConnection implements ProductBrandDAO {
+public final class ProductBrandPostgresqlDAO extends SqlConnection implements ProductBrandDAO {
 
-    protected ProductBrandPostgresqlDAO(Connection connection) {
+    public ProductBrandPostgresqlDAO(Connection connection) {
         super(connection);
     }
 

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
 import co.edu.uco.aurora.crosscuting.messagescatalog.MessagesEnum;
 
-public class SqlConnectionHelper {
+public final class SqlConnectionHelper {
 
     private SqlConnectionHelper() {
     }

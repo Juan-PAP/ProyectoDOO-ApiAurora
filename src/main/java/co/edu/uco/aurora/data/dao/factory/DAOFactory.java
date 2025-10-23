@@ -12,7 +12,7 @@ import co.edu.uco.aurora.data.dao.entity.CustomerDAO;
 import co.edu.uco.aurora.data.dao.entity.IdentificationTypeDAO;
 import co.edu.uco.aurora.data.dao.entity.ProductBrandDAO;
 import co.edu.uco.aurora.data.dao.entity.ProductDAO;
-import co.edu.uco.aurora.data.dao.entity.ProductoSizeDAO;
+import co.edu.uco.aurora.data.dao.entity.UnitMeasurementDAO;
 import co.edu.uco.aurora.data.dao.entity.SaleDAO;
 import co.edu.uco.aurora.data.dao.entity.SaleProductBrandDAO;
 import co.edu.uco.aurora.data.dao.entity.UnitSalesDAO;
@@ -49,7 +49,7 @@ public abstract class DAOFactory {
 
     public abstract ProductDAO getProductDAO();
 
-    public abstract ProductoSizeDAO getProductSizeDAO();
+    public abstract UnitMeasurementDAO getProductSizeDAO();
 
     public abstract SaleDAO getSaleDAO();
 

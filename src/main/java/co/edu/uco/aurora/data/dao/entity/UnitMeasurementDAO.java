@@ -4,6 +4,6 @@ import co.edu.uco.aurora.data.dao.RetrieveDAO;
 
 import java.util.UUID;
 
-public interface ProductoSizeDAO extends RetrieveDAO<ProductoSizeDAO, UUID> {
+public interface UnitMeasurementDAO extends RetrieveDAO<UnitMeasurementDAO, UUID> {
 
 }

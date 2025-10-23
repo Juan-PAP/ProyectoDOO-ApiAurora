@@ -17,7 +17,7 @@ import java.util.List;
 
 public final class UnitSalesPostgresqlDAO extends SqlConnection implements UnitSalesDAO {
 
-    protected UnitSalesPostgresqlDAO(Connection connection) {
+    public UnitSalesPostgresqlDAO(Connection connection) {
         super(connection);
     }
 

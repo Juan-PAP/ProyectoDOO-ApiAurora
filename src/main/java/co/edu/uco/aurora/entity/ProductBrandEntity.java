@@ -12,7 +12,7 @@ public final class ProductBrandEntity extends Entity {
     private ProductEntity product;
     private BrandEntity brand;
     private String measure;
-    private ProductSizeEntity productSize;
+    private UnitMeasurementEntity productSize;
     private UnitSalesEntity unitSales;
     private float price;
     private boolean confirmedPriceDefaultValue;
@@ -25,7 +25,7 @@ public final class ProductBrandEntity extends Entity {
         setProduct(ProductEntity.createDefault());
         setBrand(BrandEntity.createDefault());
         setMeasure(TextHelper.getDefault());
-        setProductSize(ProductSizeEntity.createDefault());
+        setProductSize(UnitMeasurementEntity.createDefault());
         setUnitSales(UnitSalesEntity.createDefault());
         setPrice(0.0f);
         setConfirmedPriceDefaultValue(true);
@@ -40,7 +40,7 @@ public final class ProductBrandEntity extends Entity {
         setProduct(ProductEntity.createDefault());
         setBrand(BrandEntity.createDefault());
         setMeasure(TextHelper.getDefault());
-        setProductSize(ProductSizeEntity.createDefault());
+        setProductSize(UnitMeasurementEntity.createDefault());
         setUnitSales(UnitSalesEntity.createDefault());
         setPrice(0.0f);
         setConfirmedPriceDefaultValue(true);
@@ -50,8 +50,8 @@ public final class ProductBrandEntity extends Entity {
     }
 
     public ProductBrandEntity(final UUID id, final String reference, final ProductEntity product, final BrandEntity brand,
-                           final String measure, final ProductSizeEntity productSize, final UnitSalesEntity unitSales,
-                           final float price, final boolean ageRestriction) {
+                              final String measure, final UnitMeasurementEntity productSize, final UnitSalesEntity unitSales,
+                              final float price, final boolean ageRestriction) {
         super(id);
         setReference(reference);
         setProduct(product);
@@ -98,12 +98,12 @@ public final class ProductBrandEntity extends Entity {
         this.measure = TextHelper.getDefaultWithTrim(measure);
     }
 
-    public ProductSizeEntity getProductSize() {
+    public UnitMeasurementEntity getProductSize() {
         return productSize;
     }
 
-    public void setProductSize(final ProductSizeEntity productSize) {
-        this.productSize = ObjectHelper.getDefault(productSize, ProductSizeEntity.createDefault());
+    public void setProductSize(final UnitMeasurementEntity productSize) {
+        this.productSize = ObjectHelper.getDefault(productSize, UnitMeasurementEntity.createDefault());
     }
 
     public UnitSalesEntity getUnitSales() {
