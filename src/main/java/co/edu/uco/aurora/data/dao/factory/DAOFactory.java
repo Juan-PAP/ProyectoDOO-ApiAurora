@@ -33,7 +33,7 @@ public abstract class DAOFactory {
         }
     }
 
-    public abstract AdministratorDAO getAdmistratorDao();
+    public abstract AdministratorDAO getAdministratorDao();
 
     public abstract CustomerDAO getCustomerDAO();
 
@@ -49,7 +49,7 @@ public abstract class DAOFactory {
 
     public abstract ProductDAO getProductDAO();
 
-    public abstract UnitMeasurementDAO getProductSizeDAO();
+    public abstract UnitMeasurementDAO getUnitMeasurementDAO();
 
     public abstract SaleDAO getSaleDAO();
 

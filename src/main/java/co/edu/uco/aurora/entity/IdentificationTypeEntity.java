@@ -21,14 +21,14 @@ public final class IdentificationTypeEntity extends Entity {
 
     public IdentificationTypeEntity(final UUID id, final String name) {
         super(id);
-        setName(this.name);
+        setName(name);
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(final String nombre) {
+    public void setName(final String name) {
         this.name = TextHelper.getDefault(name);
     }
 

@@ -1,6 +1,7 @@
 package co.edu.uco.aurora.data.dao.entity.sqls;
 
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
+import co.edu.uco.aurora.crosscuting.helper.LocalDateHelper;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.SqlConnectionHelper;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
@@ -12,6 +13,7 @@ import co.edu.uco.aurora.entity.IdentificationTypeEntity;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -136,11 +138,12 @@ public final class CustomerPostgresqlDAO extends SqlConnection implements Custom
                 "C.numeroTelefono = ?", filterEntityValidated.getPhoneNumber());
 
         addCondition(conditions, parameterList,
-                filterEntityValidated.isPhoneNumberConfirmed(),
+                !filterEntityValidated.isPhoneNumberIsConfirmedDefualtValue(),
                 "C.numeroTelefonoConfirmado = ?", filterEntityValidated.isPhoneNumberConfirmed());
 
+        var defaultBirthDate = LocalDateHelper.getDefault();
         addCondition(conditions, parameterList,
-                filterEntityValidated.getBirthDate() != null,
+                !ObjectHelper.getDefault(filterEntityValidated.getBirthDate(), defaultBirthDate).equals(defaultBirthDate),
                 "C.fechaNacimiento = ?", filterEntityValidated.getBirthDate());
 
         if (!conditions.isEmpty()){

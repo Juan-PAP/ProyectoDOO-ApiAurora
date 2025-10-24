@@ -29,7 +29,7 @@ public final class IdentificationTypeDomain extends Domain{
     }
 
     public void setName(final String name) {
-        this.name = TextHelper.getDefault(this.name);
+        this.name = TextHelper.getDefault(name);
     }
 
     public static IdentificationTypeDomain createDefault() {

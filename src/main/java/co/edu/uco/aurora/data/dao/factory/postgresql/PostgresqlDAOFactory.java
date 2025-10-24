@@ -3,6 +3,18 @@ package co.edu.uco.aurora.data.dao.factory.postgresql;
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
 import co.edu.uco.aurora.crosscuting.messagescatalog.MessagesEnum;
 import co.edu.uco.aurora.data.dao.entity.*;
+import co.edu.uco.aurora.data.dao.entity.sqls.AdministratorPostgresqlDAO;
+import co.edu.uco.aurora.data.dao.entity.sqls.BatchPostgresqlDAO;
+import co.edu.uco.aurora.data.dao.entity.sqls.BrandPostgresqlDAO;
+import co.edu.uco.aurora.data.dao.entity.sqls.CategoryPostgresqlDAO;
+import co.edu.uco.aurora.data.dao.entity.sqls.CustomerPostgresqlDAO;
+import co.edu.uco.aurora.data.dao.entity.sqls.IdentificationTypePostgresqlDAO;
+import co.edu.uco.aurora.data.dao.entity.sqls.ProductBrandPostgresqlDAO;
+import co.edu.uco.aurora.data.dao.entity.sqls.ProductPostgresqlDAO;
+import co.edu.uco.aurora.data.dao.entity.sqls.SalePostgresqlDAO;
+import co.edu.uco.aurora.data.dao.entity.sqls.SaleProductBrandPostgresqlDAO;
+import co.edu.uco.aurora.data.dao.entity.sqls.UnitMeasurementPostgresqlDAO;
+import co.edu.uco.aurora.data.dao.entity.sqls.UnitSalesPostgresqlDAO;
 import co.edu.uco.aurora.data.dao.factory.DAOFactory;
 
 import java.sql.DriverManager;
@@ -41,63 +53,63 @@ public final class PostgresqlDAOFactory extends DAOFactory {
     }
 
     @Override
-    public AdministratorDAO getAdmistratorDao() {
-        return null;
+    public AdministratorDAO getAdministratorDao() {
+        return new AdministratorPostgresqlDAO(connection);
     }
 
     @Override
     public CustomerDAO getCustomerDAO() {
-        return null;
+        return new CustomerPostgresqlDAO(connection);
     }
 
     @Override
     public BatchDAO getBatchDAO() {
-        return null;
+        return new BatchPostgresqlDAO(connection);
     }
 
     @Override
     public BrandDAO getBrandDAO() {
-        return null;
+        return new BrandPostgresqlDAO(connection);
     }
 
     @Override
     public CategoryDAO getCategoryDAO() {
-        return null;
+        return new CategoryPostgresqlDAO(connection);
     }
 
     @Override
     public IdentificationTypeDAO getIdentificationTypeDAO() {
-        return null;
+        return new IdentificationTypePostgresqlDAO(connection);
     }
 
     @Override
     public ProductBrandDAO getProductBrandDAO() {
-        return null;
+        return new ProductBrandPostgresqlDAO(connection);
     }
 
     @Override
     public ProductDAO getProductDAO() {
-        return null;
+        return new ProductPostgresqlDAO(connection);
     }
 
     @Override
-    public UnitMeasurementDAO getProductSizeDAO() {
-        return null;
+    public UnitMeasurementDAO getUnitMeasurementDAO() {
+        return new UnitMeasurementPostgresqlDAO(connection);
     }
 
     @Override
     public SaleDAO getSaleDAO() {
-        return null;
+        return new SalePostgresqlDAO(connection);
     }
 
     @Override
     public SaleProductBrandDAO getSaleProductBrandDAO() {
-        return null;
+        return new SaleProductBrandPostgresqlDAO(connection);
     }
 
     @Override
     public UnitSalesDAO getUnitSalesDAO() {
-        return null;
+        return new UnitSalesPostgresqlDAO(connection);
     }
 
 }

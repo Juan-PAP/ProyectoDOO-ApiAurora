@@ -2,6 +2,7 @@ package co.edu.uco.aurora.business.facade.impl;
 
 import co.edu.uco.aurora.business.assembler.dto.impl.CustomerDTOAssembler;
 import co.edu.uco.aurora.business.business.impl.CustomerBusinessImpl;
+import co.edu.uco.aurora.business.domain.CustomerDomain;
 import co.edu.uco.aurora.business.facade.CustomerFacade;
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
 import co.edu.uco.aurora.crosscuting.messagescatalog.MessagesEnumFacade;
@@ -66,6 +67,28 @@ public final class CustomerFacadeImpl implements CustomerFacade {
 
     @Override
     public List<CustomerDTO> getAllCustomer() {
-        return List.of();
+
+        var daoFactory = DAOFactory.getFactory();
+        var business = new CustomerBusinessImpl(daoFactory);
+
+        try {
+            final List<CustomerDomain> domainList = business.getAllCustomer();
+
+            return CustomerDTOAssembler.getCustomerDTOAssembler().toDTO(domainList);
+        } catch (final AuroraException exception) {
+
+            throw exception;
+
+        } catch (final Exception exception) {
+
+            var userMessage = MessagesEnumFacade.USER_ERROR_UNEXPECTED_ERROR.getContent();
+            var technicalMessage = MessagesEnumFacade.TECHNICAL_ERROR_UNEXPECTED_ERROR.getContent()
+                    + ": " + exception.getMessage();
+
+            throw AuroraException.create(exception, userMessage, technicalMessage);
+
+        } finally {
+            daoFactory.closeConnection();
+        }
     }
 }

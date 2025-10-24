@@ -21,7 +21,7 @@ public final class IdentificationTypeDTO extends DTO {
 
     public IdentificationTypeDTO(final UUID id, final String name) {
         super(id);
-        setName(this.name);
+        setName(name);
     }
 
     public String getName() {
@@ -29,7 +29,7 @@ public final class IdentificationTypeDTO extends DTO {
     }
 
     public void setName(final String name) {
-        this.name = TextHelper.getDefault(this.name);
+        this.name = TextHelper.getDefault(name);
     }
 
     public static IdentificationTypeDTO createDefault() {

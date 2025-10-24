@@ -13,6 +13,7 @@ import co.edu.uco.aurora.entity.IdentificationTypeEntity;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.regex.Pattern;
@@ -229,6 +230,19 @@ public final class CustomerBusinessImpl implements CustomerBusiness {
 
     @Override
     public List<CustomerDomain> getAllCustomer() {
-        return List.of();
+
+        // Se obtiene la lista de entidades desde la capa de datos por una consulta
+        final List<CustomerEntity> entityList = daoFactory.getCustomerDAO().findAll();
+
+        // Se convierte la lista de entidades a una lista de dominios
+        final List<CustomerDomain> domainList = new ArrayList<>();
+
+        // Se itera sobre cada entidad y convertirla a dominio
+        for (final CustomerEntity entity : entityList) {
+            domainList.add(CustomerEntityAssembler.getCustomerEntityAssembler().toDomain(entity));
+        }
+
+        // Se retorna la lista de dominios
+        return domainList;
     }
 }
