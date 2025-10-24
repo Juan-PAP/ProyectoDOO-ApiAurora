@@ -4,6 +4,7 @@ import co.edu.uco.aurora.business.assembler.dto.impl.CustomerDTOAssembler;
 import co.edu.uco.aurora.business.business.impl.CustomerBusinessImpl;
 import co.edu.uco.aurora.business.facade.CustomerFacade;
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
+import co.edu.uco.aurora.crosscuting.messagescatalog.MessagesEnumFacade;
 import co.edu.uco.aurora.data.dao.factory.DAOFactory;
 import co.edu.uco.aurora.dto.CustomerDTO;
 
@@ -33,8 +34,9 @@ public final class CustomerFacadeImpl implements CustomerFacade {
         } catch (final Exception exception) {
             daoFactory.rollbackTransaction();
 
-            var userMessage = "";
-            var technicalMessage = "";
+            var userMessage = MessagesEnumFacade.USER_ERROR_UNEXPECTED_ERROR.getContent();
+            var technicalMessage = MessagesEnumFacade.TECHNICAL_ERROR_UNEXPECTED_ERROR.getContent()
+                    + ": " + exception.getMessage();
 
             throw AuroraException.create(exception, userMessage, technicalMessage);
         } finally {
