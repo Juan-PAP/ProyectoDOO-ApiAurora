@@ -72,15 +72,18 @@ public final class CustomerFacadeImpl implements CustomerFacade {
         var business = new CustomerBusinessImpl(daoFactory);
 
         try {
+
+            daoFactory.initTransaction();
+
             final List<CustomerDomain> domainList = business.getAllCustomer();
 
             return CustomerDTOAssembler.getCustomerDTOAssembler().toDTO(domainList);
         } catch (final AuroraException exception) {
-
+            daoFactory.rollbackTransaction();
             throw exception;
 
         } catch (final Exception exception) {
-
+            daoFactory.rollbackTransaction();
             var userMessage = MessagesEnumFacade.USER_ERROR_UNEXPECTED_ERROR.getContent();
             var technicalMessage = MessagesEnumFacade.TECHNICAL_ERROR_UNEXPECTED_ERROR.getContent()
                     + ": " + exception.getMessage();
