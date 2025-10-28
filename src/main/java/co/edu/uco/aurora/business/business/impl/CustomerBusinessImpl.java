@@ -47,6 +47,8 @@ public final class CustomerBusinessImpl implements CustomerBusiness {
     @Override
     public void registerNewCustomer(final CustomerDomain customerDomain) {
 
+        validateAndLoadIdentificationType(customerDomain);
+
         // 1. Validar integridad en los formatos, longitudes, rangos y obligatoriedad
         validateIntegrityInformation(customerDomain);
 
@@ -71,21 +73,31 @@ public final class CustomerBusinessImpl implements CustomerBusiness {
         daoFactory.getCustomerDAO().create(customerEntity);
     }
 
+    private void validateAndLoadIdentificationType(CustomerDomain customer) {
+        if (customer == null) {
+            throw AuroraException.create("La información del cliente es obligatoria.");
+        }
+        if (customer.getIdentificationType() == null ||
+                UUIDHelper.getUUIDHelper().isDefaultUUID(customer.getIdentificationType().getId())) {
+
+            throw AuroraException.create("El tipo de identificación del cliente es obligatorio.");
+        }
+
+        var id = customer.getIdentificationType().getId();
+
+        IdentificationTypeEntity idTypeEntity = daoFactory.getIdentificationTypeDAO().findById(id);
+
+        if (idTypeEntity == null || UUIDHelper.getUUIDHelper().isDefaultUUID(idTypeEntity.getId())) {
+            throw AuroraException.create("El tipo de identificación especificado con ID " + id + " no existe.");
+        }
+
+        customer.getIdentificationType().setName(idTypeEntity.getName());
+    }
+
     /**
      * Regla 1: Valida formatos, longitudes, rangos y obligatoriedad.
      */
     private void validateIntegrityInformation(CustomerDomain customer) {
-        // Reglas para Tipo de Identificacion
-        if (customer == null) {
-            throw AuroraException.create("La información del cliente es obligatoria.");
-        }
-        if (customer.getIdentificationType() == null || UUIDHelper.getUUIDHelper().isDefaultUUID(customer.getIdentificationType().getId())) {
-            throw AuroraException.create("El tipo de identificación del cliente es obligatorio.");
-        }
-        if (TextHelper.isEmptyWithTrim(customer.getIdentificationType().getName())) {
-            throw AuroraException.create("El nombre del tipo de identificación es obligatorio para validar las reglas de edad.");
-        }
-
         // Reglas para Numero de Identificacion
         String idNumber = customer.getIdentificationNumber();
         if (TextHelper.isEmptyWithTrim(idNumber)) {

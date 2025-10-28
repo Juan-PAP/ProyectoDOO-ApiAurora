@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public final class BrandPostgresqlDAO extends SqlConnection implements BrandDAO {
 
@@ -77,6 +78,14 @@ public final class BrandPostgresqlDAO extends SqlConnection implements BrandDAO 
             var technicalMessage = MessagesEnumBrandDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_BRAND.getContent();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
+    }
+
+    @Override
+    public BrandEntity findById(UUID id) {
+        return findByFilter(new BrandEntity(id))
+                .stream()
+                .findFirst()
+                .orElse(new BrandEntity());
     }
 
     private String createSentenceFindByFilter (final BrandEntity filterEntity, final List<Object> parameterList) {

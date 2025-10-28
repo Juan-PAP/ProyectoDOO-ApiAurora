@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public final class SalePostgresqlDAO extends SqlConnection implements SaleDAO {
 
@@ -84,6 +85,14 @@ public final class SalePostgresqlDAO extends SqlConnection implements SaleDAO {
                     + ": " + exception.getMessage();;
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
+    }
+
+    @Override
+    public SaleEntity findById(UUID id) {
+        return findByFilter(new SaleEntity(id))
+                .stream()
+                .findFirst()
+                .orElse(new SaleEntity());
     }
 
     private String createSentenceFindByFilter (final SaleEntity filterEntity, final List<Object> parameterList) {

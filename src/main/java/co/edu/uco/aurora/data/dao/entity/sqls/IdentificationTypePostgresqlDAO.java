@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public final class IdentificationTypePostgresqlDAO extends SqlConnection implements IdentificationTypeDAO {
 
@@ -24,6 +25,14 @@ public final class IdentificationTypePostgresqlDAO extends SqlConnection impleme
     @Override
     public List<IdentificationTypeEntity> findAll() {
         return findByFilter(new IdentificationTypeEntity());
+    }
+
+    @Override
+    public IdentificationTypeEntity findById(final UUID id) {
+        return findByFilter(new IdentificationTypeEntity(id))
+                .stream()
+                .findFirst()
+                .orElse(new IdentificationTypeEntity());
     }
 
     @Override
@@ -57,7 +66,7 @@ public final class IdentificationTypePostgresqlDAO extends SqlConnection impleme
 
     private String createSentenceFindByFilter (final IdentificationTypeEntity filterEntity, final List<Object> parameterList) {
 
-        final var sql = new StringBuilder("SELECT T.id, T.nombre FROM TipoDocumento T");
+        final var sql = new StringBuilder("SELECT T.id, T.nombre FROM tipoidentificacion T");
 
         createWhereClauseFindByFilter(sql, parameterList, filterEntity);
 

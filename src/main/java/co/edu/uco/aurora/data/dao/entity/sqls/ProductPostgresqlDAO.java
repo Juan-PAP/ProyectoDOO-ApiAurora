@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public final class ProductPostgresqlDAO extends SqlConnection implements ProductDAO {
 
@@ -34,7 +35,7 @@ public final class ProductPostgresqlDAO extends SqlConnection implements Product
 
             preparedStatement.setObject(1, entity.getId());
             preparedStatement.setString(2, entity.getName());
-            preparedStatement.setObject(3, entity.getCategory().getId()); // Asume que ProductEntity tiene getCategory()
+            preparedStatement.setObject(3, entity.getCategory().getId());
 
             preparedStatement.executeUpdate();
 
@@ -114,6 +115,14 @@ public final class ProductPostgresqlDAO extends SqlConnection implements Product
                     + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
+    }
+
+    @Override
+    public ProductEntity findById(UUID id) {
+        return findByFilter(new ProductEntity(id))
+                .stream()
+                .findFirst()
+                .orElse(new ProductEntity());
     }
 
     private String createSentenceFindByFilter (final ProductEntity filterEntity, final List<Object> parameterList) {

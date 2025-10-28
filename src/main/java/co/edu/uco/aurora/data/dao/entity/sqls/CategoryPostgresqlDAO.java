@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public final class CategoryPostgresqlDAO extends SqlConnection implements CategoryDAO {
 
@@ -102,6 +103,14 @@ public final class CategoryPostgresqlDAO extends SqlConnection implements Catego
                     + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
+    }
+
+    @Override
+    public CategoryEntity findById(UUID id) {
+        return findByFilter(new CategoryEntity(id))
+                .stream()
+                .findFirst()
+                .orElse(new CategoryEntity());
     }
 
     private String createSentenceFindByFilter(final CategoryEntity filterEntity, final List<Object> parameterList) {

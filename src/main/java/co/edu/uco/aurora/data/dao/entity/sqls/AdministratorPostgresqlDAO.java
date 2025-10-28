@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public final class AdministratorPostgresqlDAO extends SqlConnection implements AdministratorDAO {
 
@@ -78,6 +79,14 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
             var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_ADMINISTRATOR.getContent();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
+    }
+
+    @Override
+    public AdministratorEntity findById(UUID id) {
+        return findByFilter(new AdministratorEntity(id))
+                .stream()
+                .findFirst()
+                .orElse(new AdministratorEntity());
     }
 
     private String createSentenceFindByFilter (final AdministratorEntity filterEntity, final List<Object> parameterList) {

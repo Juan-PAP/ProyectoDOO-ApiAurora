@@ -18,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public final class BatchPostgresqlDAO extends SqlConnection implements BatchDAO {
 
@@ -122,6 +123,14 @@ public final class BatchPostgresqlDAO extends SqlConnection implements BatchDAO 
                     + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
+    }
+
+    @Override
+    public BatchEntity findById(UUID id) {
+        return findByFilter(new BatchEntity(id))
+                .stream()
+                .findFirst()
+                .orElse(new BatchEntity());
     }
 
     private String createSentenceFindByFilter(final BatchEntity filterEntity, final List<Object> parameterList) {

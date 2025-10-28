@@ -57,10 +57,16 @@ public final class CustomerPostgresqlDAO extends SqlConnection implements Custom
 
     @Override
     public List<CustomerEntity> findAll() {
-
         return findByFilter(new CustomerEntity());
     }
 
+    @Override
+    public CustomerEntity findById(final java.util.UUID id) {
+        return findByFilter(new CustomerEntity(id))
+                .stream()
+                .findFirst()
+                .orElse(new CustomerEntity());
+    }
 
     @Override
     public List<CustomerEntity> findByFilter(final CustomerEntity filterEntity) {

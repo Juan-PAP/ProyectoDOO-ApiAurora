@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public final class UnitSalesPostgresqlDAO extends SqlConnection implements UnitSalesDAO {
 
@@ -53,6 +54,14 @@ public final class UnitSalesPostgresqlDAO extends SqlConnection implements UnitS
             var technicalMessage = MessagesEnumUnitSalesDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_UNIT_SALES.getContent();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
+    }
+
+    @Override
+    public UnitSalesEntity findById(UUID id) {
+        return findByFilter(new UnitSalesEntity(id))
+                .stream()
+                .findFirst()
+                .orElse(new UnitSalesEntity());
     }
 
     private String createSentenceFindByFilter (final UnitSalesEntity filterEntity, final List<Object> parameterList) {

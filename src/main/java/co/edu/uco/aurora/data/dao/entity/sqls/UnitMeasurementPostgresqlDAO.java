@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public final class UnitMeasurementPostgresqlDAO extends SqlConnection implements UnitMeasurementDAO {
 
@@ -54,6 +55,14 @@ public final class UnitMeasurementPostgresqlDAO extends SqlConnection implements
                     + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
+    }
+
+    @Override
+    public UnitMeasurementEntity findById(UUID id) {
+        return findByFilter(new UnitMeasurementEntity(id))
+                .stream()
+                .findFirst()
+                .orElse(new UnitMeasurementEntity());
     }
 
     private String createSentenceFindByFilter(final UnitMeasurementEntity filterEntity, final List<Object> parameterList) {

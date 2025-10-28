@@ -18,6 +18,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public final class ProductBrandPostgresqlDAO extends SqlConnection implements ProductBrandDAO {
 
@@ -132,6 +133,14 @@ public final class ProductBrandPostgresqlDAO extends SqlConnection implements Pr
                     + ": " + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
+    }
+
+    @Override
+    public ProductBrandEntity findById(UUID uuid) {
+        return findByFilter(new ProductBrandEntity(uuid))
+                .stream()
+                .findFirst()
+                .orElse(new ProductBrandEntity());
     }
 
     private String createSentenceFindByFilter(final ProductBrandEntity filterEntity, final List<Object> parameterList) {
