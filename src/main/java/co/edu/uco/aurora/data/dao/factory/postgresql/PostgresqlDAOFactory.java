@@ -53,7 +53,7 @@ public final class PostgresqlDAOFactory extends DAOFactory {
     }
 
     @Override
-    public AdministratorDAO getAdministratorDao() {
+    public AdministratorDAO getAdministratorDAO() {
         return new AdministratorPostgresqlDAO(connection);
     }
 

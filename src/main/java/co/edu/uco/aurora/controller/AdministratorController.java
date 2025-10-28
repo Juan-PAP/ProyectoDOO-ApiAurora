@@ -20,7 +20,7 @@ public class AdministratorController {
     public ResponseEntity<Response<AdministratorDTO>> login(@RequestBody AdministratorDTO administrator) {
 
         Response<AdministratorDTO> responseObjectData = Response.createSuccededResponse();
-        HttpStatusCode responseStatusCode = HttpStatus.OK; // 200 OK para un login exitoso
+        HttpStatusCode responseStatusCode = HttpStatus.OK;
 
         try {
 
@@ -43,7 +43,7 @@ public class AdministratorController {
             var userMessage = "Unexpected error during login";
             responseObjectData = Response.createFailedResponse();
             responseObjectData.addMessage(userMessage);
-            responseStatusCode = HttpStatus.INTERNAL_SERVER_ERROR; // 500
+            responseStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
             exception.printStackTrace();
         }
 
