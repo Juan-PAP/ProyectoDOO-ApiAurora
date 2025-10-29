@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/api/v1/identification-types")
+@RequestMapping("/api/v1/id-types")
 public class IdentificationTypeController {
 
     @GetMapping
@@ -22,10 +22,8 @@ public class IdentificationTypeController {
         HttpStatusCode responseStatusCode = HttpStatus.OK;
 
         try {
-            // Sigo el patrón de tu CustomerController
             var facade = new IdentificationTypeFacadeImpl();
 
-            // Asumo que tu fachada tiene un método 'findAll()' que devuelve List<IdentificationTypeDTO>
             responseObjectData.setData(facade.getAllIdentificationType());
             responseObjectData.addMessage("All identification types loaded successfully");
 
