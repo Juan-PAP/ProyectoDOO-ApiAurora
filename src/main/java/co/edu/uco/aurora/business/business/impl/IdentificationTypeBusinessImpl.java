@@ -24,18 +24,14 @@ public class IdentificationTypeBusinessImpl implements IdentificationTypeBusines
     @Override
     public List<IdentificationTypeDomain> getAllIdentificationType() {
 
-        // Se obtiene la lista de entidades desde la capa de datos por una consulta
         final List<IdentificationTypeEntity> entityList = daoFactory.getIdentificationTypeDAO().findAll();
 
-        // Se convierte la lista de entidades a una lista de dominios
         final List<IdentificationTypeDomain> domainList = new ArrayList<>();
 
-        // Se itera sobre cada entidad y convertirla a dominio
         for (final IdentificationTypeEntity entity : entityList) {
             domainList.add(IdentificationTypeEntityAssembler.getIdentificationTypeEntityAssembler().toDomain(entity));
         }
 
-        // Se retorna la lista de dominios
         return domainList;
     }
 
