@@ -17,7 +17,6 @@ public class AdministratorBusinessImpl implements AdministratorBusiness {
     private final DAOFactory factory;
 
     public AdministratorBusinessImpl(final DAOFactory factory) {
-        // Idealmente, validar que factory no sea null
         this.factory = factory;
     }
 
@@ -43,7 +42,6 @@ public class AdministratorBusinessImpl implements AdministratorBusiness {
 
             if (entities.isEmpty()) {
                 var userMessage = MessagesEnumAdministratorBusiness.USER_ERROR_INVALID_CREDENTIALS.getContent();
-
                 throw AuroraException.create(userMessage, userMessage);
             }
 

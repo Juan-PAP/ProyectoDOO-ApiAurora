@@ -178,13 +178,12 @@ public final class CustomerBusinessImpl implements CustomerBusiness {
         idTypeFilter.setId(customer.getIdentificationType().getId());
 
         var filter = new CustomerEntity();
-        filter.setIdentificationType(idTypeFilter);
         filter.setIdentificationNumber(customer.getIdentificationNumber());
 
         List<CustomerEntity> results = daoFactory.getCustomerDAO().findByFilter(filter);
 
         if (!results.isEmpty()) {
-            throw AuroraException.create("Ya existe un cliente con el mismo tipo y número de identificación.");
+            throw AuroraException.create("Ya existe un cliente con el mismo número de identificación.");
         }
     }
     /**

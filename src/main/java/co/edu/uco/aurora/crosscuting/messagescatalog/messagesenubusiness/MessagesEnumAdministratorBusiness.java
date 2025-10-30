@@ -4,13 +4,18 @@ import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumAdministratorBusiness {
 
-    USER_ERROR_INVALID_CREDENTIALS("Invalid Credentials", "The user or password provided are incorrect."),
+    USER_ERROR_INVALID_CREDENTIALS("Credenciales invalidas",
+            "El usuario o la contraseña son incorrectos."),
 
-    USER_ERROR_UNEXPECTED_LOGIN_ERROR ("Unexpected Login Error", "An unexpected error occurred while trying to login. Please try again later."),
+    USER_ERROR_UNEXPECTED_LOGIN_ERROR ("Error Inesperado al iniciar de sesión",
+            "Ocurrió un error inesperado al intentar iniciar sesión. Por favor, inténtalo de nuevo más tarde."),
 
-    TECHNICAL_ERROR_UNEXPECTED_LOGIN_ERROR ("Technical Unexpected Login Error", "An unexpected error occurred in the system while trying to login."),
+    TECHNICAL_ERROR_UNEXPECTED_LOGIN_ERROR ("Error Técnico Inesperado de Inicio de Sesión",
+            "Ocurrió un error inesperado en el sistema al intentar iniciar sesión."),
 
-    USER_ERROR_EMPTY_CREDENTIALS ("Empty Credentials", "The user and password must be provided.");
+    USER_ERROR_EMPTY_CREDENTIALS ("Credenciales Vacías",
+            "Se deben proporcionar el usuario y la contraseña.");
+
     private String title;
     private String content;
 
