@@ -49,4 +49,16 @@ public final class ProductEntityAssembler implements EntityAssembler<ProductEnti
 
         return productEntityList;
     }
+
+    @Override
+    public List<ProductDomain> toDomain(List<ProductEntity> entityList) {
+        var entityListTmp = ObjectHelper.getDefault(entityList, new ArrayList<ProductEntity>());
+        var domainList = new ArrayList<ProductDomain>();
+
+        for (var entity : entityListTmp) {
+            domainList.add(toDomain(entity));
+        }
+
+        return domainList;
+    }
 }

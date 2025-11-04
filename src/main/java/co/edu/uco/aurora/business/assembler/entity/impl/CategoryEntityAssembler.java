@@ -48,4 +48,16 @@ public final class CategoryEntityAssembler implements EntityAssembler<CategoryEn
 
         return categoryEntityList;
     }
+
+    @Override
+    public List<CategoryDomain> toDomain(List<CategoryEntity> entityList) {
+        var entityListTmp = ObjectHelper.getDefault(entityList, new ArrayList<CategoryEntity>());
+        var domainList = new ArrayList<CategoryDomain>();
+
+        for (var entity : entityListTmp) {
+            domainList.add(toDomain(entity));
+        }
+
+        return domainList;
+    }
 }

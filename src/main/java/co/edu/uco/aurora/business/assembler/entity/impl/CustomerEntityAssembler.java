@@ -54,4 +54,16 @@ public final class CustomerEntityAssembler implements EntityAssembler<CustomerEn
 
         return customerEntityList;
     }
+
+    @Override
+    public List<CustomerDomain> toDomain(List<CustomerEntity> entityList) {
+        var entityListTmp = ObjectHelper.getDefault(entityList, new ArrayList<CustomerEntity>());
+        var domainList = new ArrayList<CustomerDomain>();
+
+        for (var entity : entityListTmp) {
+            domainList.add(toDomain(entity));
+        }
+
+        return domainList;
+    }
 }

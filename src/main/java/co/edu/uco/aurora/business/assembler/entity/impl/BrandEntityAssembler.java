@@ -49,4 +49,16 @@ public final class BrandEntityAssembler implements EntityAssembler<BrandEntity, 
 
         return brandEntityList;
     }
+
+    @Override
+    public List<BrandDomain> toDomain(List<BrandEntity> entityList) {
+        var entityListTmp = ObjectHelper.getDefault(entityList, new ArrayList<BrandEntity>());
+        var domainList = new ArrayList<BrandDomain>();
+
+        for (var entity : entityListTmp) {
+            domainList.add(toDomain(entity));
+        }
+
+        return domainList;
+    }
 }

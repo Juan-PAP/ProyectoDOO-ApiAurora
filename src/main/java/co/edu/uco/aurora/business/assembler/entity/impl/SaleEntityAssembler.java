@@ -50,4 +50,16 @@ public final  class SaleEntityAssembler implements EntityAssembler<SaleEntity, S
 
         return saleEntityList;
     }
+
+    @Override
+    public List<SaleDomain> toDomain(List<SaleEntity> entityList) {
+        var entityListTmp = ObjectHelper.getDefault(entityList, new ArrayList<SaleEntity>());
+        var domainList = new ArrayList<SaleDomain>();
+
+        for (var entity : entityListTmp) {
+            domainList.add(toDomain(entity));
+        }
+
+        return domainList;
+    }
 }

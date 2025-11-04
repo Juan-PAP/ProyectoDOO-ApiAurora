@@ -1,9 +1,11 @@
 package co.edu.uco.aurora.business.assembler.entity.impl;
 
 import co.edu.uco.aurora.business.assembler.entity.EntityAssembler;
+import co.edu.uco.aurora.business.domain.UnitMeasurementDomain;
 import co.edu.uco.aurora.business.domain.UnitSalesDomain;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
+import co.edu.uco.aurora.entity.UnitMeasurementEntity;
 import co.edu.uco.aurora.entity.UnitSalesEntity;
 
 import java.util.ArrayList;
@@ -47,5 +49,17 @@ public final class UnitSalesEntityAssembler implements EntityAssembler<UnitSales
         }
 
         return unitSalesEntityList;
+    }
+
+    @Override
+    public List<UnitSalesDomain> toDomain(List<UnitSalesEntity> entityList) {
+        var entityListTmp = ObjectHelper.getDefault(entityList, new ArrayList<UnitSalesEntity>());
+        var domainList = new ArrayList<UnitSalesDomain>();
+
+        for (var entity : entityListTmp) {
+            domainList.add(toDomain(entity));
+        }
+
+        return domainList;
     }
 }

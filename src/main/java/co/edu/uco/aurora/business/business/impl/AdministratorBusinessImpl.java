@@ -4,7 +4,7 @@ import co.edu.uco.aurora.business.business.AdministratorBusiness;
 import co.edu.uco.aurora.business.domain.AdministratorDomain;
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
-import co.edu.uco.aurora.crosscuting.messagescatalog.messagesenubusiness.MessagesEnumAdministratorBusiness;
+import co.edu.uco.aurora.crosscuting.messagescatalog.business.MessagesEnumAdministratorBusiness;
 import co.edu.uco.aurora.data.dao.entity.AdministratorDAO;
 import co.edu.uco.aurora.data.dao.factory.DAOFactory;
 import co.edu.uco.aurora.entity.AdministratorEntity;
@@ -12,7 +12,7 @@ import co.edu.uco.aurora.entity.AdministratorEntity;
 import java.util.List;
 import java.util.UUID;
 
-public class AdministratorBusinessImpl implements AdministratorBusiness {
+public final class AdministratorBusinessImpl implements AdministratorBusiness {
 
     private final DAOFactory factory;
 
@@ -21,17 +21,17 @@ public class AdministratorBusinessImpl implements AdministratorBusiness {
     }
 
     @Override
-    public void registerNewAdministrator(AdministratorDomain administrator) {
+    public void registerNewAdministrator(final AdministratorDomain administrator) {
 
     }
 
     @Override
-    public void updateAdministratorInformation(UUID id, AdministratorDomain administrator) {
+    public void updateAdministratorInformation(final UUID id, final AdministratorDomain administrator) {
 
     }
 
     @Override
-    public void login(AdministratorDomain administrator) {
+    public void login(final AdministratorDomain administrator) {
 
         try {
             validateLoginCredentials(administrator);
@@ -63,7 +63,7 @@ public class AdministratorBusinessImpl implements AdministratorBusiness {
         }
     }
 
-    private void validateLoginCredentials(AdministratorDomain administrator) {
+    private void validateLoginCredentials(final AdministratorDomain administrator) {
         if (TextHelper.isEmptyWithTrim(administrator.getUser()) ||
                 TextHelper.isEmptyWithTrim(administrator.getPassword())) {
 
@@ -74,7 +74,7 @@ public class AdministratorBusinessImpl implements AdministratorBusiness {
     }
 
     @Override
-    public List<AdministratorDomain> getAdministratorByFilter(AdministratorDomain administrator) {
+    public List<AdministratorDomain> getAdministratorByFilter(final AdministratorDomain administrator) {
         return List.of();
     }
 

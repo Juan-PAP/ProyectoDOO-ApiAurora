@@ -54,4 +54,16 @@ public final class BatchEntityAssembler implements EntityAssembler<BatchEntity, 
 
         return batchEntityList;
     }
+
+    @Override
+    public List<BatchDomain> toDomain(List<BatchEntity> entityList) {
+        var entityListTmp = ObjectHelper.getDefault(entityList, new ArrayList<BatchEntity>());
+        var domainList = new ArrayList<BatchDomain>();
+
+        for (var entity : entityListTmp) {
+            domainList.add(toDomain(entity));
+        }
+
+        return domainList;
+    }
 }

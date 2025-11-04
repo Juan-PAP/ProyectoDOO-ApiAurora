@@ -47,4 +47,16 @@ public final class IdentificationTypeEntityAssembler implements EntityAssembler<
 
         return identificationTypeEntityList;
     }
+
+    @Override
+    public List<IdentificationTypeDomain> toDomain(List<IdentificationTypeEntity> entityList) {
+        var entityListTmp = ObjectHelper.getDefault(entityList, new ArrayList<IdentificationTypeEntity>());
+        var domainList = new ArrayList<IdentificationTypeDomain>();
+
+        for (var entity : entityListTmp) {
+            domainList.add(toDomain(entity));
+        }
+
+        return domainList;
+    }
 }

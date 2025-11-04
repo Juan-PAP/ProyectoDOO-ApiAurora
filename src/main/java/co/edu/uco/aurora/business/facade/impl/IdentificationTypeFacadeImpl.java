@@ -5,12 +5,13 @@ import co.edu.uco.aurora.business.business.impl.IdentificationTypeBusinessImpl;
 import co.edu.uco.aurora.business.domain.IdentificationTypeDomain;
 import co.edu.uco.aurora.business.facade.IdentificationTypeFacade;
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
+import co.edu.uco.aurora.crosscuting.messagescatalog.facade.MessagesEnumFacade;
 import co.edu.uco.aurora.data.dao.factory.DAOFactory;
 import co.edu.uco.aurora.dto.IdentificationTypeDTO;
 
 import java.util.List;
 
-public class IdentificationTypeFacadeImpl implements IdentificationTypeFacade {
+public final class IdentificationTypeFacadeImpl implements IdentificationTypeFacade {
     @Override
     public List<IdentificationTypeDTO> getIdentificationTypeByFilter(IdentificationTypeDTO identificationType) {
         return List.of();
@@ -36,8 +37,9 @@ public class IdentificationTypeFacadeImpl implements IdentificationTypeFacade {
         } catch (final Exception exception) {
             daoFactory.rollbackTransaction();
 
-            var userMessage = "An unexpected error occurred while retrieving identification types.";
-            var technicalMessage = "Unexpected error: " + exception.getMessage();
+            var userMessage = MessagesEnumFacade.USER_ERROR_UNEXPECTED_ERROR.getContent();
+            var technicalMessage = MessagesEnumFacade.TECHNICAL_ERROR_UNEXPECTED_ERROR.getContent()
+                    + ": " + exception.getMessage();
 
             throw AuroraException.create(exception, userMessage, technicalMessage);
         } finally {

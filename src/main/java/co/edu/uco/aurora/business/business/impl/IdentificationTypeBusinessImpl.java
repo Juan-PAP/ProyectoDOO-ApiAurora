@@ -9,7 +9,7 @@ import co.edu.uco.aurora.entity.IdentificationTypeEntity;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IdentificationTypeBusinessImpl implements IdentificationTypeBusiness {
+public final class IdentificationTypeBusinessImpl implements IdentificationTypeBusiness {
 
     private final DAOFactory daoFactory;
 
@@ -17,7 +17,7 @@ public class IdentificationTypeBusinessImpl implements IdentificationTypeBusines
         this.daoFactory = factory;
     }
     @Override
-    public List<IdentificationTypeDomain> getIdentificationTypeByFilter(IdentificationTypeDomain identificationType) {
+    public List<IdentificationTypeDomain> getIdentificationTypeByFilter(final IdentificationTypeDomain identificationType) {
         return List.of();
     }
 
@@ -36,7 +36,7 @@ public class IdentificationTypeBusinessImpl implements IdentificationTypeBusines
     }
 
     @Override
-    public IdentificationTypeDomain getIdentificationTypeById(IdentificationTypeDomain identificationType) {
+    public IdentificationTypeDomain getIdentificationTypeById(final IdentificationTypeDomain identificationType) {
         return null;
     }
 }

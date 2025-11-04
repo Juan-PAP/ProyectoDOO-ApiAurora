@@ -5,7 +5,7 @@ import co.edu.uco.aurora.business.business.impl.CustomerBusinessImpl;
 import co.edu.uco.aurora.business.domain.CustomerDomain;
 import co.edu.uco.aurora.business.facade.CustomerFacade;
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
-import co.edu.uco.aurora.crosscuting.messagescatalog.MessagesEnumFacade;
+import co.edu.uco.aurora.crosscuting.messagescatalog.facade.MessagesEnumFacade;
 import co.edu.uco.aurora.data.dao.factory.DAOFactory;
 import co.edu.uco.aurora.dto.CustomerDTO;
 

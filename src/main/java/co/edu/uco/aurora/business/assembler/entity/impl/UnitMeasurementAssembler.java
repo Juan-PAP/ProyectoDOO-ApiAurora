@@ -47,4 +47,16 @@ public final class UnitMeasurementAssembler implements EntityAssembler<UnitMeasu
 
         return productSizeEntityList;
     }
+
+    @Override
+    public List<UnitMeasurementDomain> toDomain(List<UnitMeasurementEntity> entityList) {
+        var entityListTmp = ObjectHelper.getDefault(entityList, new ArrayList<UnitMeasurementEntity>());
+        var domainList = new ArrayList<UnitMeasurementDomain>();
+
+        for (var entity : entityListTmp) {
+            domainList.add(toDomain(entity));
+        }
+
+        return domainList;
+    }
 }

@@ -54,4 +54,16 @@ public final class SaleProductBrandEntityAssembler implements EntityAssembler<Sa
 
         return saleProductBrandEntityList;
     }
+
+    @Override
+    public List<SaleProductBrandDomain> toDomain(List<SaleProductBrandEntity> entityList) {
+        var entityListTmp = ObjectHelper.getDefault(entityList, new ArrayList<SaleProductBrandEntity>());
+        var domainList = new ArrayList<SaleProductBrandDomain>();
+
+        for (var entity : entityListTmp) {
+            domainList.add(toDomain(entity));
+        }
+
+        return domainList;
+    }
 }

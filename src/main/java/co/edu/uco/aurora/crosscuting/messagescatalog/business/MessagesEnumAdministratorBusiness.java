@@ -1,4 +1,4 @@
-package co.edu.uco.aurora.crosscuting.messagescatalog.messagesenubusiness;
+package co.edu.uco.aurora.crosscuting.messagescatalog.business;
 
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
