@@ -12,14 +12,13 @@ import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 import co.edu.uco.aurora.data.dao.factory.DAOFactory;
 import co.edu.uco.aurora.entity.CustomerEntity;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 
 public final class CustomerBusinessImpl implements CustomerBusiness {
 
-    private DAOFactory daoFactory;
+    private final DAOFactory daoFactory;
 
     public CustomerBusinessImpl(final DAOFactory daoFactory) {
         this.daoFactory = daoFactory;

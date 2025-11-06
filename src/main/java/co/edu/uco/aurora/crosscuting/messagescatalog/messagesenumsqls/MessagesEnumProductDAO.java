@@ -4,7 +4,6 @@ import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumProductDAO {
 
-    // Errores para la operación de Inserción (INSERT) de Producto (PRODUCT)
 
     USER_ERROR_SQL_INSERT_PRODUCT(
             "Error al registrar la información del producto",
@@ -27,8 +26,6 @@ public enum MessagesEnumProductDAO {
                     "Revise los registros."),
 
 
-    // Errores para la operación de Actualización (UPDATE) de Producto (PRODUCT)
-
     USER_ERROR_SQL_UPDATE_PRODUCT(
             "Error al actualizar la información del producto",
             "No fue posible actualizar los datos del producto. Por favor, verifique los datos ingresados e intente de nuevo."),
@@ -46,7 +43,6 @@ public enum MessagesEnumProductDAO {
             "Se ha presentado un error inesperado (no-SQL) al actualizar el registro del producto. Revise la traza completa de la excepción."),
 
 
-    // Errores para la operación de Consulta por Filtro (FIND BY FILTER) de Producto (PRODUCT)
 
     USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_PRODUCT(
             "Error consultando información del producto por filtro",
@@ -69,7 +65,6 @@ public enum MessagesEnumProductDAO {
                     "Revise la traza completa de la excepción."),
 
 
-    // Errores para la Operación de Mapeo (MAPPING) de Producto (PRODUCT)
 
     USER_ERROR_SQL_MAPPING_PRODUCT(
             "Error interpretando la información del producto",
@@ -95,7 +90,7 @@ public enum MessagesEnumProductDAO {
     private String title;
     private String content;
 
-    private MessagesEnumProductDAO (final String title, final String content) {
+    MessagesEnumProductDAO (final String title, final String content) {
         setTitle(title);
         setContent(content);
     }

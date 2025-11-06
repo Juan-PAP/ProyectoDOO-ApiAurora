@@ -46,7 +46,7 @@ public final class StringValueIsPresentRule implements Rule {
                     dataName
             );
             throw AuroraException.create(userMessage, technicalMessage);
-        };
+        }
     }
 
 }

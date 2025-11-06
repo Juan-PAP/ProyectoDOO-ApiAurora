@@ -4,7 +4,6 @@ import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumCustomerRule {
 
-    // --- MENSAJES PARA CustomerIdentificationNumberDoesNotExistRule ---
     CUSTOMER_ID_NUMBER_DOES_NOT_EXIST_RULE_DATA_IS_NULL(
             "Se ha presentado un problema inesperado tratando de llevar a cabo la operación deseada.",
             "No se recibieron los parámetros requeridos para ejecutar la regla CustomerIdentificationNumberDoesNotExistRule."
@@ -19,7 +18,6 @@ public enum MessagesEnumCustomerRule {
     ),
 
 
-    // --- MENSAJES PARA CustomerPhoneNumberDoesNotExistRule ---
     CUSTOMER_PHONE_NUMBER_DOES_NOT_EXIST_RULE_DATA_IS_NULL(
             "Se ha presentado un problema inesperado tratando de llevar a cabo la operación deseada.",
                     "No se recibieron los parámetros requeridos para ejecutar la regla CustomerPhoneNumberDoesNotExistRule."
@@ -34,7 +32,6 @@ public enum MessagesEnumCustomerRule {
     ),
 
 
-    // --- MENSAJES PARA CustomerAgeConsistencyRule ---
     CUSTOMER_AGE_CONSISTENCY_RULE_DATA_IS_NULL(
             "Se ha presentado un problema inesperado tratando de llevar a cabo la operación deseada.",
             "No se recibieron los parámetros requeridos para ejecutar la regla CustomerAgeIsConsistentWithIdTypeRule."
@@ -64,7 +61,7 @@ public enum MessagesEnumCustomerRule {
     private String title;
     private String content;
 
-    private MessagesEnumCustomerRule(final String title, final String content) {
+    MessagesEnumCustomerRule(final String title, final String content) {
         setTitle(title);
         setContent(content);
     }

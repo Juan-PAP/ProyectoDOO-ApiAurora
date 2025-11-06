@@ -3,7 +3,6 @@ package co.edu.uco.aurora.crosscuting.messagescatalog.messagesenumsqls;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumBrandDAO {
-    // Errores para la operación de Inserción (INSERT) de Marca (BRAND)
 
     USER_ERROR_SQL_INSERT_BRAND("Error al registrar la información de la nueva marca",
             "Se ha presentado un problema tratando de registrar la información de la nueva marca. "
@@ -22,7 +21,7 @@ public enum MessagesEnumBrandDAO {
             "Se ha presentado un problema técnico inesperado al tratar de ejecutar el proceso de creación de la marca. "
                     + "Por favor valide que la base de datos esté funcionando correctamente y revise los registros. "
                     + "Si el problema persiste, contacte al administrador del sistema."),
-    // Errores para la operación de Ejecutar Consulta con Filtro de Marca (EXECUTING_FIND_BY_FILTER_BRAND)
+
 
     USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_BRAND(
             "Error consultando información de la marca por filtro",
@@ -43,7 +42,7 @@ public enum MessagesEnumBrandDAO {
             "Error técnico inesperado en la consulta de marca por filtro",
             "Se ha presentado un error técnico inesperado (no-SQL) al intentar ejecutar la consulta por filtro de marca. "
                     + "Revise la traza completa de la excepción para determinar la causa raíz del fallo en el proceso de búsqueda."),
-    // Errores para la Operación de Mapeo (MAPPING) de la Marca (BRAND)
+
 
     USER_ERROR_SQL_MAPPING_BRAND(
     "Error interpretando la información de la marca",
@@ -64,7 +63,7 @@ public enum MessagesEnumBrandDAO {
     "Error técnico inesperado en el mapeo de BrandEntity",
             "Se ha presentado un error inesperado (no-SQL) durante el proceso de mapeo del ResultSet a la entidad BrandEntity. "
             + "Revise la traza completa de la excepción para determinar la causa raíz."),
-    // Errores para la operación de Actualización (UPDATE) de Marca (BRAND)
+
 
     USER_ERROR_SQL_UPDATE_BRAND(
             "Error al actualizar la información de la marca",

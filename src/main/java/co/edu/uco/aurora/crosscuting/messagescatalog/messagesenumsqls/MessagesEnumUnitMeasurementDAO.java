@@ -3,7 +3,6 @@ package co.edu.uco.aurora.crosscuting.messagescatalog.messagesenumsqls;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumUnitMeasurementDAO {
-    // Errores para la operación de Consulta por Filtro (FIND BY FILTER) de Unidad de Medida (UNITMEASUREMENT)
 
     USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_UNITMEASUREMENT(
             "Error consultando información de la unidad de medida por filtro",
@@ -26,7 +25,6 @@ public enum MessagesEnumUnitMeasurementDAO {
                     "Revise la traza completa de la excepción."),
 
 
-    // Errores para la Operación de Mapeo (MAPPING) de Unidad de Medida (UNITMEASUREMENT)
 
     USER_ERROR_SQL_MAPPING_UNITMEASUREMENT(
             "Error interpretando la información de la unidad de medida",
@@ -52,7 +50,7 @@ public enum MessagesEnumUnitMeasurementDAO {
     private String title;
     private String content;
 
-    private MessagesEnumUnitMeasurementDAO (final String title, final String content) {
+    MessagesEnumUnitMeasurementDAO (final String title, final String content) {
         setTitle(title);
         setContent(content);
     }

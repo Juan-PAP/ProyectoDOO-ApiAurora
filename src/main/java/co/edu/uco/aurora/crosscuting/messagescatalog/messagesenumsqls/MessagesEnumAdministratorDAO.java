@@ -4,9 +4,6 @@ import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumAdministratorDAO {
 
-    //AdministratorSqlServerDAO
-
-    //mapper
     USER_ERROR_SQL_MAPPING_ADMINISTRATOR ("Error interpretando la información del administrador",
             "Se ha presentado un problema tratando de interpretar la información de un administrador consultada desde la base de datos. " +
                     "Por favor, contacte al administrador del sistema."),
@@ -23,7 +20,7 @@ public enum MessagesEnumAdministratorDAO {
             "Se ha presentado un error inesperado (no-SQL) durante el proceso de mapeo del ResultSet a la entidad AdministratorEntity. "
                     + "Revise la traza completa de la excepción para determinar la causa raíz."),
 
-    //INSERTAR
+
     USER_ERROR_SQL_INSERT_ADMINISTRATOR("Error al registrar la información del nuevo administrador",
             "Se ha presentado un problema tratando de registrar la información del nuevo administrador. "
                     + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
@@ -43,12 +40,12 @@ public enum MessagesEnumAdministratorDAO {
                     + "Por favor valide que la base de datos esté funcionando correctamente y revise los registros del sistema. "
                     + "Si el problema persiste, contacte al administrador del sistema."),
 
-    //find by filter
+
     USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR ("Error al filtrar los administradores",
             "Se ha presentado un problema tratando de consultar los administradores que cumplen con los criterios de búsqueda especificados. "
                     + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
 
-    // Errores para la operación de Actualización (UPDATE)
+
     USER_ERROR_SQL_UPDATE_ADMINISTRATOR("Error al actualizar la información del administrador",
             "Se ha presentado un problema tratando de actualizar la información del administrador. "
                     + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
@@ -70,7 +67,7 @@ public enum MessagesEnumAdministratorDAO {
             "Se ha presentado un error inesperado (no-SQL) durante el proceso de consulta de administradores por filtro. "
                     + "Revise la traza completa de la excepción para determinar la causa raíz del problema."),
 
-    // Errores Inesperados para la operación de Actualización (UPDATE)
+
     USER_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_ADMINISTRATOR("Error inesperado al actualizar la información del administrador",
             "Se ha presentado un problema inesperado tratando de actualizar la información del administrador. "
                     + "Por favor intente nuevamente y si el problema persiste, contacte al administrador del sistema."),

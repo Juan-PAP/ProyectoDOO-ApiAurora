@@ -4,7 +4,6 @@ import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumSaleDAO {
 
-    // Errores para la operación de Inserción (INSERT) de Venta (SALE)
 
     USER_ERROR_SQL_INSERT_SALE(
             "Error al registrar la información de la venta",
@@ -27,7 +26,6 @@ public enum MessagesEnumSaleDAO {
                     "Revise los registros."),
 
 
-// Errores para la operación de Consulta por Filtro (FIND BY FILTER) de Venta (SALE)
 
     USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_SALE(
             "Error consultando información de la venta por filtro",
@@ -50,7 +48,6 @@ public enum MessagesEnumSaleDAO {
                     "Revise la traza completa de la excepción."),
 
 
-// Errores para la Operación de Mapeo (MAPPING) de Venta (SALE)
 
     USER_ERROR_SQL_MAPPING_SALE(
             "Error interpretando la información de la venta",
@@ -76,7 +73,7 @@ public enum MessagesEnumSaleDAO {
     private String title;
     private String content;
 
-    private MessagesEnumSaleDAO (final String title, final String content) {
+    MessagesEnumSaleDAO (final String title, final String content) {
         setTitle(title);
         setContent(content);
     }

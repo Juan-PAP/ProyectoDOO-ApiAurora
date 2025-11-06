@@ -14,7 +14,7 @@ public enum MessagesEnumFacade {
     private String title;
     private String content;
 
-    private MessagesEnumFacade (final String title, final String content) {
+    MessagesEnumFacade (final String title, final String content) {
         setTitle(title);
         setContent(content);
     }

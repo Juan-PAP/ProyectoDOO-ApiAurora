@@ -20,7 +20,7 @@ public enum MessagesEnumIdentificationTypeRule {
     private String title;
     private String content;
 
-    private MessagesEnumIdentificationTypeRule(final String title, final String content) {
+    MessagesEnumIdentificationTypeRule(final String title, final String content) {
         setTitle(title);
         setContent(content);
     }

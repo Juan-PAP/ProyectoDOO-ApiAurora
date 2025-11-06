@@ -4,7 +4,6 @@ import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumProductBrandDAO {
 
-    // Errores para la operación de Inserción (INSERT) de ProductoMarca (PRODUCTBRAND)
 
     USER_ERROR_SQL_INSERT_PRODUCTBRAND(
             "Error al registrar la información del producto y marca",
@@ -27,7 +26,6 @@ public enum MessagesEnumProductBrandDAO {
                     "Revise los registros."),
 
 
-    // Errores para la operación de Actualización (UPDATE) de ProductoMarca (PRODUCTBRAND)
 
     USER_ERROR_SQL_UPDATE_PRODUCTBRAND(
             "Error al actualizar la información del producto y marca",
@@ -46,7 +44,6 @@ public enum MessagesEnumProductBrandDAO {
             "Se ha presentado un error inesperado (no-SQL) al actualizar el registro del producto-marca. Revise la traza completa de la excepción."),
 
 
-    // Errores para la operación de Consulta por Filtro (FIND BY FILTER) de ProductoMarca (PRODUCTBRAND)
 
     USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_PRODUCTBRAND(
             "Error consultando información del producto y marca por filtro",
@@ -69,7 +66,6 @@ public enum MessagesEnumProductBrandDAO {
                     "Revise la traza completa de la excepción."),
 
 
-    // Errores para la Operación de Mapeo (MAPPING) de ProductoMarca (PRODUCTBRAND)
 
     USER_ERROR_SQL_MAPPING_PRODUCTBRAND(
             "Error interpretando la información del producto y marca",
@@ -95,7 +91,7 @@ public enum MessagesEnumProductBrandDAO {
     private String title;
     private String content;
 
-    private MessagesEnumProductBrandDAO (final String title, final String content) {
+    MessagesEnumProductBrandDAO (final String title, final String content) {
         setTitle(title);
         setContent(content);
     }

@@ -4,7 +4,6 @@ import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumBatchDAO {
 
-    // Errores para la operación de Inserción (INSERT) de Lote (BATCH)
 
     USER_ERROR_SQL_INSERT_BATCH(
             "Error al registrar la información del lote",
@@ -27,7 +26,6 @@ public enum MessagesEnumBatchDAO {
                     "Revise los registros."),
 
 
-    // Errores para la operación de Actualización (UPDATE) de Lote (BATCH)
 
     USER_ERROR_SQL_UPDATE_BATCH(
             "Error al actualizar la información del lote",
@@ -46,7 +44,6 @@ public enum MessagesEnumBatchDAO {
             "Se ha presentado un error inesperado (no-SQL) al actualizar el registro del lote. Revise la traza completa de la excepción."),
 
 
-    // Errores para la operación de Consulta por Filtro (FIND BY FILTER) de Lote (BATCH)
 
     USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_BATCH(
             "Error consultando información del lote por filtro",
@@ -69,7 +66,6 @@ public enum MessagesEnumBatchDAO {
                     "Revise la traza completa de la excepción."),
 
 
-    // Errores para la Operación de Mapeo (MAPPING) de Lote (BATCH)
 
     USER_ERROR_SQL_MAPPING_BATCH(
             "Error interpretando la información del lote",
@@ -95,7 +91,7 @@ public enum MessagesEnumBatchDAO {
     private String title;
     private String content;
 
-    private MessagesEnumBatchDAO (final String title, final String content) {
+    MessagesEnumBatchDAO (final String title, final String content) {
         setTitle(title);
         setContent(content);
     }

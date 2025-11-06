@@ -4,7 +4,6 @@ import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumSaleProductBrandDAO {
 
-    // Errores para la operación de Inserción (INSERT) de VentaProductoMarca (SALEPRODUCTBRAND)
 
     USER_ERROR_SQL_INSERT_SALEPRODUCTBRAND(
             "Error al registrar el detalle del producto en la venta",
@@ -27,7 +26,6 @@ public enum MessagesEnumSaleProductBrandDAO {
                     "Revise los registros."),
 
 
-    // Errores para la operación de Actualización (UPDATE) de VentaProductoMarca (SALEPRODUCTBRAND)
 
     USER_ERROR_SQL_UPDATE_SALEPRODUCTBRAND(
             "Error al actualizar el detalle de la venta",
@@ -46,7 +44,6 @@ public enum MessagesEnumSaleProductBrandDAO {
             "Se ha presentado un error inesperado (no-SQL) al actualizar el registro del detalle de la venta. Revise la traza completa de la excepción."),
 
 
-    // Errores para la operación de Borrado (DELETE) de VentaProductoMarca (SALEPRODUCTBRAND)
 
     USER_ERROR_SQL_DELETE_SALEPRODUCTBRAND(
             "Error al eliminar el detalle de la venta",
@@ -68,7 +65,7 @@ public enum MessagesEnumSaleProductBrandDAO {
     private String title;
     private String content;
 
-    private MessagesEnumSaleProductBrandDAO (final String title, final String content) {
+    MessagesEnumSaleProductBrandDAO (final String title, final String content) {
         setTitle(title);
         setContent(content);
     }

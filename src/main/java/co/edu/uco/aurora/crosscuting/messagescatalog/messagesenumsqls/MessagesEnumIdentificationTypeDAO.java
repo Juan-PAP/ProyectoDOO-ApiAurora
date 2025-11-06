@@ -45,7 +45,7 @@ public enum MessagesEnumIdentificationTypeDAO {
     private String title;
     private String content;
 
-    private MessagesEnumIdentificationTypeDAO (final String title, final String content) {
+    MessagesEnumIdentificationTypeDAO (final String title, final String content) {
         setTitle(title);
         setContent(content);
     }

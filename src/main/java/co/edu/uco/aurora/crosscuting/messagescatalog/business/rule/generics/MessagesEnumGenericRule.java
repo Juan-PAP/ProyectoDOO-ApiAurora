@@ -4,7 +4,6 @@ import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumGenericRule {
 
-    // --- MENSAJES PARA IdValueIsNotDefaultValueRule ---
     ID_VALUE_IS_NOT_DEFAULT_RULE_DATA_IS_NULL(
             "Se ha presentado un problema inesperado tratando de llevar a cabo la operación deseada.",
             "No se recibieron los parámetros requeridos para ejecutar la regla IdValueIsNotDefaultValueRule."
@@ -24,7 +23,6 @@ public enum MessagesEnumGenericRule {
 
 
 
-    // --- MENSAJES PARA StringFormatValuesIsValidRule ---
     STRING_FORMAT_VALUES_IS_VALID_RULE_DATA_IS_NULL(
             "Se ha presentado un problema inesperado tratando de llevar a cabo la operación deseada.",
             "No se recibieron los parámetros requeridos para ejecutar la regla StringFormatValuesIsValidRule."
@@ -40,41 +38,33 @@ public enum MessagesEnumGenericRule {
 
 
 
-    // --- MENSAJES PARA StringLengthValuesIsValidRule ---
     STRING_LENGTH_VALUES_IS_VALID_RULE_DATA_IS_NULL(
             "Se ha presentado un problema inesperado tratando de llevar a cabo la operación deseada.",
-            // Corregimos el nombre de la regla que estaba mal en tu original
             "No se recibieron los parámetros requeridos para ejecutar la regla StringLengthValuesIsValidRule."
     ),
     STRING_LENGTH_VALUES_IS_VALID_RULE_DATA_LENGTH_INVALID(
             "Se ha presentado un problema inesperado tratando de llevar a cabo la operación deseada.",
-            // Corregimos el nombre y el número
             "Se requerían cinco parámetros y llegó una cantidad menor para ejecutar la regla StringLengthValuesIsValidRule."
     ),
     STRING_LENGTH_VALUES_IS_VALID_RULE_LENGTH_IS_INVALID(
-            // Usamos {0}, {1} y {2} como placeholders
             "El dato [{0}] no tiene una longitud entre {1} y {2} caracteres.",
             "La regla StringLengthValuesIsValidRule falló porque el dato [{0}] no tiene una longitud entre {1} y {2} caracteres."
     ),
 
-    // --- MENSAJES PARA StringValuelsPresentRule ---
     STRING_VALUELS_PRESENT_RULE_DATA_IS_NULL(
             "Se ha presentado un problema inesperado tratando de llevar a cabo la operación deseada.",
             "No se recibieron los parámetros requeridos para ejecutar la regla StringValuelsPresentRule."
     ),
     STRING_VALUELS_PRESENT_RULE_DATA_LENGTH_INVALID(
             "Se ha presentado un problema inesperado tratando de llevar a cabo la operación deseada.",
-            // Corregimos el typo "paramentros"
             "Se requerían tres parámetros y llegó una cantidad menor para ejecutar la regla StringValuelsPresentRule."
     ),
     STRING_VALUELS_PRESENT_RULE_DATA_IS_EMPTY(
             "El dato [{0}] es requerido para llevar a cabo la operación.",
-            // Corregimos el typo "vació"
             "La regla StringValuelsPresentRule falló porque el dato [{0}] requerido para llevar a cabo la operación esta vacío."
     ),
 
 
-    // --- MENSAJES PARA DateIsInRangeRule ---
     DATE_IS_IN_RANGE_RULE_DATA_IS_NULL(
             "Se ha presentado un problema inesperado tratando de llevar a cabo la operación deseada.",
             "No se recibieron los parámetros requeridos para ejecutar la regla DateIsInRangeRule."
@@ -95,7 +85,7 @@ public enum MessagesEnumGenericRule {
     private String title;
     private String content;
 
-    private MessagesEnumGenericRule(final String title, final String content) {
+    MessagesEnumGenericRule(final String title, final String content) {
         setTitle(title);
         setContent(content);
     }

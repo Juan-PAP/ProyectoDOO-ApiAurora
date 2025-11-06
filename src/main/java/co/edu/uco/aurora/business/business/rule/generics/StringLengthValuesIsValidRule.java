@@ -52,7 +52,7 @@ public final class StringLengthValuesIsValidRule implements Rule {
                     dataName, minLengthStr, maxLengthStr
             );
             throw AuroraException.create(userMessage, technicalMessage);
-        };
+        }
     }
 
 }

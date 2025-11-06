@@ -4,7 +4,6 @@ import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumUnitSalesDAO {
 
-    // Errores para la Operación de Mapeo (MAPPING) de la Unidad de Venta (UNITSALES)
 
     USER_ERROR_SQL_MAPPING_UNIT_SALES(
             "Error interpretando la información de la unidad de venta",
@@ -48,7 +47,7 @@ public enum MessagesEnumUnitSalesDAO {
         private String title;
         private String content;
 
-        private MessagesEnumUnitSalesDAO (final String title, final String content) {
+        MessagesEnumUnitSalesDAO (final String title, final String content) {
             setTitle(title);
             setContent(content);
         }

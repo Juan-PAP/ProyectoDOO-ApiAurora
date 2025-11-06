@@ -4,8 +4,6 @@ import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumCustomerDAO {
 
-    // Errores para la operación de Inserción (INSERT) de Cliente (CUSTOMER)
-
     USER_ERROR_SQL_INSERT_CUSTOMER(
             "Error al registrar la información del cliente",
             "Se ha presentado un problema tratando de registrar la información del cliente. Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
@@ -23,7 +21,6 @@ public enum MessagesEnumCustomerDAO {
             "Se ha presentado un problema técnico inesperado al tratar de ejecutar el proceso de creación del cliente. Revise los registros."),
 
 
-// Errores para la operación de Consulta por Filtro (FIND BY FILTER) de Cliente (CUSTOMER)
 
     USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_CUSTOMER(
             "Error consultando información del cliente por filtro",
@@ -42,7 +39,6 @@ public enum MessagesEnumCustomerDAO {
             "Se ha presentado un error técnico inesperado (no-SQL) al intentar ejecutar la consulta por filtro de cliente. Revise la traza completa de la excepción."),
 
 
-// Errores para la Operación de Mapeo (MAPPING) de Cliente (CUSTOMER)
 
     USER_ERROR_SQL_MAPPING_CUSTOMER(
             "Error interpretando la información del cliente",
@@ -61,7 +57,6 @@ public enum MessagesEnumCustomerDAO {
             "Se ha presentado un error inesperado (no-SQL) durante el proceso de mapeo del ResultSet a la entidad CustomerEntity. Revise la traza completa de la excepción."),
 
 
-// Errores para la operación de Actualización (UPDATE) de Cliente (CUSTOMER)
 
     USER_ERROR_SQL_UPDATE_CUSTOMER(
             "Error al actualizar la información del cliente",
@@ -82,7 +77,7 @@ public enum MessagesEnumCustomerDAO {
     private String title;
     private String content;
 
-    private MessagesEnumCustomerDAO (final String title, final String content) {
+    MessagesEnumCustomerDAO (final String title, final String content) {
         setTitle(title);
         setContent(content);
     }

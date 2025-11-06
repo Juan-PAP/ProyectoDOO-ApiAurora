@@ -4,7 +4,6 @@ import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumCategoryDAO {
 
-    //Crear
     USER_ERROR_SQL_INSERT_CATEGORY("Error al crear la categoría",
             "Se ha presentado un problema tratando de crear la nueva categoría. "
                     + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
@@ -22,7 +21,7 @@ public enum MessagesEnumCategoryDAO {
                     + "Por favor revise la traza de la excepción para identificar la causa raíz del inconveniente."),
 
 
-    //Actualizar
+
     USER_ERROR_SQL_UPDATE_CATEGORY("Error al actualizar la categoría",
             "Se ha presentado un problema tratando de actualizar la información de la categoría. "
                     + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
@@ -39,7 +38,7 @@ public enum MessagesEnumCategoryDAO {
             "Se ha presentado un problema técnico inesperado y fuera de control al tratar de actualizar la información de la categoría. "
                     + "Por favor revise la traza de la excepción para identificar la causa raíz del inconveniente."),
 
-    // Para la Ejecución de Consultas (findByFilter)
+
     USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_CATEGORY("Error al consultar las categorías",
             "Se ha presentado un problema tratando de consultar la información de las categorías. "
                     + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
@@ -49,7 +48,7 @@ public enum MessagesEnumCategoryDAO {
                     + "Por favor valide que la conexión a la base de datos sea correcta."),
 
 
-    // Para el Mapeo de Resultados (ResultSet a Entidad)
+
     USER_ERROR_SQL_MAPPING_CATEGORY("Error al procesar los datos de la categoría",
             "Se ha presentado un problema tratando de procesar los datos de la categoría consultada. "
                     + "Por favor intente de nuevo y si el problema persiste, contacte al administrador del sistema."),
@@ -68,7 +67,7 @@ public enum MessagesEnumCategoryDAO {
     private String title;
     private String content;
 
-    private MessagesEnumCategoryDAO (final String title, final String content) {
+    MessagesEnumCategoryDAO (final String title, final String content) {
         setTitle(title);
         setContent(content);
     }
