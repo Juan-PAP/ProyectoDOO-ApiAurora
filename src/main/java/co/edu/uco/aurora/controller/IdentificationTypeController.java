@@ -3,6 +3,7 @@ package co.edu.uco.aurora.controller;
 import co.edu.uco.aurora.business.facade.impl.IdentificationTypeFacadeImpl;
 import co.edu.uco.aurora.controller.dto.Response;
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
+import co.edu.uco.aurora.crosscuting.messagescatalog.controller.MessagesEnumIdentificationTypeController;
 import co.edu.uco.aurora.dto.IdentificationTypeDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -25,7 +26,9 @@ public class IdentificationTypeController {
             var facade = new IdentificationTypeFacadeImpl();
 
             responseObjectData.setData(facade.getAllIdentificationType());
-            responseObjectData.addMessage("All identification types loaded successfully");
+            responseObjectData.addMessage(
+                    MessagesEnumIdentificationTypeController.ID_TYPES_LOADED_SUCCESS.getContent()
+            );
 
         } catch (final AuroraException exception) {
 
@@ -35,15 +38,14 @@ public class IdentificationTypeController {
             exception.printStackTrace();
 
         } catch (final Exception exception) {
-            var userMessage = "Unexpected error";
             responseObjectData = Response.createFailedResponse();
-            responseObjectData.addMessage(userMessage);
+            responseObjectData.addMessage(
+                    MessagesEnumIdentificationTypeController.ID_TYPES_UNEXPECTED_ERROR.getContent()
+            );
             responseStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
             exception.printStackTrace();
         }
 
         return new ResponseEntity<>(responseObjectData, responseStatusCode);
-        }
-
-
+    }
 }

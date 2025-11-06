@@ -33,7 +33,7 @@ public final class SaleProductBrandDTOAssembler implements DTOAssembler<SaleProd
 
     @Override
     public SaleProductBrandDomain toDomain(final SaleProductBrandDTO dto) {
-        var dtoTmp = ObjectHelper.getDefault(dto, new SaleProductBrandDTO(UUIDHelper.getUUIDHelper().getDefault()));
+        var dtoTmp = ObjectHelper.getDefault(dto, new SaleProductBrandDTO());
         var saleDomainTmp = SaleDTOAssembler.getSaleDTOAssembler().toDomain(dtoTmp.getSale());
         var productBrandDomainTmp = ProductBrandDTOAssembler.getProductBrandDTOAssembler().toDomain(dtoTmp.getProductBrand());
         return new SaleProductBrandDomain(dtoTmp.getId(), saleDomainTmp, productBrandDomainTmp, dtoTmp.getUnitPrice(),

@@ -3,6 +3,7 @@ package co.edu.uco.aurora.controller;
 import co.edu.uco.aurora.business.facade.impl.CustomerFacadeImpl;
 import co.edu.uco.aurora.controller.dto.Response;
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
+import co.edu.uco.aurora.crosscuting.messagescatalog.controller.MessagesEnumCustomerController;
 import co.edu.uco.aurora.dto.CustomerDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -24,22 +25,23 @@ public class CustomerController {
         HttpStatusCode responseStatusCode = HttpStatus.OK;
 
         try {
-
             var facade = new CustomerFacadeImpl();
             responseObjectData.setData(facade.getAllCustomer());
-            responseObjectData.addMessage("All customers filtered successfully");
+            responseObjectData.addMessage(
+                    MessagesEnumCustomerController.CUSTOMERS_FILTERED_SUCCESS.getContent()
+            );
 
         } catch (final AuroraException exception) {
-
             responseObjectData = Response.createFailedResponse();
             responseObjectData.addMessage(exception.getUserMessage());
             responseStatusCode = HttpStatus.BAD_REQUEST;
             exception.printStackTrace();
 
         } catch (final Exception exception) {
-            var userMessage = "Unexpected error";
             responseObjectData = Response.createFailedResponse();
-            responseObjectData.addMessage(userMessage);
+            responseObjectData.addMessage(
+                    MessagesEnumCustomerController.CUSTOMERS_UNEXPECTED_ERROR.getContent()
+            );
             responseStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
             exception.printStackTrace();
         }
@@ -53,26 +55,26 @@ public class CustomerController {
         HttpStatusCode responseStatusCode = HttpStatus.CREATED;
 
         try {
-
             var facade = new CustomerFacadeImpl();
             facade.registerNewCustomer(customer);
-            responseObjectData.addMessage("Customer information registered successfully");
+            responseObjectData.addMessage(
+                    MessagesEnumCustomerController.CUSTOMER_REGISTER_SUCCESS.getContent()
+            );
 
         } catch (final AuroraException exception) {
-
             responseObjectData = Response.createFailedResponse();
             responseObjectData.addMessage(exception.getUserMessage());
             responseStatusCode = HttpStatus.BAD_REQUEST;
             exception.printStackTrace();
 
         } catch (final Exception exception) {
-            var userMessage = "Unexpected error";
             responseObjectData = Response.createFailedResponse();
-            responseObjectData.addMessage(userMessage);
+            responseObjectData.addMessage(
+                    MessagesEnumCustomerController.CUSTOMERS_UNEXPECTED_ERROR.getContent()
+            );
             responseStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
             exception.printStackTrace();
         }
         return new ResponseEntity<>(responseObjectData, responseStatusCode);
     }
-
 }
