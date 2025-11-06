@@ -1,5 +1,5 @@
 package co.edu.uco.aurora.business.business.rule.administrator;
-//login
+
 import co.edu.uco.aurora.business.business.rule.Rule;
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
@@ -13,7 +13,11 @@ public final class AdministratorUsernameExistsRule implements Rule {
     private static final Rule instance = new AdministratorUsernameExistsRule();
 
     private AdministratorUsernameExistsRule() {
-        super();
+
+    }
+
+    public static void executeRule(final Object... data) {
+        instance.execute(data);
     }
 
     @Override
@@ -30,8 +34,12 @@ public final class AdministratorUsernameExistsRule implements Rule {
             throw AuroraException.create(userMessage, technicalMessage);
         }
 
-        var username = (String) data[0];
+        var user = (String) data[0];
         var daoFactory = (DAOFactory) data[1];
+
+        var adminFilter = new AdministratorEntity();
+
+        adminFilter.setUser(user);
 
         var results = daoFactory.getAdministratorDAO().findByFilter(adminFilter);
 
@@ -39,7 +47,7 @@ public final class AdministratorUsernameExistsRule implements Rule {
             var userMessage = MessagesEnumAdministratorRule.ADMIN_USERNAME_EXISTS_RULE_USERNAME_DOES_NOT_EXIST.getTitle();
             var technicalMessage = TextHelper.format(
                     MessagesEnumAdministratorRule.ADMIN_USERNAME_EXISTS_RULE_USERNAME_DOES_NOT_EXIST.getContent(),
-                    username
+                    user
             );
             throw AuroraException.create(userMessage, technicalMessage);
         }

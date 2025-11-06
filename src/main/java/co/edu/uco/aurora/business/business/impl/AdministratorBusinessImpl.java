@@ -1,23 +1,21 @@
 package co.edu.uco.aurora.business.business.impl;
 
 import co.edu.uco.aurora.business.business.AdministratorBusiness;
+import co.edu.uco.aurora.business.business.rule.validator.administrator.ValidateAdministratorPasswordMatches;
+import co.edu.uco.aurora.business.business.rule.validator.administrator.ValidateAdministratorUsernameExist;
+import co.edu.uco.aurora.business.business.rule.validator.administrator.ValidateDataAdministradorConsistencyForLogin;
 import co.edu.uco.aurora.business.domain.AdministratorDomain;
-import co.edu.uco.aurora.crosscuting.exception.AuroraException;
-import co.edu.uco.aurora.crosscuting.helper.TextHelper;
-import co.edu.uco.aurora.crosscuting.messagescatalog.business.MessagesEnumAdministratorBusiness;
-import co.edu.uco.aurora.data.dao.entity.AdministratorDAO;
 import co.edu.uco.aurora.data.dao.factory.DAOFactory;
-import co.edu.uco.aurora.entity.AdministratorEntity;
 
 import java.util.List;
 import java.util.UUID;
 
 public final class AdministratorBusinessImpl implements AdministratorBusiness {
 
-    private final DAOFactory factory;
+    private final DAOFactory daoFactory;
 
     public AdministratorBusinessImpl(final DAOFactory factory) {
-        this.factory = factory;
+        this.daoFactory = factory;
     }
 
     @Override
@@ -31,46 +29,13 @@ public final class AdministratorBusinessImpl implements AdministratorBusiness {
     }
 
     @Override
-    public void login(final AdministratorDomain administrator) {
+    public void login(final AdministratorDomain administratorDomain) {
 
-        try {
-            validateLoginCredentials(administrator);
+        ValidateDataAdministradorConsistencyForLogin.executeValidation(administratorDomain);
 
-            final AdministratorDAO administratorDAO = factory.getAdministratorDAO();
+        ValidateAdministratorUsernameExist.executeValidation(administratorDomain.getUser(), daoFactory);
 
-            final List<AdministratorEntity> entities = administratorDAO.findByUsername(administrator.getUser());
-
-            if (entities.isEmpty()) {
-                var userMessage = MessagesEnumAdministratorBusiness.USER_ERROR_INVALID_CREDENTIALS.getContent();
-                throw AuroraException.create(userMessage, userMessage);
-            }
-
-            final AdministratorEntity storedEntity = entities.get(0);
-
-            if (!administrator.getPassword().equals(storedEntity.getPassword())) {
-                var userMessage = MessagesEnumAdministratorBusiness.USER_ERROR_INVALID_CREDENTIALS.getContent();
-                throw AuroraException.create(userMessage, userMessage);
-            }
-
-        } catch (final AuroraException exception) {
-            throw exception;
-
-        } catch (final Exception exception) {
-            var userMessage = MessagesEnumAdministratorBusiness.USER_ERROR_UNEXPECTED_LOGIN_ERROR.getContent();
-            var technicalMessage = MessagesEnumAdministratorBusiness.TECHNICAL_ERROR_UNEXPECTED_LOGIN_ERROR.getContent() + ": " + exception.getMessage();
-            throw AuroraException.create(exception, userMessage, technicalMessage);
-
-        }
-    }
-
-    private void validateLoginCredentials(final AdministratorDomain administrator) {
-        if (TextHelper.isEmptyWithTrim(administrator.getUser()) ||
-                TextHelper.isEmptyWithTrim(administrator.getPassword())) {
-
-            var userMessage = MessagesEnumAdministratorBusiness.USER_ERROR_EMPTY_CREDENTIALS.getContent();
-            throw AuroraException.create(userMessage, userMessage);
-        }
-
+        ValidateAdministratorPasswordMatches.executeValidation(administratorDomain.getUser(), administratorDomain.getPassword(), daoFactory);
     }
 
     @Override

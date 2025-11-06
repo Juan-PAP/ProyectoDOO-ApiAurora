@@ -8,9 +8,12 @@ public enum MessagesEnumAdministratorRule {
 // Nuevos enums para agregar a MessagesEnumAdministratorRule
 
     // Mensajes para AdministratorUsernameExistsRule
-    ADMIN_USERNAME_EXISTS_RULE_DATA_IS_NULL("El nombre de usuario no puede ser nulo.", "Los datos para la regla AdministratorUsernameExistsRule son nulos."),
-    ADMIN_USERNAME_EXISTS_RULE_DATA_LENGTH_INVALID("La cantidad de datos para validar el nombre de usuario no es válida.", "La cantidad de datos para la regla AdministratorUsernameExistsRule no es la esperada (se esperan 2, DAOFactory y username)."),
-    ADMIN_USERNAME_EXISTS_RULE_USERNAME_DOES_NOT_EXIST("Usuario o contraseña no válidos.", "El nombre de usuario '{0}' no existe en la base de datos."),
+    ADMIN_USERNAME_EXISTS_RULE_DATA_IS_NULL("El nombre de usuario no puede ser nulo.",
+            "Los datos para la regla AdministratorUsernameExistsRule son nulos."),
+    ADMIN_USERNAME_EXISTS_RULE_DATA_LENGTH_INVALID("La cantidad de datos para validar el nombre de usuario no es válida.",
+            "La cantidad de datos para la regla AdministratorUsernameExistsRule no es la esperada (se esperan 2, DAOFactory y username)."),
+    ADMIN_USERNAME_EXISTS_RULE_USERNAME_DOES_NOT_EXIST("Usuario o contraseña no válidos.",
+            "El nombre de usuario '{0}' no existe en la base de datos."),
 
     // Mensajes para AdministratorPasswordMatchesRule
     ADMIN_PASSWORD_MATCHES_RULE_DATA_IS_NULL("Los datos para validar la contraseña no pueden ser nulos.", "Los datos para la regla AdministratorPasswordMatchesRule son nulos."),

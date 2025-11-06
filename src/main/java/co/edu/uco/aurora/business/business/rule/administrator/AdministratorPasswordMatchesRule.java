@@ -1,5 +1,5 @@
 package co.edu.uco.aurora.business.business.rule.administrator;
-//login
+
 import co.edu.uco.aurora.business.business.rule.Rule;
 import co.edu.uco.aurora.crosscuting.exception.AuroraException;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
@@ -13,7 +13,7 @@ public final class AdministratorPasswordMatchesRule implements Rule {
     private static final Rule instance = new AdministratorPasswordMatchesRule();
 
     private AdministratorPasswordMatchesRule() {
-        super();
+
     }
 
     public static void executeRule(final Object... data) {
@@ -38,13 +38,12 @@ public final class AdministratorPasswordMatchesRule implements Rule {
         var password = (String) data[1];
         var daoFactory = (DAOFactory) data[2];
 
-        var adminFilter = AdministratorEntity.build();
-        adminFilter.setUser(username);
-        var results = daoFactory.getAdministratorDAO().findByFilter(adminFilter);
+        var results = daoFactory.getAdministratorDAO().findByUsername(username);
 
-        // Se asume que la regla AdministratorUsernameExistsRule ya se ejecutó, por lo que results no debería estar vacío.
         if (!results.isEmpty()) {
+
             var storedPassword = results.get(0).getPassword();
+
             if (!password.equals(storedPassword)) {
                 var userMessage = MessagesEnumAdministratorRule.ADMIN_PASSWORD_MATCHES_RULE_PASSWORD_DOES_NOT_MATCH.getTitle();
                 var technicalMessage = TextHelper.format(
