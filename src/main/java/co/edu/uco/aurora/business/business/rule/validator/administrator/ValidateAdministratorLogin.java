@@ -1,4 +1,3 @@
-// java
 package co.edu.uco.aurora.business.business.rule.validator.administrator;
 
 import co.edu.uco.aurora.business.business.rule.administrator.AdministratorPasswordMatchesRule;
@@ -22,10 +21,8 @@ public final class ValidateAdministratorLogin implements Validator {
         final var domain = (AdministratorDomain) data[0];
         final var daoFactory = (DAOFactory) data[1];
 
-        // 1) Validaciones genéricas (presencia y longitudes)
         ValidateDataAdministradorConsistencyForLogin.executeValidation(domain);
 
-        // 2) Reglas contra BD
         AdministratorUsernameExistsRule.executeRule(domain.getUser(), daoFactory);
         AdministratorPasswordMatchesRule.executeRule(domain.getUser(), domain.getPassword(), daoFactory);
     }
