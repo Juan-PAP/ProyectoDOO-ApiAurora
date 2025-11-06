@@ -55,7 +55,7 @@ public enum MessagesEnumCustomerRule {
     ),
     CUSTOMER_AGE_CONSISTENCY_RULE_DATA_LENGTH_INVALID(
             "Se ha presentado un problema inesperado tratando de llevar a cabo la operación deseada.",
-            "Se requerían 2 parámetros (LocalDate birthDate, IdentificationTypeDomain idType) y llegó una cantidad menor."
+            "Se requerían 3 parámetros y llegó una cantidad menor."
     ),
     CUSTOMER_AGE_CONSISTENCY_RULE_BIRTHDATE_IS_NULL(
             "Se ha presentado un problema inesperado. La fecha de nacimiento es nula.",
@@ -64,6 +64,14 @@ public enum MessagesEnumCustomerRule {
     CUSTOMER_AGE_CONSISTENCY_RULE_IDTYPE_IS_NULL(
             "Se ha presentado un problema inesperado. El tipo de identificación es nulo.",
             "CustomerAgeIsConsistentWithIdTypeRule falló porque IdentificationTypeDomain es nulo."
+    ),
+    CUSTOMER_AGE_CONSISTENCY_RULE_DAOFACTORY_IS_NULL(
+            "Se ha presentado un problema inesperado, el DAOFactory es nulo.",
+            "CustomerAgeIsConsistentWithIdTypeRule fallo porque recibió un DAOFactory nulo."
+    ),
+    CUSTOMER_AGE_CONSISTENCY_RULE_IDTYPE_NOT_FOUND_IN_DAO(
+            "El tipo de identificación seleccionado no existe.",
+            "No se encontró un IdentificationType con ID: {0} durante la validación de consistencia de edad."
     ),
     CUSTOMER_AGE_CONSISTENCY_RULE_TI_AGE_INVALID(
             "La edad ({0} años) no es válida para una Tarjeta de Identidad. El rango debe ser entre 7 y 17 años.",

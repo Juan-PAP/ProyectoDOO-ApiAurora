@@ -36,7 +36,6 @@ public final class CustomerBusinessImpl implements CustomerBusiness {
 
         ValidateCustomerPhoneNumberDoesNotExist.executeValidation(customerDomain.getPhoneNumber(), daoFactory);
 
-
         var customerEntity = CustomerEntityAssembler.getCustomerEntityAssembler().toEntity(customerDomain);
 
         customerEntity.setId(generateId());
