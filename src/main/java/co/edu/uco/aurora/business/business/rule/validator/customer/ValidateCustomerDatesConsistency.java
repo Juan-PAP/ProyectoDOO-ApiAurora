@@ -5,6 +5,7 @@ import co.edu.uco.aurora.business.business.rule.customer.CustomerAgeIsConsistent
 import co.edu.uco.aurora.business.business.rule.validator.Validator;
 import co.edu.uco.aurora.business.domain.CustomerDomain;
 import co.edu.uco.aurora.crosscuting.helper.LocalDateHelper;
+import co.edu.uco.aurora.data.dao.factory.DAOFactory;
 
 import java.time.LocalDate;
 
@@ -22,13 +23,19 @@ public final class ValidateCustomerDatesConsistency implements Validator {
 
     @Override
     public void validate(final Object... data) {
+
         var customerDomainData = (CustomerDomain) data[0];
+        var daoFactory = (DAOFactory) data[1];
 
         LocalDate minDate = LocalDateHelper.getDefault();
         LocalDate maxDate = LocalDateHelper.getDateToday().minusYears(7);
 
         DateIsInRangeRule.executeRule(customerDomainData.getBirthDate(), "Fecha de Nacimiento", minDate, maxDate);
 
-        CustomerAgeIsConsistentWithIdTypeRule.executeRule(customerDomainData.getBirthDate(), customerDomainData.getIdentificationType());
+        CustomerAgeIsConsistentWithIdTypeRule.executeRule(
+                customerDomainData.getBirthDate(),
+                customerDomainData.getIdentificationType(),
+                daoFactory
+        );
     }
 }

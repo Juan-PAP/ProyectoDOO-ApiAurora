@@ -26,7 +26,7 @@ public final class CustomerBusinessImpl implements CustomerBusiness {
 
         ValidateDataCustomerConsistencyForRegisterNewInformation.executeValidation(customerDomain);
 
-        ValidateCustomerDatesConsistency.executeValidation(customerDomain);
+        ValidateCustomerDatesConsistency.executeValidation(customerDomain, daoFactory);
 
         ValidateCustomerBirthDateIsAtLeastSevenYearsOld.executeValidation(customerDomain);
 
