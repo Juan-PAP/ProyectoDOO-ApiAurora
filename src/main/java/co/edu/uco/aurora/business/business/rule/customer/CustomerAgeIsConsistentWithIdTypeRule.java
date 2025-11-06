@@ -24,9 +24,11 @@ public final class CustomerAgeIsConsistentWithIdTypeRule implements Rule {
 
     }
 
+
     public static void executeRule(final Object... data) {
         instance.execute(data);
     }
+
 
     @Override
     public void execute(Object... data) {

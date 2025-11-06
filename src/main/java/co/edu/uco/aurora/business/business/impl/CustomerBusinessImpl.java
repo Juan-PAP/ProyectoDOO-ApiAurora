@@ -2,10 +2,7 @@ package co.edu.uco.aurora.business.business.impl;
 
 import co.edu.uco.aurora.business.assembler.entity.impl.CustomerEntityAssembler;
 import co.edu.uco.aurora.business.business.CustomerBusiness;
-import co.edu.uco.aurora.business.business.rule.validator.customer.ValidateCustomerDatesConsistency;
-import co.edu.uco.aurora.business.business.rule.validator.customer.ValidateCustomerIdentificationNumberDoesNotExist;
-import co.edu.uco.aurora.business.business.rule.validator.customer.ValidateCustomerPhoneNumberDoesNotExist;
-import co.edu.uco.aurora.business.business.rule.validator.customer.ValidateDataCustomerConsistencyForRegisterNewInformation;
+import co.edu.uco.aurora.business.business.rule.validator.customer.*;
 import co.edu.uco.aurora.business.business.rule.validator.identidicationtype.ValidateIdentificationTypeExistsById;
 import co.edu.uco.aurora.business.domain.CustomerDomain;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
@@ -28,6 +25,8 @@ public final class CustomerBusinessImpl implements CustomerBusiness {
     public void registerNewCustomer(final CustomerDomain customerDomain) {
 
         ValidateDataCustomerConsistencyForRegisterNewInformation.executeValidation(customerDomain);
+
+        ValidateCustomerBirthDateIsAtLeastSevenYearsOld.executeValidation(customerDomain);
 
         ValidateIdentificationTypeExistsById.executeValidation(customerDomain.getIdentificationType().getId(), daoFactory);
 

@@ -4,6 +4,23 @@ import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 
 public enum MessagesEnumCustomerRule {
 
+    CUSTOMER_BIRTHDATE_MIN_AGE_RULE_DATA_IS_NULL(
+            "Datos nulos para validación de fecha de nacimiento",
+            "Los datos recibidos para validar la fecha de nacimiento son nulos."
+    ),
+    CUSTOMER_BIRTHDATE_MIN_AGE_RULE_DATA_LENGTH_INVALID(
+            "Cantidad de datos inválida para validación de fecha de nacimiento",
+            "Se esperaba 1 dato: fecha de nacimiento."
+    ),
+    CUSTOMER_BIRTHDATE_MIN_AGE_RULE_BIRTHDATE_IS_NULL(
+            "Fecha de nacimiento requerida",
+            "La fecha de nacimiento no puede ser nula."
+    ),
+    CUSTOMER_BIRTHDATE_MIN_AGE_RULE_AGE_INVALID(
+            "La edad ingresada [edad: {0}], es menor a 7 años",
+            "La edad calculada ({0} años) es inferior al mínimo permitido de 7 años."
+    ),
+
     CUSTOMER_ID_NUMBER_DOES_NOT_EXIST_RULE_DATA_IS_NULL(
             "Se ha presentado un problema inesperado tratando de llevar a cabo la operación deseada.",
             "No se recibieron los parámetros requeridos para ejecutar la regla CustomerIdentificationNumberDoesNotExistRule."
