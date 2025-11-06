@@ -26,6 +26,8 @@ public final class CustomerBusinessImpl implements CustomerBusiness {
 
         ValidateDataCustomerConsistencyForRegisterNewInformation.executeValidation(customerDomain);
 
+        ValidateCustomerDatesConsistency.executeValidation(customerDomain);
+
         ValidateCustomerBirthDateIsAtLeastSevenYearsOld.executeValidation(customerDomain);
 
         ValidateIdentificationTypeExistsById.executeValidation(customerDomain.getIdentificationType().getId(), daoFactory);
@@ -34,7 +36,6 @@ public final class CustomerBusinessImpl implements CustomerBusiness {
 
         ValidateCustomerPhoneNumberDoesNotExist.executeValidation(customerDomain.getPhoneNumber(), daoFactory);
 
-        ValidateCustomerDatesConsistency.executeValidation(customerDomain);
 
         var customerEntity = CustomerEntityAssembler.getCustomerEntityAssembler().toEntity(customerDomain);
 
