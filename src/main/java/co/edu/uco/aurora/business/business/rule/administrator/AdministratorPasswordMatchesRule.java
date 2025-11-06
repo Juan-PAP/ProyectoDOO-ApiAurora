@@ -6,7 +6,6 @@ import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 import co.edu.uco.aurora.crosscuting.messagescatalog.business.rule.administrator.MessagesEnumAdministratorRule;
 import co.edu.uco.aurora.data.dao.factory.DAOFactory;
-import co.edu.uco.aurora.entity.AdministratorEntity;
 
 public final class AdministratorPasswordMatchesRule implements Rule {
 

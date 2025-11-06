@@ -1,9 +1,7 @@
 package co.edu.uco.aurora.business.business.impl;
 
 import co.edu.uco.aurora.business.business.AdministratorBusiness;
-import co.edu.uco.aurora.business.business.rule.validator.administrator.ValidateAdministratorPasswordMatches;
-import co.edu.uco.aurora.business.business.rule.validator.administrator.ValidateAdministratorUsernameExist;
-import co.edu.uco.aurora.business.business.rule.validator.administrator.ValidateDataAdministradorConsistencyForLogin;
+import co.edu.uco.aurora.business.business.rule.validator.administrator.ValidateAdministratorLogin;
 import co.edu.uco.aurora.business.domain.AdministratorDomain;
 import co.edu.uco.aurora.data.dao.factory.DAOFactory;
 
@@ -30,12 +28,8 @@ public final class AdministratorBusinessImpl implements AdministratorBusiness {
 
     @Override
     public void login(final AdministratorDomain administratorDomain) {
-
-        ValidateDataAdministradorConsistencyForLogin.executeValidation(administratorDomain);
-
-        ValidateAdministratorUsernameExist.executeValidation(administratorDomain.getUser(), daoFactory);
-
-        ValidateAdministratorPasswordMatches.executeValidation(administratorDomain.getUser(), administratorDomain.getPassword(), daoFactory);
+        // Orquestador único de login
+        ValidateAdministratorLogin.executeValidation(administratorDomain, daoFactory);
     }
 
     @Override
