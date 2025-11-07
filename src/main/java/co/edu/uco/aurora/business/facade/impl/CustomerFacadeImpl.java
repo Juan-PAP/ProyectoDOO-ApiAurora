@@ -36,8 +36,8 @@ public final class CustomerFacadeImpl implements CustomerFacade {
             daoFactory.rollbackTransaction();
 
             var userMessage = MessagesEnumFacade.USER_ERROR_UNEXPECTED_ERROR.getContent();
-            var technicalMessage = MessagesEnumFacade.TECHNICAL_ERROR_UNEXPECTED_ERROR.getContent()
-                    + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumFacade.TECHNICAL_ERROR_UNEXPECTED_ERROR.getContent().
+                    concat(exception.getMessage());
 
             throw AuroraException.create(exception, userMessage, technicalMessage);
         } finally {
@@ -86,8 +86,7 @@ public final class CustomerFacadeImpl implements CustomerFacade {
             daoFactory.rollbackTransaction();
             var userMessage = MessagesEnumFacade.USER_ERROR_UNEXPECTED_ERROR.getContent();
             var technicalMessage = MessagesEnumFacade.TECHNICAL_ERROR_UNEXPECTED_ERROR.getContent()
-                    + ": " + exception.getMessage();
-
+                    .concat(exception.getMessage());
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } finally {

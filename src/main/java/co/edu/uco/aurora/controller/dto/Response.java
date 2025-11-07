@@ -10,7 +10,7 @@ public final class Response <T>{
 
     private List<String> messages;
     private List<T> data;
-    private boolean responseSucceded;
+    boolean responseSucceded;
 
     public Response (List<String> messages, List<T> data ,final boolean responseSucceded) {
         setMessages(messages);
@@ -19,34 +19,19 @@ public final class Response <T>{
     }
 
     public static <T> Response<T> createSuccededResponse() {
-        return new Response<>(new ArrayList<String>(), new ArrayList<>(), true);
+        return new Response<>(new ArrayList<>(), new ArrayList<>(), true);
     }
 
     public static <T> Response<T> createFailedResponse() {
-        return new Response<>(new ArrayList<String>(), new ArrayList<>(), false);
+        return new Response<>(new ArrayList<>(), new ArrayList<>(), false);
     }
-
-    public static <T> Response<T> createSuccededResponse(List<T> data) {
-        return new Response<>(new ArrayList<String>(), data, true);
-    }
-
-    public static <T> Response<T> createFailedResponse(List<T> data) {
-        return new Response<>(new ArrayList<String>(), data, false);
-    }
-
-    public Response (final boolean responseSucceded) {
-        setResponseSucceded(responseSucceded);
-        setMessages(new ArrayList<String>());
-        setData(new ArrayList<T>());
-    }
-
 
     public List<String> getMessages() {
         return messages;
     }
 
     public void setMessages(final List<String> messages) {
-        this.messages = ObjectHelper.getDefault(messages, new ArrayList<String>());
+        this.messages = ObjectHelper.getDefault(messages, new ArrayList<>());
     }
 
     public void addMessage(final String message) {
@@ -61,12 +46,10 @@ public final class Response <T>{
     }
 
     public void setData(final List<T> data) {
-        this.data = ObjectHelper.getDefault(data, new ArrayList<T>());
+        this.data = ObjectHelper.getDefault(data, new ArrayList<>());
     }
 
-    public boolean isResponseSucceded() {
-        return responseSucceded;
-    }
+
 
     public void setResponseSucceded(final boolean responseSucceded) {
         this.responseSucceded = responseSucceded;

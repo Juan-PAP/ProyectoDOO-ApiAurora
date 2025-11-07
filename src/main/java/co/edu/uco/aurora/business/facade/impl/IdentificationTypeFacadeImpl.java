@@ -39,8 +39,7 @@ public final class IdentificationTypeFacadeImpl implements IdentificationTypeFac
 
             var userMessage = MessagesEnumFacade.USER_ERROR_UNEXPECTED_ERROR.getContent();
             var technicalMessage = MessagesEnumFacade.TECHNICAL_ERROR_UNEXPECTED_ERROR.getContent()
-                    + ": " + exception.getMessage();
-
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         } finally {
             daoFactory.closeConnection();

@@ -1,6 +1,5 @@
 package co.edu.uco.aurora.business.facade;
 
-import co.edu.uco.aurora.business.domain.AdministratorDomain;
 import co.edu.uco.aurora.dto.AdministratorDTO;
 
 import java.util.List;

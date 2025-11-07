@@ -49,8 +49,7 @@ public final class AdministratorFacadeImpl implements AdministratorFacade {
             daoFactory.rollbackTransaction();
 
             var userMessage = MessagesEnumFacade.USER_ERROR_UNEXPECTED_ERROR.getContent();
-            var technicalMessage = MessagesEnumFacade.TECHNICAL_ERROR_UNEXPECTED_ERROR.getContent()
-                    + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumFacade.TECHNICAL_ERROR_UNEXPECTED_ERROR.getContent();
 
             throw AuroraException.create(exception, userMessage, technicalMessage);
         } finally {

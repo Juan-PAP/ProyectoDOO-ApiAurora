@@ -45,7 +45,7 @@ public class CustomerController {
             responseStatusCode = HttpStatus.INTERNAL_SERVER_ERROR;
             exception.printStackTrace();
         }
-        return new ResponseEntity<Response<CustomerDTO>>(responseObjectData, responseStatusCode);
+        return new ResponseEntity<>(responseObjectData, responseStatusCode);
     }
 
     @PostMapping
