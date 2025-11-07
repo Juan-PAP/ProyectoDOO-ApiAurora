@@ -1,4 +1,4 @@
-package co.edu.uco.aurora.business.business.rule.validator.identidicationtype;
+package co.edu.uco.aurora.business.business.rule.validator.identificationtype;
 
 import co.edu.uco.aurora.business.business.rule.identificationtype.IdentificationTypeExistByIdRule;
 import co.edu.uco.aurora.business.business.rule.validator.Validator;

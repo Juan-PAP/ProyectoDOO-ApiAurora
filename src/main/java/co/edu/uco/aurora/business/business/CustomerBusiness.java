@@ -13,7 +13,7 @@ public interface CustomerBusiness {
 
      void generateSendPhoneConfirmationCode (String phoneNumber);
 
-     boolean comfirmationPhoneNumber (UUID id, int code);
+     boolean confirmationPhoneNumber(UUID id, int code);
 
      List<CustomerDomain> getCustomerByFilter(CustomerDomain customer);
 

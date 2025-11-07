@@ -1,11 +1,9 @@
 package co.edu.uco.aurora.business.assembler.entity.impl;
 
 import co.edu.uco.aurora.business.assembler.entity.EntityAssembler;
-import co.edu.uco.aurora.business.domain.BatchDomain;
 import co.edu.uco.aurora.business.domain.ProductBrandDomain;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
-import co.edu.uco.aurora.entity.BatchEntity;
 import co.edu.uco.aurora.entity.ProductBrandEntity;
 
 import java.util.ArrayList;

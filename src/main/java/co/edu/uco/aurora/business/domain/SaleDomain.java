@@ -55,10 +55,6 @@ public final class SaleDomain extends Domain {
         return date;
     }
 
-    public void setDate() {
-        this.date = LocalDateHelper.getDateToday();
-    }
-
     public void setDate(final LocalDate date) {
         this.date = LocalDateHelper.getDefault(date);
     }

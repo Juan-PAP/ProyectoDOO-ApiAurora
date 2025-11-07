@@ -41,7 +41,7 @@ public final class AdministratorPasswordMatchesRule implements Rule {
 
         if (!results.isEmpty()) {
 
-            var storedPassword = results.get(0).getPassword();
+            var storedPassword = results.getFirst().getPassword();
 
             if (!password.equals(storedPassword)) {
                 var userMessage = MessagesEnumAdministratorRule.ADMIN_PASSWORD_MATCHES_RULE_PASSWORD_DOES_NOT_MATCH.getTitle();

@@ -1,11 +1,9 @@
 package co.edu.uco.aurora.business.assembler.entity.impl;
 
 import co.edu.uco.aurora.business.assembler.entity.EntityAssembler;
-import co.edu.uco.aurora.business.domain.UnitMeasurementDomain;
 import co.edu.uco.aurora.business.domain.UnitSalesDomain;
 import co.edu.uco.aurora.crosscuting.helper.ObjectHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
-import co.edu.uco.aurora.entity.UnitMeasurementEntity;
 import co.edu.uco.aurora.entity.UnitSalesEntity;
 
 import java.util.ArrayList;

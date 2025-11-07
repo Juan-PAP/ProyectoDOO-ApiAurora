@@ -3,7 +3,7 @@ package co.edu.uco.aurora.business.business.impl;
 import co.edu.uco.aurora.business.assembler.entity.impl.CustomerEntityAssembler;
 import co.edu.uco.aurora.business.business.CustomerBusiness;
 import co.edu.uco.aurora.business.business.rule.validator.customer.*;
-import co.edu.uco.aurora.business.business.rule.validator.identidicationtype.ValidateIdentificationTypeExistsById;
+import co.edu.uco.aurora.business.business.rule.validator.identificationtype.ValidateIdentificationTypeExistsById;
 import co.edu.uco.aurora.business.domain.CustomerDomain;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 import co.edu.uco.aurora.data.dao.factory.DAOFactory;
@@ -67,7 +67,7 @@ public final class CustomerBusinessImpl implements CustomerBusiness {
     }
 
     @Override
-    public boolean comfirmationPhoneNumber(final UUID id, int code) {
+    public boolean confirmationPhoneNumber(final UUID id, int code) {
         return false;
     }
 
