@@ -31,7 +31,7 @@ public final class UnitMeasurementPostgresqlDAO extends SqlConnection implements
     public List<UnitMeasurementEntity> findByFilter(final UnitMeasurementEntity filterEntity) {
         SqlConnectionHelper.ensureConnectionIsNotNull(getConnection());
 
-        var parameterList = new ArrayList<Object>();
+        var parameterList = new ArrayList<>();
         var sql = createSentenceFindByFilter(filterEntity, parameterList);
 
         try (var preparedStatement = this.getConnection().prepareStatement(sql)) {
@@ -47,12 +47,12 @@ public final class UnitMeasurementPostgresqlDAO extends SqlConnection implements
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumUnitMeasurementDAO.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_UNITMEASUREMENT.getContent();
             var technicalMessage = MessagesEnumUnitMeasurementDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_UNITMEASUREMENT.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         } catch (final Exception exception) {
             var userMessage = MessagesEnumUnitMeasurementDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_UNITMEASUREMENT.getContent();
             var technicalMessage = MessagesEnumUnitMeasurementDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_UNITMEASUREMENT.getContent()
-                    + ": " + exception.getMessage();
+                     + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }
@@ -121,13 +121,13 @@ public final class UnitMeasurementPostgresqlDAO extends SqlConnection implements
         } catch (SQLException exception) {
             var userMessage = MessagesEnumUnitMeasurementDAO.USER_ERROR_SQL_MAPPING_UNITMEASUREMENT.getContent();
             var technicalMessage = MessagesEnumUnitMeasurementDAO.TECHNICAL_ERROR_SQL_MAPPING_UNITMEASUREMENT.getContent()
-                    + ": " + exception.getMessage();
+                    +  exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (Exception exception) {
             var userMessage = MessagesEnumUnitMeasurementDAO.USER_ERROR_SQL_UNEXPECTED_MAPPING_UNITMEASUREMENT.getContent();
             var technicalMessage = MessagesEnumUnitMeasurementDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_MAPPING_UNITMEASUREMENT.getContent()
-                    + ": " + exception.getMessage();
+                    +  exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
         return listUnitMeasurement;

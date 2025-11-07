@@ -38,13 +38,13 @@ public final class CategoryPostgresqlDAO extends SqlConnection implements Catego
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumCategoryDAO.USER_ERROR_SQL_INSERT_CATEGORY.getContent();
             var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_INSERT_CATEGORY.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (final Exception exception) {
             var userMessage = MessagesEnumCategoryDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_INSERT_CATEGORY.getContent();
             var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_INSERT_CATEGORY.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }
@@ -63,13 +63,13 @@ public final class CategoryPostgresqlDAO extends SqlConnection implements Catego
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumCategoryDAO.USER_ERROR_SQL_UPDATE_CATEGORY.getContent();
             var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_UPDATE_CATEGORY.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (final Exception exception) {
             var userMessage = MessagesEnumCategoryDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_CATEGORY.getContent();
             var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_CATEGORY.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
 
@@ -84,7 +84,7 @@ public final class CategoryPostgresqlDAO extends SqlConnection implements Catego
     public List<CategoryEntity> findByFilter(CategoryEntity filterEntity) {
         SqlConnectionHelper.ensureConnectionIsNotNull(getConnection());
 
-        var parameterList = new ArrayList<Object>();
+        var parameterList = new ArrayList<>();
         var sql = createSentenceFindByFilter(filterEntity, parameterList);
 
         try (var preparedStatement = this.getConnection().prepareStatement(sql)) {
@@ -100,7 +100,7 @@ public final class CategoryPostgresqlDAO extends SqlConnection implements Catego
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumCategoryDAO.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_CATEGORY.getContent();
             var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_CATEGORY.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }
@@ -164,13 +164,13 @@ public final class CategoryPostgresqlDAO extends SqlConnection implements Catego
         } catch (SQLException exception) {
             var userMessage = MessagesEnumCategoryDAO.USER_ERROR_SQL_MAPPING_CATEGORY.getContent();
             var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_MAPPING_CATEGORY.getContent()
-                    + ": " + exception.getMessage();
+                    +  exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (Exception exception) {
             var userMessage = MessagesEnumCategoryDAO.USER_ERROR_SQL_UNEXPECTED_MAPPING_CATEGORY.getContent();
             var technicalMessage = MessagesEnumCategoryDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_MAPPING_CATEGORY.getContent()
-                    + ": " + exception.getMessage();
+                     + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
         return listCategory;

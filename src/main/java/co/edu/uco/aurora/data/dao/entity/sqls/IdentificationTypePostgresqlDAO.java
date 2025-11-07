@@ -39,7 +39,7 @@ public final class IdentificationTypePostgresqlDAO extends SqlConnection impleme
     public List<IdentificationTypeEntity> findByFilter(IdentificationTypeEntity filterEntity) {
         SqlConnectionHelper.ensureConnectionIsNotNull(getConnection());
 
-        var parameterList = new ArrayList<Object>();
+        var parameterList = new ArrayList<>();
         var sql = createSentenceFindByFilter(filterEntity, parameterList);
 
         try (var preparedStatement = this.getConnection().prepareStatement(sql)) {
@@ -54,7 +54,7 @@ public final class IdentificationTypePostgresqlDAO extends SqlConnection impleme
 
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumIdentificationTypeDAO.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_IDENTIFICATION_TYPE.getContent();
-            var technicalMessage = MessagesEnumIdentificationTypeDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_IDENTIFICATION_TYPE.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumIdentificationTypeDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_IDENTIFICATION_TYPE.getContent() + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         }catch (final Exception exception) {
@@ -117,11 +117,11 @@ public final class IdentificationTypePostgresqlDAO extends SqlConnection impleme
 
         }  catch (SQLException exception) {
             var userMessage = MessagesEnumIdentificationTypeDAO.USER_ERROR_SQL_MAPPING_IDENTIFICATION_TYPE.getContent();
-            var technicalMessage = MessagesEnumIdentificationTypeDAO.TECHNICAL_ERROR_SQL_MAPPING_IDENTIFICATION_TYPE.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumIdentificationTypeDAO.TECHNICAL_ERROR_SQL_MAPPING_IDENTIFICATION_TYPE.getContent() +  exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         } catch (Exception exception){
             var userMessage = MessagesEnumIdentificationTypeDAO.USER_ERROR_SQL_UNEXPECTED_MAPPING_IDENTIFICATION_TYPE.getContent();
-            var technicalMessage = MessagesEnumIdentificationTypeDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_MAPPING_IDENTIFICATION_TYPE.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumIdentificationTypeDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_MAPPING_IDENTIFICATION_TYPE.getContent() + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
 

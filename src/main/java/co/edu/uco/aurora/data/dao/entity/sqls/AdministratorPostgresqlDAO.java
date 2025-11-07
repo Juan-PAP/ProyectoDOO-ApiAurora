@@ -56,7 +56,7 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
     public List<AdministratorEntity> findByFilter(AdministratorEntity filterEntity) {
         SqlConnectionHelper.ensureConnectionIsNotNull(getConnection());
 
-        var parameterList = new ArrayList<Object>();
+        var parameterList = new ArrayList<>();
         var sql = createSentenceFindByFilter(filterEntity, parameterList);
 
         try (var preparedStatement = this.getConnection().prepareStatement(sql)) {
@@ -71,7 +71,7 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
 
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR.getContent();
-            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR.getContent() +exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         }catch (final Exception exception) {
@@ -142,11 +142,11 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
 
         }  catch (SQLException exception) {
             var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_MAPPING_ADMINISTRATOR.getContent();
-            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_MAPPING_ADMINISTRATOR.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_MAPPING_ADMINISTRATOR.getContent() + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         } catch (Exception exception){
             var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_ADMINISTRATOR.getContent();
-            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_ADMINISTRATOR.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_ADMINISTRATOR.getContent() + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
 
@@ -211,7 +211,7 @@ public final class AdministratorPostgresqlDAO extends SqlConnection implements A
 
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumAdministratorDAO.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR.getContent();
-            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumAdministratorDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_ADMINISTRATOR.getContent() + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (final Exception exception) {

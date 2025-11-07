@@ -31,7 +31,7 @@ public final class UnitSalesPostgresqlDAO extends SqlConnection implements UnitS
     public List<UnitSalesEntity> findByFilter(final UnitSalesEntity filterEntity) {
         SqlConnectionHelper.ensureConnectionIsNotNull(getConnection());
 
-        var parameterList = new ArrayList<Object>();
+        var parameterList = new ArrayList<>();
         var sql = createSentenceFindByFilter(filterEntity, parameterList);
 
         try (var preparedStatement = this.getConnection().prepareStatement(sql)) {
@@ -46,7 +46,7 @@ public final class UnitSalesPostgresqlDAO extends SqlConnection implements UnitS
 
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumUnitSalesDAO.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_UNIT_SALES.getContent();
-            var technicalMessage = MessagesEnumUnitSalesDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_UNIT_SALES.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumUnitSalesDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_UNIT_SALES.getContent() + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (final Exception exception) {
@@ -115,11 +115,11 @@ public final class UnitSalesPostgresqlDAO extends SqlConnection implements UnitS
 
         } catch (SQLException exception) {
             var userMessage = MessagesEnumUnitSalesDAO.USER_ERROR_SQL_MAPPING_UNIT_SALES.getContent();
-            var technicalMessage = MessagesEnumUnitSalesDAO.TECHNICAL_ERROR_SQL_MAPPING_UNIT_SALES.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumUnitSalesDAO.TECHNICAL_ERROR_SQL_MAPPING_UNIT_SALES.getContent() + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         } catch (Exception exception) {
             var userMessage = MessagesEnumUnitSalesDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_UNIT_SALES.getContent();
-            var technicalMessage = MessagesEnumUnitSalesDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_UNIT_SALES.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumUnitSalesDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_UNIT_SALES.getContent() + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
 

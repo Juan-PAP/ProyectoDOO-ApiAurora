@@ -38,13 +38,13 @@ public final class SaleProductBrandPostgresqlDAO extends SqlConnection implement
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumSaleProductBrandDAO.USER_ERROR_SQL_INSERT_SALEPRODUCTBRAND.getContent();
             var technicalMessage = MessagesEnumSaleProductBrandDAO.TECHNICAL_ERROR_SQL_INSERT_SALEPRODUCTBRAND.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (final Exception exception) {
             var userMessage = MessagesEnumSaleProductBrandDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_INSERT_SALEPRODUCTBRAND.getContent();
             var technicalMessage = MessagesEnumSaleProductBrandDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_INSERT_SALEPRODUCTBRAND.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }
@@ -69,13 +69,13 @@ public final class SaleProductBrandPostgresqlDAO extends SqlConnection implement
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumSaleProductBrandDAO.USER_ERROR_SQL_UPDATE_SALEPRODUCTBRAND.getContent();
             var technicalMessage = MessagesEnumSaleProductBrandDAO.TECHNICAL_ERROR_SQL_UPDATE_SALEPRODUCTBRAND.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (final Exception exception) {
             var userMessage = MessagesEnumSaleProductBrandDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_SALEPRODUCTBRAND.getContent();
             var technicalMessage = MessagesEnumSaleProductBrandDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_SALEPRODUCTBRAND.getContent()
-                    + ": " + exception.getMessage();
+                     + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }
@@ -94,13 +94,13 @@ public final class SaleProductBrandPostgresqlDAO extends SqlConnection implement
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumSaleProductBrandDAO.USER_ERROR_SQL_DELETE_SALEPRODUCTBRAND.getContent();
             var technicalMessage = MessagesEnumSaleProductBrandDAO.TECHNICAL_ERROR_SQL_DELETE_SALEPRODUCTBRAND.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (final Exception exception) {
             var userMessage = MessagesEnumSaleProductBrandDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_DELETE_SALEPRODUCTBRAND.getContent();
             var technicalMessage = MessagesEnumSaleProductBrandDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_DELETE_SALEPRODUCTBRAND.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }

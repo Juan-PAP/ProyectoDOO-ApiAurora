@@ -1,6 +1,5 @@
 package co.edu.uco.aurora.dto;
 
-import co.edu.uco.aurora.business.domain.AdministratorDomain;
 import co.edu.uco.aurora.crosscuting.helper.TextHelper;
 import co.edu.uco.aurora.crosscuting.helper.UUIDHelper;
 

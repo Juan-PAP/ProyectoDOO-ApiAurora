@@ -55,7 +55,7 @@ public final class BrandPostgresqlDAO extends SqlConnection implements BrandDAO 
     public List<BrandEntity> findByFilter(final BrandEntity filterEntity) {
         SqlConnectionHelper.ensureConnectionIsNotNull(getConnection());
 
-        var parameterList = new ArrayList<Object>();
+        var parameterList = new ArrayList<>();
         var sql = createSentenceFindByFilter(filterEntity, parameterList);
 
         try (var preparedStatement = this.getConnection().prepareStatement(sql)) {
@@ -70,7 +70,7 @@ public final class BrandPostgresqlDAO extends SqlConnection implements BrandDAO 
 
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumBrandDAO.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_BRAND.getContent();
-            var technicalMessage = MessagesEnumBrandDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_BRAND.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumBrandDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_BRAND.getContent() + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (final Exception exception) {
@@ -139,11 +139,11 @@ public final class BrandPostgresqlDAO extends SqlConnection implements BrandDAO 
 
         } catch (SQLException exception) {
             var userMessage = MessagesEnumBrandDAO.USER_ERROR_SQL_MAPPING_BRAND.getContent();
-            var technicalMessage = MessagesEnumBrandDAO.TECHNICAL_ERROR_SQL_MAPPING_BRAND.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumBrandDAO.TECHNICAL_ERROR_SQL_MAPPING_BRAND.getContent() + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         } catch (Exception exception) {
             var userMessage = MessagesEnumBrandDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_BRAND.getContent();
-            var technicalMessage = MessagesEnumBrandDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_BRAND.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumBrandDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_BRAND.getContent() + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
 

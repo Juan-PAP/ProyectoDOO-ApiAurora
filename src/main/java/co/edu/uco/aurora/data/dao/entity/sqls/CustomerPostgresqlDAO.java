@@ -71,7 +71,7 @@ public final class CustomerPostgresqlDAO extends SqlConnection implements Custom
     public List<CustomerEntity> findByFilter(final CustomerEntity filterEntity) {
         SqlConnectionHelper.ensureConnectionIsNotNull(getConnection());
 
-        var parameterList = new ArrayList<Object>();
+        var parameterList = new ArrayList<>();
         var sql = createSentenceFindByFilter(filterEntity, parameterList);
 
         try (var preparedStatement = this.getConnection().prepareStatement(sql)) {
@@ -86,7 +86,7 @@ public final class CustomerPostgresqlDAO extends SqlConnection implements Custom
 
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumCustomerDAO.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_CUSTOMER.getContent();
-            var technicalMessage = MessagesEnumCustomerDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_CUSTOMER.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumCustomerDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_CUSTOMER.getContent() + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (final Exception exception) {
@@ -191,11 +191,11 @@ public final class CustomerPostgresqlDAO extends SqlConnection implements Custom
 
         } catch (SQLException exception) {
             var userMessage = MessagesEnumCustomerDAO.USER_ERROR_SQL_MAPPING_CUSTOMER.getContent();
-            var technicalMessage = MessagesEnumCustomerDAO.TECHNICAL_ERROR_SQL_MAPPING_CUSTOMER.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumCustomerDAO.TECHNICAL_ERROR_SQL_MAPPING_CUSTOMER.getContent() + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         } catch (Exception exception) {
             var userMessage = MessagesEnumCustomerDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_CUSTOMER.getContent();
-            var technicalMessage = MessagesEnumCustomerDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_CUSTOMER.getContent() + ": " + exception.getMessage();
+            var technicalMessage = MessagesEnumCustomerDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_MAPPING_CUSTOMER.getContent() + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
 

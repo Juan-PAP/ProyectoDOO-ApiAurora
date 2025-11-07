@@ -54,13 +54,13 @@ public final class ProductBrandPostgresqlDAO extends SqlConnection implements Pr
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumProductBrandDAO.USER_ERROR_SQL_INSERT_PRODUCTBRAND.getContent();
             var technicalMessage = MessagesEnumProductBrandDAO.TECHNICAL_ERROR_SQL_INSERT_PRODUCTBRAND.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (final Exception exception) {
             var userMessage = MessagesEnumProductBrandDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_INSERT_PRODUCTBRAND.getContent();
             var technicalMessage = MessagesEnumProductBrandDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_INSERT_PRODUCTBRAND.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }
@@ -89,13 +89,13 @@ public final class ProductBrandPostgresqlDAO extends SqlConnection implements Pr
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumProductBrandDAO.USER_ERROR_SQL_UPDATE_PRODUCTBRAND.getContent();
             var technicalMessage = MessagesEnumProductBrandDAO.TECHNICAL_ERROR_SQL_UPDATE_PRODUCTBRAND.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (final Exception exception) {
             var userMessage = MessagesEnumProductBrandDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_PRODUCTBRAND.getContent();
             var technicalMessage = MessagesEnumProductBrandDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_UPDATE_PRODUCTBRAND.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }
@@ -109,7 +109,7 @@ public final class ProductBrandPostgresqlDAO extends SqlConnection implements Pr
     public List<ProductBrandEntity> findByFilter(final ProductBrandEntity filterEntity) {
         SqlConnectionHelper.ensureConnectionIsNotNull(getConnection());
 
-        var parameterList = new ArrayList<Object>();
+        var parameterList = new ArrayList<>();
         var sql = createSentenceFindByFilter(filterEntity, parameterList);
 
         try (var preparedStatement = this.getConnection().prepareStatement(sql)) {
@@ -125,12 +125,12 @@ public final class ProductBrandPostgresqlDAO extends SqlConnection implements Pr
         } catch (final SQLException exception) {
             var userMessage = MessagesEnumProductBrandDAO.USER_ERROR_SQL_EXECUTING_FIND_BY_FILTER_PRODUCTBRAND.getContent();
             var technicalMessage = MessagesEnumProductBrandDAO.TECHNICAL_ERROR_SQL_EXECUTING_FIND_BY_FILTER_PRODUCTBRAND.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         } catch (final Exception exception) {
             var userMessage = MessagesEnumProductBrandDAO.USER_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_PRODUCTBRAND.getContent();
             var technicalMessage = MessagesEnumProductBrandDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_ERROR_FIND_BY_FILTER_PRODUCTBRAND.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
     }
@@ -262,13 +262,13 @@ public final class ProductBrandPostgresqlDAO extends SqlConnection implements Pr
         } catch (SQLException exception) {
             var userMessage = MessagesEnumProductBrandDAO.USER_ERROR_SQL_MAPPING_PRODUCTBRAND.getContent();
             var technicalMessage = MessagesEnumProductBrandDAO.TECHNICAL_ERROR_SQL_MAPPING_PRODUCTBRAND.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
 
         } catch (Exception exception) {
             var userMessage = MessagesEnumProductBrandDAO.USER_ERROR_SQL_UNEXPECTED_MAPPING_PRODUCTBRAND.getContent();
             var technicalMessage = MessagesEnumProductBrandDAO.TECHNICAL_ERROR_SQL_UNEXPECTED_MAPPING_PRODUCTBRAND.getContent()
-                    + ": " + exception.getMessage();
+                    + exception.getMessage();
             throw AuroraException.create(exception, userMessage, technicalMessage);
         }
         return listProductBrand;
