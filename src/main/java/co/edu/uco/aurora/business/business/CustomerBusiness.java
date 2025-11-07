@@ -11,7 +11,7 @@ public interface CustomerBusiness {
 
      void updateCustomerInformation (UUID id, CustomerDomain customer);
 
-     void generateSendPhoneConfirmationCode (String phoneNumber);
+     void sendPhoneConfirmationCode(String phoneNumber);
 
      boolean confirmationPhoneNumber(UUID id, int code);
 

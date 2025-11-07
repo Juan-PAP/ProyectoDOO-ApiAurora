@@ -62,7 +62,7 @@ public final class CustomerBusinessImpl implements CustomerBusiness {
     }
 
     @Override
-    public void generateSendPhoneConfirmationCode(final String phoneNumber) {
+    public void sendPhoneConfirmationCode(final String phoneNumber) {
 
     }
 
