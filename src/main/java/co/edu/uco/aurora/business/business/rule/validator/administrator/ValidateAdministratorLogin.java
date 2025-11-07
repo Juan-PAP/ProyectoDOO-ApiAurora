@@ -18,12 +18,15 @@ public final class ValidateAdministratorLogin implements Validator {
 
     @Override
     public void validate(final Object... data) {
+
         final var domain = (AdministratorDomain) data[0];
+
         final var daoFactory = (DAOFactory) data[1];
 
         ValidateDataAdministradorConsistencyForLogin.executeValidation(domain);
 
         AdministratorUsernameExistsRule.executeRule(domain.getUser(), daoFactory);
+
         AdministratorPasswordMatchesRule.executeRule(domain.getUser(), domain.getPassword(), daoFactory);
     }
 }

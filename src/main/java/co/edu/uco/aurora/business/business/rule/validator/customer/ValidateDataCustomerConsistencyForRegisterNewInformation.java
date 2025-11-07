@@ -30,6 +30,8 @@ public final class ValidateDataCustomerConsistencyForRegisterNewInformation impl
     public void validate(final Object... data) {
         var customerDomainData = (CustomerDomain) data [0];
 
+        sanitizeInputData(customerDomainData);
+
         validateEmptyData(customerDomainData);
 
         validateDataLength(customerDomainData);
@@ -37,6 +39,21 @@ public final class ValidateDataCustomerConsistencyForRegisterNewInformation impl
         validateDataFormat(customerDomainData);
 
         validateDomainObjectsAndConsistency(customerDomainData);
+    }
+
+    private void sanitizeInputData(final CustomerDomain data) {
+        if (data.getFullName() != null) {
+            String cleanedName = data.getFullName()
+                    .replaceAll("\\s+", " ")
+                    .trim();
+            data.setFullName(cleanedName);
+        }
+        if (data.getIdentificationNumber() != null) {
+            data.setIdentificationNumber(data.getIdentificationNumber().trim());
+        }
+        if (data.getPhoneNumber() != null) {
+            data.setPhoneNumber(data.getPhoneNumber().trim());
+        }
     }
 
     private void validateEmptyData (final CustomerDomain data) {

@@ -28,7 +28,6 @@ public final class AdministratorBusinessImpl implements AdministratorBusiness {
 
     @Override
     public void login(final AdministratorDomain administratorDomain) {
-        // Orquestador único de login
         ValidateAdministratorLogin.executeValidation(administratorDomain, daoFactory);
     }
 
